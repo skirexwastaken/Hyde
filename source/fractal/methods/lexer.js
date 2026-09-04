@@ -21,6 +21,9 @@ export const lexer = {
                 if (byte == "["){
                     codeBlockName = codeBlockName.trim()
 
+                    // Regex test that makes sure codeBlockName only contains standard alphabet letters
+                    if (!(/^[a-zA-Z]+$/.test(codeBlockName))) throw new Error( `Syntax Error: Code block ${codeBlockName} contains invalid characters`)
+
                     if (codeBlockName == "") codeBlockName = "main"
 
                     tokenizedCode[codeBlockName] = []
@@ -28,7 +31,7 @@ export const lexer = {
 
 
                 } else {
-                    if (!([" ",","].includes(byte))) codeBlockName += byte
+                    codeBlockName += byte
                 }
 
             } else {
