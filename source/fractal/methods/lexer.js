@@ -52,20 +52,39 @@ export const lexer = {
                         temporaryDepth -= 1
                     }
 
-                    keyword = keyword.trim()
-
-                    if (keyword != "") currentArguments.push(keyword)
-
                     if ((!(keyword in FUNCTIONS) && byte == "(") || keyword in FUNCTIONS && byte != "(") throw new Error(`Syntax Error: Function [${keyword}] is an invalid function`)
 
-                    let instanceCounter = 0
+                    for (const func in FUNCTIONS){
+                        if ((keyword).includes(func) && keyword != func && keyword[0] != "'") throw new Error(`Syntax Error: Function [${keyword}] is an invalid function`)
 
-                    for (const func in FUNCTIONS){
-                        if (keyword.includes(func)) instanceCounter++
                     }
-                    
-                    for (const func in FUNCTIONS){
-                        if ((keyword).includes(func) && keyword != func && keyword[0] != "'" && instanceCounter == 1) throw new Error(`Syntax Error: Function [${keyword}] is an invalid function`)
+
+                    // Each string can be a dollar string, meaning variables can be embdeded inside of it using the ${} symbol
+                    // In that case the string is split into separate parts and then combined using the con function
+                    let dollarString = keyword.split(/(\${.*})/)
+
+                    if (dollarString.length == 1){
+                        if (keyword != "") currentArguments.push(keyword)
+
+                    } else {
+                        for (const index in dollarString) {
+                            if (dollarString[index].startsWith("${") && dollarString[index].endsWith("}")){
+                                dollarString[index] = dollarString[index].slice(2, dollarString[index].length - 1)
+
+                            } else {
+                                if (dollarString[index][0] != "'"){
+                                    dollarString[index] = `'${dollarString[index]}`
+
+                                } else {
+                                    dollarString[index] = `${dollarString[index]}'`
+
+                                }
+                            }
+                        }
+
+                        currentArguments.push("con")
+                        currentArguments.push(dollarString)
+
                     }
 
                     keyword = ""

@@ -31,7 +31,7 @@ export class Fractal {
 
         this.MemoryManager = new MemoryManager()
 
-        this.coreTools.shellOutput("Fractal Alpha [18.8.2026]")
+        this.coreTools.shellOutput("Fractal Alpha [4.9.2026]")
 
         // Check if arguments are a valid object
         this.checkInputArguments(inputArguments)

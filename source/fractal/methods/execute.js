@@ -201,7 +201,8 @@ export const execute = {
                 let connectedLine = ""
 
                 for (let index = 0; index < func["arguments"]; index++){
-                    connectedLine += `${this.stack.pop()} `
+                    connectedLine += String(this.stack.pop())
+
                 }
 
                 connectedLine = connectedLine.trim()
@@ -430,7 +431,7 @@ export const execute = {
             // Functions that return direct values
 
             case "string": {
-                this.stack.push(func["value"].trim())
+                this.stack.push(func["value"])
 
                 break
             }
