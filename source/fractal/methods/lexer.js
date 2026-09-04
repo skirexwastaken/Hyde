@@ -61,29 +61,43 @@ export const lexer = {
 
                     // Each string can be a dollar string, meaning variables can be embdeded inside of it using the ${} symbol
                     // In that case the string is split into separate parts and then combined using the con function
-                    let dollarString = keyword.split(/(\${.*})/)
+                    if (keyword[0] == "'"){
+                        let dollarString = keyword.split(/(\${.*?})/)
 
-                    if (dollarString.length == 1){
-                        if (keyword != "") currentArguments.push(keyword)
+                        // No instance of ${}
+                        if (dollarString.length == 1){
+                            if (keyword != "") currentArguments.push(keyword)
 
-                    } else {
-                        for (const index in dollarString) {
-                            if (dollarString[index].startsWith("${") && dollarString[index].endsWith("}")){
-                                dollarString[index] = dollarString[index].slice(2, dollarString[index].length - 1)
+                        } else {
 
-                            } else {
-                                if (dollarString[index][0] != "'"){
-                                    dollarString[index] = `'${dollarString[index]}`
+                            // Replacing ${} with variable names
+                            for (const index in dollarString) {
+                                if (dollarString[index].startsWith("${") && dollarString[index].endsWith("}")){
+                                    dollarString[index] = dollarString[index].slice(2, dollarString[index].length - 1)
 
                                 } else {
-                                    dollarString[index] = `${dollarString[index]}'`
 
+                                    // Fixing the other parts so they are a valid strings
+                                    if (dollarString[index][0] != "'"){
+                                        dollarString[index] = `'${dollarString[index]}`
+
+                                    } 
+                                    
+                                    if (dollarString[index][dollarString[index].length - 1] != "'"){
+                                        dollarString[index] = `${dollarString[index]}'`
+
+                                    }
                                 }
                             }
+
+                            // Combining the sub strings and variables into one single string using the con function
+                            currentArguments.push("con")
+                            currentArguments.push(dollarString)
+
                         }
 
-                        currentArguments.push("con")
-                        currentArguments.push(dollarString)
+                    } else {
+                        if (keyword != "") currentArguments.push(keyword)
 
                     }
 
