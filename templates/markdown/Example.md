@@ -30,6 +30,8 @@ Line 3
 ``block``
 ```big block```
 
+`code A` `code B`
+
 ```
 multiline
 code
@@ -64,3 +66,7 @@ Line 2
 Line 3
 
 __Italic__ __Italic__
+
+_Italic_ _Italic_
+
+~~Test~~ ~Test~

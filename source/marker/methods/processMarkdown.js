@@ -1,0 +1,75 @@
+export const processMarkdown = {
+    // The main goal of this function is to simply determine where new lines should start
+    processMarkdown(rawMarkdown){
+        // Removing comments and splitting the file content into separate lines
+        rawMarkdown = rawMarkdown.replace(/<!--[\s\S]*?-->/g,"").split("\n")
+
+        // The symbol \ indicates a new line
+        const splitMarkdown = []
+        for (const line of rawMarkdown){
+            if (line.endsWith("\\")){
+                splitMarkdown.push(line.slice(0, -1))
+                splitMarkdown.push("")
+
+            } else {
+                splitMarkdown.push(line)
+
+            }
+        }
+
+        const processedMarkdown = []
+        let insideCodeBlock = false
+        let lineIndex = 0
+
+        // Processing each line of markdown
+        for (const line of splitMarkdown){
+
+            // ``` indicates code block start or end
+            // Note: No additional styles should be applied to lines inside of code block
+            if (line.trim() == "```"){
+                if (insideCodeBlock){
+                    insideCodeBlock = false
+
+                } else {
+                    insideCodeBlock = true
+
+                }
+
+                processedMarkdown.push("```")
+
+            } else {
+
+                // If a line is not part of a code block, styles are applied
+                if (!insideCodeBlock){
+
+                    // First line is simply added to the proccessed markdown array
+                    if (processedMarkdown.length == 0 && line != "") {
+                        processedMarkdown.push(line)
+                    
+                    } else if (processedMarkdown.length != 0){
+
+                        // Lines with no formating that don't have an empty line between each other are merged together on one line
+                        if (splitMarkdown[lineIndex - 1] != "" && !["#","`","<",">","*"].includes(line[0]) && !["#","`","<",">","*"].includes(processedMarkdown[processedMarkdown.length - 1][0])){
+                            processedMarkdown[processedMarkdown.length - 1] += ` ${line}`
+
+                        } else {
+                            if (line != ""){
+                                processedMarkdown.push(line)
+
+                            }
+                        }
+                    }
+                
+                // Line that's inside of a code block
+                } else {
+                    processedMarkdown.push(line)
+
+                }
+            }
+
+            lineIndex++
+        }
+
+        return processedMarkdown
+    }
+}

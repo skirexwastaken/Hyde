@@ -28,8 +28,6 @@ String map helps with finding ID
 // upper lower
 // capital uncapital UWU
 // index of
-// starts with
-// ends with
 // sin cos tan
 // push, pop
 // shift, unshift
