@@ -3,8 +3,14 @@ import {FUNCTIONS, NFUNCTIONS} from "../constants/constants.js"
 export const parser =  {
     // This function converts tokenized code into direct function calls
     parser(tokenizedCode){
-        let variableMap = {}
         let variableCounter = 0
+
+        // Loading input arguments into memory
+        for (const inputArgument in this.inputArguments){
+            this.MemoryManager.memoryMap[inputArgument] = variableCounter
+            this.MemoryManager.setVariableValue(variableCounter, this.inputArguments[inputArgument])
+            variableCounter++
+        }
 
         // Going thru every code block
         for (const codeBlockName in tokenizedCode){
@@ -50,10 +56,10 @@ export const parser =  {
                             }
                             
                             // In order for efficient variable lookup during execution, all variable names are replaced with indexes to memory array
-                            if(!(reversedPolishNotationLine[keywordIndex - 1]["value"] in variableMap)) variableMap[reversedPolishNotationLine[keywordIndex - 1]["value"]] = variableCounter++
+                            if(!(reversedPolishNotationLine[keywordIndex - 1]["value"] in this.MemoryManager.memoryMap)) this.MemoryManager.memoryMap[reversedPolishNotationLine[keywordIndex - 1]["value"]] = variableCounter++
 
                             reversedPolishNotationLine[keywordIndex - 1]["function"] = "number"
-                            reversedPolishNotationLine[keywordIndex - 1]["value"] = variableMap[reversedPolishNotationLine[keywordIndex - 1]["value"]]   
+                            reversedPolishNotationLine[keywordIndex - 1]["value"] = this.MemoryManager.memoryMap[reversedPolishNotationLine[keywordIndex - 1]["value"]]   
                         
                         // Exec expects a string that refers to a valid codename
                         } else if (["exec","if"].includes(keyword)){
@@ -100,13 +106,13 @@ export const parser =  {
                         } else {
 
                             // Variable needs to be declared before being used
-                            if (!(keyword in variableMap)) throw new Error(`Syntax Error: Variable [${keyword}] is undeclared`)
+                            if (!(keyword in this.MemoryManager.memoryMap)) throw new Error(`Syntax Error: Variable [${keyword}] is undeclared`)
 
                             for (const func in FUNCTIONS){
                                 if (keyword.includes(func)) throw new Error(`Syntax Error: Variable [${keyword}] contains a function name`)
                             }
 
-                            reversedPolishNotationLine[keywordIndex] = {"function":"variable", "value":variableMap[keyword]}
+                            reversedPolishNotationLine[keywordIndex] = {"function":"variable", "value":this.MemoryManager.memoryMap[keyword]}
                         }
                     }
                 }
