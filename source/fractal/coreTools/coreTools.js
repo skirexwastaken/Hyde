@@ -5,6 +5,7 @@ import {convertToNumberUsingAscii} from "./methods/convertToNumberUsingAscii.js"
 import {isNumber} from "./methods/isNumber.js"
 import {shellOutput} from "./methods/shellOutput.js"
 import {sleep} from "./methods/sleep.js"
+import {fractalEval} from "./methods/fractalEval.js"
 
 // Additional tools used in Fractal
 export class coreTools {
@@ -19,5 +20,6 @@ Object.assign(
     convertToNumberUsingAscii,
     isNumber,
     shellOutput,
-    sleep
+    sleep,
+    fractalEval
 )

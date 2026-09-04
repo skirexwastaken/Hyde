@@ -161,11 +161,19 @@ export const execute = {
                 break
             }
 
-            case "abs":{
+            case "abs": {
                 const operand = this.coreTools.isNumber(this.stack.pop())
 
                 this.stack.push(Math.abs(operand))
 
+                break
+            }
+
+            case "eval": {
+                const operand = String(this.stack.pop())
+
+                this.stack.push(this.coreTools.fractalEval(operand))
+                
                 break
             }
 

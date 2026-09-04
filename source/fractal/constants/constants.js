@@ -54,6 +54,8 @@ export const FUNCTIONS = {
 
     "abs": 1,
 
+    "eval": 1,
+
 
     // Boolean
 
