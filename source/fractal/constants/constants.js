@@ -84,6 +84,9 @@ export const FUNCTIONS = {
 
     "any": null,
 
+    "startsWith": 2,
+    "endsWith": 2,
+
     // Date module
 
     "datetime": 0,

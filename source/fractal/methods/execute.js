@@ -279,6 +279,24 @@ export const execute = {
 
                 break
             }
+
+            case "startsWith": {
+                const operandAlpha = String(this.stack.pop())
+                const operandBeta = String(this.stack.pop())
+
+                this.stack.push(operandAlpha.startsWith(operandBeta) ? 1 : 0)
+
+                break
+            }
+
+            case "endsWith": {
+                const operandAlpha = String(this.stack.pop())
+                const operandBeta = String(this.stack.pop())
+
+                this.stack.push(operandAlpha.endsWith(operandBeta) ? 1 : 0)
+
+                break
+            }
             
             // Date module
 
