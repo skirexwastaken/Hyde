@@ -78,9 +78,18 @@ export const FUNCTIONS = {
 
     "reverse": 1,
 
-    "contains":2,
+    "contains": 2,
 
     "remove": 2,
+
+    "datetime": 0,
+    
+    "getYear": 0,
+    "getMonth": 0,
+    "getDay": 0,
+    "getHour": 0,
+    "getMinute": 0,
+    "getSecond": 0,
 
     // Control flow
     "exec": 1,

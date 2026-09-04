@@ -264,6 +264,62 @@ export const execute = {
 
                 break
             }
+
+            case "datetime": {
+                const date = new Date()
+
+                this.stack.push(`${date.getFullYear()}-${date.getMonth()}-${date.getDay()}`)
+
+                break
+            }
+
+            case "getYear": {
+                const date = new Date()
+
+                this.stack.push(date.getFullYear())
+
+                break
+            }
+
+            case "getMonth": {
+                const date = new Date()
+
+                this.stack.push(date.getMonth())
+
+                break
+            }
+
+            case "getDay": {
+                const date = new Date()
+
+                this.stack.push(date.getDay())
+
+                break
+            }
+
+            case "getHour": {
+                const date = new Date()
+
+                this.stack.push(date.getHours())
+
+                break
+            }
+
+            case "getMinute": {
+                const date = new Date()
+
+                this.stack.push(date.getMinutes())
+
+                break
+            }
+
+            case "getSecond": {
+                const date = new Date()
+
+                this.stack.push(date.getSeconds())
+
+                break
+            }
                 
             // Control flow
 

@@ -21,7 +21,6 @@ String map helps with finding ID
 
 
 // additional function ideas loops, could be done by manipulating which instruction is to be executed by repeting loop untill the condition is not met? kinda like if
-// split
 // date time get year get month get day get hour get minute get second
 // lambda -> can be used to define a new code block inside of a new code block hehe
 // min max sum average length sort any (returns random argument) random (random number between 2 arg)
@@ -36,6 +35,8 @@ String map helps with finding ID
 // sin cos tan
 // push, pop
 // shift, unshift
+
+split
 
 // for (func, variable)
 // while (func, variable)
