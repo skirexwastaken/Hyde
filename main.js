@@ -3,3 +3,7 @@
 import {Marker} from "./source/marker/marker.js"
 
 new Marker("Example.md")
+
+import {Hawk} from "./source/hawk/hawk.js"
+
+new Hawk("localhost", 8080)

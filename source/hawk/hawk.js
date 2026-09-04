@@ -1,28 +1,38 @@
-const http = require("http")
+import http from "http";
 
-const port = "8080"
-const host = "localhost"
+export class Hawk{
+    constructor(host, port){
+        this.host = host
+        this.port = port
 
-const server = http.createServer((request, result) => {
-    if (request.url == "/"){
-        result.statusCode = 200
-        result.setHeader('Content-Type', 'text/plain')
-        result.end('Hello, World!')
-
-    } else if (request.url == "/dan"){
-        result.statusCode = 200
-        result.setHeader('Content-Type', 'text/plain')
-        result.end("Heyo")
-
-    } else {
-        result.statusCode = 404
-        result.setHeader('Content-Type', 'text/plain')
-        result.end("Page not found")
+        this.createServer()
+        this.runServer()
     }
 
-})
+    createServer(){
+        this.server = http.createServer((request, result) => {
+            if (request.url == "/"){
+                result.statusCode = 200
+                result.setHeader('Content-Type', 'text/plain')
+                result.end('Hello, World!')
 
-server.listen(port, host, () => {
-    console.log(`Hawk server is running at ${host} on port ${port}`)
+            } else if (request.url == "/dan"){
+                result.statusCode = 200
+                result.setHeader('Content-Type', 'text/plain')
+                result.end("Heyo")
 
-})
+            } else {
+                result.statusCode = 404
+                result.setHeader('Content-Type', 'text/plain')
+                result.end("Page not found")
+            }
+        })
+    }
+
+    runServer(){
+        this.server.listen(this.port, this.host, () => {
+            console.log(`Hawk server is running at ${this.host} on port ${this.port}`)
+
+        })
+    }
+}
