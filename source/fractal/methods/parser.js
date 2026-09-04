@@ -33,6 +33,8 @@ export const parser =  {
                         reversedPolishNotationLine[keywordIndex] = {"function":keyword}
                         
                         // Functions that require specific data type as argument
+
+                        // Let expects the variable name to be a string
                         if (["let",":="].includes(keyword)){
 
                             // In written code, the variable value must be a string
@@ -52,22 +54,14 @@ export const parser =  {
 
                             reversedPolishNotationLine[keywordIndex - 1]["function"] = "number"
                             reversedPolishNotationLine[keywordIndex - 1]["value"] = variableMap[reversedPolishNotationLine[keywordIndex - 1]["value"]]   
-
-                        } else if (keyword == "exec"){
+                        
+                        // Exec expects a string that refers to a valid codename
+                        } else if (["exec","if"].includes(keyword)){
                             if (reversedPolishNotationLine[keywordIndex - 1]["function"] != "string"){
-                                throw new Error (`Syntax Error: Execution function expects a string [${reversedPolishNotationLine[keywordIndex - 1]["value"]}] `)
+                                throw new Error (`Syntax Error: ${keyword.charAt(0).toUpperCase()}${keyword.slice(1)} function expects a string [${reversedPolishNotationLine[keywordIndex - 1]["value"]}] `)
 
                             } else if (!(reversedPolishNotationLine[keywordIndex - 1]["value"] in tokenizedCode)) {
-                                throw new Error (`Syntax Error: Invalid code block named [${reversedPolishNotationLine[keywordIndex - 1]["value"]}] has been passed to execution function`)
-
-                            }
-
-                        } else if (keyword == "if"){
-                            if (reversedPolishNotationLine[keywordIndex - 1]["function"] != "string" || reversedPolishNotationLine[keywordIndex - 2]["function"] != "string"){
-                                throw new Error (`Syntax Error: If function expects a string [${reversedPolishNotationLine[keywordIndex - 1]["value"]}] `)
-
-                            } else if (!(reversedPolishNotationLine[keywordIndex - 1]["value"] in tokenizedCode) || !(reversedPolishNotationLine[keywordIndex - 2]["value"]) in tokenizedCode){
-                                throw new Error (`Syntax Error: Invalid code block named [${reversedPolishNotationLine[keywordIndex - 1]["value"]}] has been passed to if function`)
+                                throw new Error (`Syntax Error: Invalid code block named [${reversedPolishNotationLine[keywordIndex - 1]["value"]}] has been passed to ${keyword} function`)
 
                             }
                         }
