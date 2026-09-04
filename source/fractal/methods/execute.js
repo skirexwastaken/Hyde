@@ -265,6 +265,23 @@ export const execute = {
                 break
             }
 
+            case "any": {
+                let operands = []
+
+                for (let index = 0; index < func["arguments"]; index++) {
+                    operands.push(this.stack.pop())
+
+                }
+
+                const randomOperand =  operands[Math.floor(Math.random() * operands.length)]
+
+                this.stack.push(randomOperand)
+
+                break
+            }
+            
+            // Date module
+
             case "datetime": {
                 const date = new Date()
 

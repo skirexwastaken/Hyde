@@ -19,11 +19,9 @@ String map helps with finding ID
 // implement symbols before variable like # $ & * ascii values of individual characters, memory address of variable
 
 
-
 // additional function ideas loops, could be done by manipulating which instruction is to be executed by repeting loop untill the condition is not met? kinda like if
-// date time get year get month get day get hour get minute get second
 // lambda -> can be used to define a new code block inside of a new code block hehe
-// min max sum average length sort any (returns random argument) random (random number between 2 arg)
+// min max sum average length sort random (random number between 2 arg)
 // sort, all same, most common, shuffle ?
 // replace
 // charAt, replaceAt

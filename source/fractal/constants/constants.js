@@ -82,6 +82,10 @@ export const FUNCTIONS = {
 
     "remove": 2,
 
+    "any": null,
+
+    // Date module
+
     "datetime": 0,
     
     "getYear": 0,
