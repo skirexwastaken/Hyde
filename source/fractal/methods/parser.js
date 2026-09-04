@@ -11,9 +11,18 @@ export const parser =  {
             const codeBlock = tokenizedCode[codeBlockName]
 
             // Going thru every line
-            let reversedPolishNotationLines = []
+            let reversedPolishNotationCode = []
             for (let lineIndex = 0; lineIndex < codeBlock.length; lineIndex += 2){
-                let reversedPolishNotationLine = [codeBlock[lineIndex]].concat(codeBlock[lineIndex + 1].flat(Infinity)).reverse()
+                const func = [codeBlock[lineIndex]]
+                const arg = codeBlock[lineIndex + 1].flat(Infinity)
+
+                // Polish notation follows this format function argument1 argument2 ... argumentX
+                const polishNotationLine = func.concat(arg)
+
+                // Reverse polish notation follows this format argumentX .. argument2 argument 1 function
+                // This format is ideal for a stack based virtual machine
+                // For example: 'Hello World' print1 -> Instruction 'Hello World' adds the string to a stack and then print takes it from the stack using the LIFO system
+                let reversedPolishNotationLine = polishNotationLine.reverse()
 
                 // Going thru every keyword on a line
                 for (let keywordIndex = 0; keywordIndex < reversedPolishNotationLine.length; keywordIndex++){
@@ -108,17 +117,24 @@ export const parser =  {
                     }
                 }
 
+                // All instructions are added to a single line
                 for (const instruction of reversedPolishNotationLine){
-                    reversedPolishNotationLines.push(instruction)
+                    reversedPolishNotationCode.push(instruction)
                 }
 
-                reversedPolishNotationLines.push({"function":"pop"})
+                // Since every function returns a value, it is important to clear the return value of a function with depth of 0 in order to prevent stack memory leak
+                reversedPolishNotationCode.push({"function":"pop"})
             }
 
-            if (codeBlockName != "main") reversedPolishNotationLines.pop()
-            reversedPolishNotationLines.push({"function":"end"})
+            // The last pop instruction of all other codeblocks is removed to allow the function to pass an argument back
+            // For example if I call a function example inside of main inside of print function, it will print the return value of the example function
+            if (codeBlockName != "main") reversedPolishNotationCode.pop()
 
-            this.instructionSets[codeBlockName] = reversedPolishNotationLines
+            // End determines where the code block ends
+            // The benefit of this is that the interpreter doesn't have to compare the instruction index against the code block length each time
+            reversedPolishNotationCode.push({"function":"end"})
+
+            this.instructionSets[codeBlockName] = reversedPolishNotationCode
         }
 
         // Meta data holds additional information for the interpreter

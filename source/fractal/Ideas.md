@@ -10,9 +10,6 @@ Input arguments
 Output arguments
 
 
-
-
-
 Typed arrays for memory ? typeArray, numberArray, StringMap string -> ID, stringArray where all string isntances will be added
 
 look at ID in numberArray type 0 = number, type 1 = ID to string Array
