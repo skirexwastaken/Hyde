@@ -49,7 +49,7 @@ export const generateHTML = {
 
                             break
                     }
-                
+
                 } else {
 
                     // Standard line
@@ -78,9 +78,10 @@ export const generateHTML = {
 
                     line = this.processWrapper(line, "~", /(\~)/, "s")
 
-                    generatedHTML.push(line)
-
                 }
+
+                generatedHTML.push(line)
+
             }
         }
 
