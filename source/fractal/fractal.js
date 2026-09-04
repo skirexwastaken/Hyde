@@ -11,10 +11,12 @@ import {interpreter} from "./methods/interpreter.js"
 import {lexer} from "./methods/lexer.js"
 import {parser} from "./methods/parser.js"
 import {scanner} from "./methods/scanner.js"
+import {checkInputArguments} from "./methods/checkInputArguments.js"
+import {generateOutputArguments} from "./methods/generateOutputArguments.js"
 
 // Compiler + Interpreter of Fractal
 export class Fractal {
-    constructor(code){
+    constructor(code, inputArguments){
         this.instructionSets = {}
         this.metaData = {}
 
@@ -30,6 +32,9 @@ export class Fractal {
         this.MemoryManager = new MemoryManager()
 
         this.coreTools.shellOutput("Fractal Alpha [18.8.2026]")
+
+        // Check if arguments are a valid object
+        this.checkInputArguments(inputArguments)
 
         // Main loop that calls individual Fractal steps
 
@@ -48,6 +53,8 @@ export class Fractal {
         // 4. Loading the code from the dictionary and executing instructions
         this.interpreter()
 
+        // 5. Generating output arguments, which are the values of the inputArguments at the end of the script
+        return this.generateOutputArguments()
     }
 }
 
@@ -59,5 +66,7 @@ Object.assign(
     interpreter,
     lexer,
     parser,
-    scanner
+    scanner,
+    checkInputArguments,
+    generateOutputArguments
 )   

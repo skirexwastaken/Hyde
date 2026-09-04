@@ -78,6 +78,8 @@ export const FUNCTIONS = {
 
     "contains":2,
 
+    "remove": 2,
+
     // Control flow
     "exec": 1,
 

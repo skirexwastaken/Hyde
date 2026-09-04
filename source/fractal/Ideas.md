@@ -25,10 +25,6 @@ String map helps with finding ID
 
 // implement symbols before variable like # $ & * ascii values of individual characters, memory address of variable
 
-// more universal data type checking -> parser has bad data type checks
-
-// check for something like ma in[] -> spaces in code blocks strcmp -> string compare
-
 
 
 // additional function ideas loops, could be done by manipulating which instruction is to be executed by repeting loop untill the condition is not met? kinda like if
@@ -47,7 +43,6 @@ String map helps with finding ID
 // sin cos tan
 // push, pop
 // shift, unshift
-// remove
 
 // for (func, variable)
 // while (func, variable)

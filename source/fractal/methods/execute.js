@@ -247,6 +247,15 @@ export const execute = {
 
                 break
             }
+
+            case "remove": {
+                const operandAlpha = String(this.stack.pop())
+                const operandBeta = String(this.stack.pop())
+
+                this.stack.push(operandAlpha.replaceAll(operandBeta, ""))
+
+                break
+            }
                 
             // Control flow
 

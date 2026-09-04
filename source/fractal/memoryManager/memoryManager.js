@@ -5,6 +5,7 @@ import {setVariableValue} from "./methods/setVariableValue.js"
 // Memory manager of Fractal
 export class MemoryManager {
     constructor(){
+        this.memoryMap = {}
         this.memory = []
 
     }
