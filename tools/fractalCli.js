@@ -5,10 +5,9 @@ try {
 
     console.log(JSON.stringify(outputArguments))
 
-} catch (error){
+} catch (error) {
     if (error.message != "") {
         console.log(error.message)
 
-    }
-        
+    }  
 }
