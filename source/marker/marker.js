@@ -4,7 +4,7 @@ import {processMarkdown} from "./methods/processMarkdown.js"
 import {processWrapper} from "./methods/processWrapper.js"
 import {saveHTML} from "./methods/saveHTML.js"
 export class Marker{
-    constructor(filename){
+    convert(filename) {
         const rawMarkdown = this.getMarkdown(filename)
 
         const processedMarkdown = this.processMarkdown(rawMarkdown)
@@ -12,6 +12,9 @@ export class Marker{
         const generatedHTML = this.generateHTML(processedMarkdown)
 
         this.saveHTML(filename, generatedHTML)
+
+        return generatedHTML
+
     }
 }
 

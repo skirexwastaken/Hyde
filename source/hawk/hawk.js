@@ -1,37 +1,54 @@
 import http from "http";
 
-export class Hawk{
-    constructor(host, port){
-        this.host = host
-        this.port = port
+import fs from "node:fs"
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 
-        this.createServer()
-        this.runServer()
+import {loCache} from "../loCache/loCache.js"
+
+const currentDirectory = path.dirname(fileURLToPath(import.meta.url));
+const markdownDirectory = path.resolve(currentDirectory, "../../templates/markdown")
+
+export class Hawk{
+    constructor() {
+        this.loCache = new loCache()
+
     }
 
-    createServer(){
+    createServer() {
         this.server = http.createServer((request, result) => {
-            if (request.url == "/"){
-                result.statusCode = 200
-                result.setHeader('Content-Type', 'text/plain')
-                result.end('Hello, World!')
+            const route = request.url.slice(1)
 
-            } else if (request.url == "/dan"){
-                result.statusCode = 200
-                result.setHeader('Content-Type', 'text/plain')
-                result.end("Heyo")
+            const fullPath = path.resolve(markdownDirectory, `${route}.md`)
+
+            let htmlFile
+
+            if (fs.existsSync(fullPath)) {
+                // Caching all files
+                this.loCache.cacheFiles(route)
+
+                // Getting the HTML file from cache
+                htmlFile = this.loCache.getHtml(route)
 
             } else {
-                result.statusCode = 404
-                result.setHeader('Content-Type', 'text/plain')
-                result.end("Page not found")
+                // Caching all files
+                this.loCache.cacheFiles("error")
+
+                // Getting the HTML file from cache
+                htmlFile = this.loCache.getHtml("error")
             }
+            
+
+            result.statusCode = 200
+            result.setHeader('Content-Type', 'text/html')
+            result.end(htmlFile.join(""))
+
         })
     }
 
-    runServer(){
-        this.server.listen(this.port, this.host, () => {
-            console.log(`Hawk server is running at ${this.host} on port ${this.port}`)
+    runServer(host, port) {
+        this.server.listen(port, host, () => {
+            console.log(`Hawk server is running at ${host} on port ${port}`)
 
         })
     }

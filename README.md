@@ -18,6 +18,10 @@ The scripting language of the stack
 
 The web server of the stack
 
+## LoCache
+
+Caching service of files for the web server
+
 ## Marker
 
 The Markdown to HTML convertor of the stack
