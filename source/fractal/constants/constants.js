@@ -56,6 +56,10 @@ export const FUNCTIONS = {
 
     "eval": 1,
 
+    "min": null,
+
+    "max": null,
+
 
     // Boolean
 

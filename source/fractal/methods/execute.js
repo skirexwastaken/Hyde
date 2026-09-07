@@ -177,6 +177,32 @@ export const execute = {
                 break
             }
 
+            case "min": {
+                let values = []
+
+                for (let index = 0; index < func["arguments"]; index++) {
+                    values.push(this.coreTools.isNumber(this.stack.pop()))
+
+                }
+
+                this.stack.push(Math.min.apply(null, values))
+
+                break
+            }
+
+            case "max": {
+                let values = []
+
+                for (let index = 0; index < func["arguments"]; index++) {
+                    values.push(this.coreTools.isNumber(this.stack.pop()))
+
+                }
+
+                this.stack.push(Math.max.apply(null, values))
+
+                break
+            }
+
             case "true": {
                 this.stack.push(1)
 
