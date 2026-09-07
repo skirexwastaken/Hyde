@@ -1,7 +1,3 @@
-import fs from "node:fs";
-import path from "node:path";
-import { fileURLToPath } from "node:url";
-
 import {Marker} from "../marker/marker.js"
 
 export class loCache {
@@ -9,7 +5,6 @@ export class loCache {
         this.routeMap = {}
 
         this.cacheCounter = 0
-        this.filesLastCanged = []
         this.htmlFiles = []
 
         this.Marker = new Marker()
