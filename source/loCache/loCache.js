@@ -34,8 +34,6 @@ export class loCache {
                 const htmlFile = this.Marker.convert(`${route}.md`)
 
                 this.htmlFiles[this.routeMap[route]] = htmlFile
-            } else {
-                console.log(`File ${route}.md was found in cache`)
             }
 
         }
