@@ -2,7 +2,7 @@
 
 import {Hawk} from "./source/hawk/hawk.js"
 
-const hawkInstance = new Hawk("localhost", 8080)
+const hawkInstance = new Hawk()
 
 hawkInstance.initServer()
 hawkInstance.runServer("localhost", 8080)
