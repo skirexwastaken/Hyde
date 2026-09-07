@@ -1,4 +1,4 @@
-class Mytharis {
+export class Mytharis {
     constructor() {
 
     }

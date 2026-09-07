@@ -4,5 +4,5 @@ import {Hawk} from "./source/hawk/hawk.js"
 
 const hawkInstance = new Hawk("localhost", 8080)
 
-hawkInstance.createServer()
+hawkInstance.initServer()
 hawkInstance.runServer("localhost", 8080)
