@@ -6,49 +6,36 @@ export const DEBUG = false
 export const FUNCTIONS = {
     // IO
     "print": null,
-    "log": null,
 
     "clear": 0,
 
     // Number functions
     "add": 2,
-    "/+": 2,
 
     "sub": 2,
-    "/-": 2,
 
     "mul": 2,
-    "/*": 2,
 
     "div": 2,
     "//": 2,
 
     "eq": 2,
-    "==": 2,
 
     "gt": 2,
-    ">": 2,
 
     "lt": 2,
-    "<": 2,
 
     "and": 2,
-    "&": 2,
 
     "or": 2,
-    "|": 2,
 
     "not": 1,
-    "!": 1,
 
     "inc": 1,
-    "++": 1,
 
     "dec": 1,
-    "--": 1,
 
     "pow": 2,
-    "**": 2,
 
     "sqrt": 1,
 
@@ -119,7 +106,6 @@ export const FUNCTIONS = {
 
     // Variables
     "let": 2,
-    ":=": 2,
 
     // Exit
     "exit": 1

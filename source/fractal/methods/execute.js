@@ -7,8 +7,7 @@ export const execute = {
 
             // IO
 
-            case "print":
-            case "log":{
+            case "print": {
                 let printLine = ""
 
                 for (let index = 0; index < func["arguments"]; index++){
@@ -30,8 +29,7 @@ export const execute = {
 
             // Number functions
 
-            case "add":
-            case "+": {
+            case "add": {
                 const operandAlpha = this.coreTools.isNumber(this.stack.pop())
                 const operandBeta = this.coreTools.isNumber(this.stack.pop())
 
@@ -40,8 +38,7 @@ export const execute = {
                 break
             }
 
-            case "sub":
-            case "-": {
+            case "sub": {
                 const operandAlpha = this.coreTools.isNumber(this.stack.pop())
                 const operandBeta = this.coreTools.isNumber(this.stack.pop())
 
@@ -50,8 +47,7 @@ export const execute = {
                 break
             }
 
-            case "mul":
-            case "*": {
+            case "mul": {
                 const operandAlpha = this.coreTools.isNumber(this.stack.pop())
                 const operandBeta = this.coreTools.isNumber(this.stack.pop())
 
@@ -60,8 +56,7 @@ export const execute = {
                 break
             }
 
-            case "div":
-            case "/": {
+            case "div": {
                 const operandAlpha = this.coreTools.isNumber(this.stack.pop())
                 const operandBeta = this.coreTools.isNumber(this.stack.pop())
 
@@ -70,8 +65,7 @@ export const execute = {
                 break
             }
 
-            case "eq":
-            case "==":{
+            case "eq": {
                 const operandAlpha = this.coreTools.isNumber(this.stack.pop())
                 const operandBeta = this.coreTools.isNumber(this.stack.pop())
 
@@ -80,8 +74,7 @@ export const execute = {
                 break
             }
 
-            case "gt":
-            case ">": {
+            case "gt": {
                 const operandAlpha = this.coreTools.isNumber(this.stack.pop())
                 const operandBeta = this.coreTools.isNumber(this.stack.pop())
 
@@ -90,8 +83,7 @@ export const execute = {
                 break
             }
 
-            case "lt":
-            case "<": {
+            case "lt": {
                 const operandAlpha = this.coreTools.isNumber(this.stack.pop())
                 const operandBeta = this.coreTools.isNumber(this.stack.pop())
 
@@ -100,8 +92,7 @@ export const execute = {
                 break
             }
 
-            case "and":
-            case "&": {
+            case "and": {
                 const operandAlpha = this.coreTools.isNumber(this.stack.pop())
                 const operandBeta = this.coreTools.isNumber(this.stack.pop())
 
@@ -110,8 +101,7 @@ export const execute = {
                 break
             }
 
-            case "or":
-            case "|": {
+            case "or": {
                 const operandAlpha = this.coreTools.isNumber(this.stack.pop())
                 const operandBeta = this.coreTools.isNumber(this.stack.pop())
 
@@ -120,8 +110,7 @@ export const execute = {
                 break
             }
 
-            case "not":
-            case "!": {
+            case "not": {
                 const operand = this.coreTools.isNumber(this.stack.pop())
 
                 this.stack.push(operand > 0 ? 0 : 1)
@@ -129,22 +118,19 @@ export const execute = {
                 break
             }
 
-            case "inc":
-            case "++": {
+            case "inc": {
                 this.stack.push(this.coreTools.isNumber(this.stack.pop()) + 1)
 
                 break
             }
 
-            case "dec":
-            case "--": {
+            case "dec": {
                 this.stack.push(this.coreTools.isNumber(this.stack.pop()) - 1)
 
                 break
             }
             
-            case "pow":
-            case "**": {
+            case "pow": {
                 const operandAlpha = this.coreTools.isNumber(this.stack.pop())
                 const operandBeta = this.coreTools.isNumber(this.stack.pop())
 
@@ -460,8 +446,7 @@ export const execute = {
 
             // Variables
 
-            case "let":
-            case ":=": {
+            case "let": {
                 const index = this.stack.pop()
                 const value = this.stack.pop()
 
