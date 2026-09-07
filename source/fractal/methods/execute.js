@@ -178,7 +178,7 @@ export const execute = {
             }
 
             case "min": {
-                let values = []
+                let totalValue = 0
 
                 for (let index = 0; index < func["arguments"]; index++) {
                     values.push(this.coreTools.isNumber(this.stack.pop()))
@@ -199,6 +199,32 @@ export const execute = {
                 }
 
                 this.stack.push(Math.max.apply(null, values))
+
+                break
+            }
+
+            case "sum": {
+                let totalValue = 0
+
+                for (let index = 0; index < func["arguments"]; index++) {
+                    totalValue += this.coreTools.isNumber(this.stack.pop())
+
+                }
+
+                this.stack.push(totalValue)
+
+                break
+            }
+
+            case "average": {
+                let totalValue = 0
+
+                for (let index = 0; index < func["arguments"]; index++) {
+                    totalValue += this.coreTools.isNumber(this.stack.pop())
+
+                }
+
+                this.stack.push(totalValue / func["arguments"])
 
                 break
             }
@@ -321,6 +347,14 @@ export const execute = {
                 const operandBeta = String(this.stack.pop())
 
                 this.stack.push(operandAlpha.endsWith(operandBeta) ? 1 : 0)
+
+                break
+            }
+
+            case "len": {
+                const operand = String(this.stack.pop())
+
+                this.stack.push(operand.length)
 
                 break
             }

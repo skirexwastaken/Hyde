@@ -60,6 +60,10 @@ export const FUNCTIONS = {
 
     "max": null,
 
+    "sum": null,
+
+    "average": null,
+
 
     // Boolean
 
@@ -90,6 +94,8 @@ export const FUNCTIONS = {
 
     "startsWith": 2,
     "endsWith": 2,
+
+    "len": 1,
 
     // Date module
 
