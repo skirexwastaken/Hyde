@@ -431,19 +431,6 @@ export const execute = {
                 break
             }
 
-            case "lambda": {
-                
-                break
-            }
-
-            case "sleep": {
-                const operand = this.coreTools.isNumber(this.stack.pop())
-
-                this.coreTools.sleep(operand)
-
-                break
-            }
-
             // Variables
 
             case "let": {
