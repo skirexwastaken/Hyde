@@ -6,59 +6,25 @@ import {FUNCTIONS, NFUNCTIONS, CFUNCTIONS, DEBUG} from "./constants/constants.js
 // Importing Fractal modules
 import {argumentCounter} from "./methods/argumentCounter.js"
 import {argumentCountVerifier} from "./methods/argumentCountVerifier.js"
+import {checkInputArguments} from "./methods/checkInputArguments.js"
 import {execute} from "./methods/execute.js"
+import {generateOutputArguments} from "./methods/generateOutputArguments.js"
 import {interpreter} from "./methods/interpreter.js"
 import {lexer} from "./methods/lexer.js"
+import {loadInputArguments} from "./methods/loadInputArguments.js"
 import {parser} from "./methods/parser.js"
 import {scanner} from "./methods/scanner.js"
-import {checkInputArguments} from "./methods/checkInputArguments.js"
-import {generateOutputArguments} from "./methods/generateOutputArguments.js"
+import { compile } from "./methods/compile.js"
 
 // Compiler + Interpreter of Fractal
 export class Fractal {
-    constructor(code, inputArguments){
-        this.instructionSets = {}
-        this.metaData = {}
-
-        this.codeBlocksIf = 0 // Counter of how many if code blocks were created inside lexer function
-        this.codeBlocksElse = 0
-        this.codeBlocksLambda = 0
-
-        this.currentLineIndex
-        this.codeBlockName
-
+    constructor(inputArguments){
         this.coreTools = new coreTools()
 
         this.MemoryManager = new MemoryManager()
 
-        this.coreTools.shellOutput("Fractal Alpha [4.9.2026]")
-
         // Check if arguments are a valid object
         this.checkInputArguments(inputArguments)
-
-        // Main loop that calls individual Fractal steps
-
-        console.log("[Fractal] Execution started")
-
-        // 1. Loading raw string
-        const rawCode = this.coreTools.codeInput(code)
-        if (DEBUG) console.log(rawCode)
-
-        // 2. Converting code into tokenized code and checking for syntax rules
-        const tokenizedCode = this.lexer(rawCode)
-        if (DEBUG) console.log(JSON.stringify(tokenizedCode, null))
-
-        // 3. Turning the tokenized code into single dictionary and replacing keywords with direct function calls
-        this.parser(tokenizedCode)
-        if (DEBUG) console.log(JSON.stringify(this.instructionSets, null))
-
-        // 4. Loading the code from the dictionary and executing instructions
-        this.interpreter()
-
-        console.log("[Fractal] Execution finished")
-
-        // 5. Generating output arguments, which are the values of the inputArguments at the end of the script
-        return [this.generateOutputArguments(), this.coreTools.shellOutputBuffer]
     }
 }
 
@@ -66,11 +32,13 @@ Object.assign(
     Fractal.prototype,
     argumentCounter,
     argumentCountVerifier,
+    checkInputArguments,
     execute,
+    generateOutputArguments,
     interpreter,
     lexer,
+    loadInputArguments,
     parser,
     scanner,
-    checkInputArguments,
-    generateOutputArguments
-)   
+    compile
+)

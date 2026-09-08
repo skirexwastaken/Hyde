@@ -1,7 +1,11 @@
 export const interpreter = {
     // Function that goes thru one instruction at a time and executes it using the execute function
-    interpreter(){
-        this.MemoryManager.allocateMemorySpace(this.metaData["variableCount"])
+    interpreter(instructionSets, metaData){
+        console.log("[Fractal] Execution started")
+
+        this.MemoryManager.allocateMemorySpace(metaData["variableCount"])
+
+        this.loadInputArguments()
 
         let codeBlocks = [] // Variable that contains all code blocks
         this.codeBlockMap = {} // Variable that stores name:index of code blocks
@@ -17,10 +21,10 @@ export const interpreter = {
 
         // Loading the code blocks from instructionSets dictionary, adding them to codeBlocks array and saving their path to codeBlocksMap
         let codeBlockCounter = 0
-        for (const codeBlockName in this.instructionSets){
+        for (const codeBlockName in instructionSets){
             this.codeBlockMap[codeBlockName] = codeBlockCounter
 
-            codeBlocks.push(this.instructionSets[codeBlockName])
+            codeBlocks.push(instructionSets[codeBlockName])
 
             codeBlockCounter++
         }
@@ -36,5 +40,12 @@ export const interpreter = {
 
             this.execute(codeBlocks[codeBlockIndex][codeBlockInstructionIndex])
         }
+
+        console.log("[Fractal] Execution finished")
+
+        
+        // Generating output arguments, which are the values of the inputArguments at the end of the script
+        return [this.generateOutputArguments(), this.coreTools.shellOutputBuffer]
+
     }
 }

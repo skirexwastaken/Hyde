@@ -3,14 +3,9 @@ import {FUNCTIONS, NFUNCTIONS} from "../constants/constants.js"
 export const parser =  {
     // This function converts tokenized code into direct function calls
     parser(tokenizedCode){
-        let variableCounter = 0
+        const instructionSets = {}
 
-        // Loading input arguments into memory
-        for (const inputArgument in this.inputArguments){
-            this.MemoryManager.memoryMap[inputArgument] = variableCounter
-            this.MemoryManager.setVariableValue(variableCounter, this.inputArguments[inputArgument])
-            variableCounter++
-        }
+        let variableCounter = this.loadInputArguments()
 
         // Going thru every code block
         for (const codeBlockName in tokenizedCode){
@@ -134,12 +129,14 @@ export const parser =  {
             // The benefit of this is that the interpreter doesn't have to compare the instruction index against the code block length each time
             reversedPolishNotationCode.push({"function":"end"})
 
-            this.instructionSets[codeBlockName] = reversedPolishNotationCode
+            instructionSets[codeBlockName] = reversedPolishNotationCode
         }
 
         // Meta data holds additional information for the interpreter
-        this.metaData = {
+        const metaData = {
             "variableCount":variableCounter
         }
+
+        return [instructionSets, metaData]
     }
 }
