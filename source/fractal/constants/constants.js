@@ -62,7 +62,7 @@ export const FUNCTIONS = {
 
     // String functions
 
-    "con": null,
+    "merge": null,
 
     "reverse": 1,
 

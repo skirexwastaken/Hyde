@@ -91,7 +91,7 @@ export const lexer = {
                             }
 
                             // Combining the sub strings and variables into one single string using the con function
-                            currentArguments.push("con")
+                            currentArguments.push("merge")
                             currentArguments.push(dollarString)
 
                         }

@@ -235,7 +235,7 @@ export const execute = {
 
             // String functions
 
-            case "con": {
+            case "merge": {
                 let connectedLine = ""
 
                 for (let index = 0; index < func["arguments"]; index++){
