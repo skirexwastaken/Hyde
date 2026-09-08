@@ -7,6 +7,9 @@ import {fractalEval} from "./methods/fractalEval.js"
 
 // Additional tools used in Fractal
 export class coreTools {
+    constructor() {
+        this.shellOutputBuffer = []
+    }
  
 }
 

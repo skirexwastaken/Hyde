@@ -1,9 +1,9 @@
 import {Fractal} from "../source/fractal/fractal.js"
 
 try {
-    const outputArguments = new Fractal("main [print('Hey, ${name}!')]", {"name": "Daniel"})
+    const [outputArguments, shellOutputBuffer] = new Fractal("main [print('Hey, ${name}!')]", {"name": "Daniel"})
 
-    console.log(JSON.stringify(outputArguments))
+    console.log(JSON.stringify(outputArguments), shellOutputBuffer)
 
 } catch (error) {
     if (error.message != "") {

@@ -58,7 +58,7 @@ export class Fractal {
         console.log("[Fractal] Execution finished")
 
         // 5. Generating output arguments, which are the values of the inputArguments at the end of the script
-        return this.generateOutputArguments()
+        return [this.generateOutputArguments(), this.coreTools.shellOutputBuffer]
     }
 }
 
