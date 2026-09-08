@@ -1,9 +1,9 @@
-const currentDirectory = path.dirname(fileURLToPath(import.meta.url))
-const initCachePath = path.resolve(currentDirectory, "../constants/initCache.json")
-
 import fs from "node:fs"
 import path from "node:path"
-import { fileURLToPath } from "node:url"
+
+import {currentDirectory} from "../constants/paths.js"
+
+const initCachePath = path.resolve(currentDirectory, "../constants/initCache.json")
 
 export const initCache = {
     initCache() {

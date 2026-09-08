@@ -1,12 +1,9 @@
-import http from "http";
+import http from "http"
 
 import fs from "node:fs"
-import path from "node:path";
-import { fileURLToPath } from "node:url";
+import path from "node:path"
 
-
-const currentDirectory = path.dirname(fileURLToPath(import.meta.url));
-const markdownDirectory = path.resolve(currentDirectory, "../../../templates/markdown")
+import {markdownDirectory} from "../constants/paths.js";
 
 export const initServer = {
     initServer() {
