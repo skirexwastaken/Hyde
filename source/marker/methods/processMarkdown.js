@@ -9,6 +9,7 @@ export const processMarkdown = {
         // Removing comments and splitting the file content into separate lines
         rawMarkdown = rawMarkdown.replace(/<!--[\s\S]*?-->/g,"")
 
+        // Extracting fractal code
         let fractalCode = []
         rawMarkdown = rawMarkdown.replace(/<!==([\s\S]*?)===>/g, (match, codeBlock) => {
             let codeLine = ""
@@ -32,13 +33,26 @@ export const processMarkdown = {
 
             fractalCode.push(codeLine)
     
+            return "<!===#===>"
         })
+
+        // Extracting input arguments
+        let inputArguments = {}
+        rawMarkdown = rawMarkdown.replace(/\$\[(\S*?)\]/g, (match, variableName) => {
+            inputArguments[variableName] = ""
+
+            return match
+        })
+
+        fractalCode.push(inputArguments)
 
         filename = filename.replace(".md", ".fs")
 
         const fullPath = path.resolve(scriptsDirectory, filename)
         
         fs.writeFileSync(fullPath, JSON.stringify(fractalCode, null, 2), "utf-8")
+
+        console.log(inputArguments)
 
         rawMarkdown = rawMarkdown.split("\n")
 
