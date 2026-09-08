@@ -65,59 +65,6 @@ export const execute = {
                 break
             }
 
-            case "eq": {
-                const operandAlpha = this.coreTools.isNumber(this.stack.pop())
-                const operandBeta = this.coreTools.isNumber(this.stack.pop())
-
-                this.stack.push(operandAlpha == operandBeta ? 1 : 0)
-
-                break
-            }
-
-            case "gt": {
-                const operandAlpha = this.coreTools.isNumber(this.stack.pop())
-                const operandBeta = this.coreTools.isNumber(this.stack.pop())
-
-                this.stack.push(operandAlpha > operandBeta ? 1 : 0)
-
-                break
-            }
-
-            case "lt": {
-                const operandAlpha = this.coreTools.isNumber(this.stack.pop())
-                const operandBeta = this.coreTools.isNumber(this.stack.pop())
-
-                this.stack.push(operandAlpha < operandBeta ? 1 : 0)
-
-                break
-            }
-
-            case "and": {
-                const operandAlpha = this.coreTools.isNumber(this.stack.pop())
-                const operandBeta = this.coreTools.isNumber(this.stack.pop())
-
-                this.stack.push(operandAlpha > 0 && operandBeta > 0 ? 1 : 0)
-
-                break
-            }
-
-            case "or": {
-                const operandAlpha = this.coreTools.isNumber(this.stack.pop())
-                const operandBeta = this.coreTools.isNumber(this.stack.pop())
-
-                this.stack.push(operandAlpha > 0 || operandBeta > 1 ? 1 : 0)
-
-                break
-            }
-
-            case "not": {
-                const operand = this.coreTools.isNumber(this.stack.pop())
-
-                this.stack.push(operand > 0 ? 0 : 1)
-                
-                break
-            }
-
             case "inc": {
                 this.stack.push(this.coreTools.isNumber(this.stack.pop()) + 1)
 
@@ -233,6 +180,59 @@ export const execute = {
                 break
             }
 
+            case "eq": {
+                const operandAlpha = this.coreTools.isNumber(this.stack.pop())
+                const operandBeta = this.coreTools.isNumber(this.stack.pop())
+
+                this.stack.push(operandAlpha == operandBeta ? 1 : 0)
+
+                break
+            }
+
+            case "gt": {
+                const operandAlpha = this.coreTools.isNumber(this.stack.pop())
+                const operandBeta = this.coreTools.isNumber(this.stack.pop())
+
+                this.stack.push(operandAlpha > operandBeta ? 1 : 0)
+
+                break
+            }
+
+            case "lt": {
+                const operandAlpha = this.coreTools.isNumber(this.stack.pop())
+                const operandBeta = this.coreTools.isNumber(this.stack.pop())
+
+                this.stack.push(operandAlpha < operandBeta ? 1 : 0)
+
+                break
+            }
+
+            case "and": {
+                const operandAlpha = this.coreTools.isNumber(this.stack.pop())
+                const operandBeta = this.coreTools.isNumber(this.stack.pop())
+
+                this.stack.push(operandAlpha > 0 && operandBeta > 0 ? 1 : 0)
+
+                break
+            }
+
+            case "or": {
+                const operandAlpha = this.coreTools.isNumber(this.stack.pop())
+                const operandBeta = this.coreTools.isNumber(this.stack.pop())
+
+                this.stack.push(operandAlpha > 0 || operandBeta > 1 ? 1 : 0)
+
+                break
+            }
+
+            case "not": {
+                const operand = this.coreTools.isNumber(this.stack.pop())
+
+                this.stack.push(operand > 0 ? 0 : 1)
+                
+                break
+            }
+
             // String functions
 
             case "con": {
@@ -246,32 +246,6 @@ export const execute = {
                 connectedLine = connectedLine.trim()
 
                 this.stack.push(connectedLine)
-
-                break
-            }
-
-            // Data types
-
-            case "parseStr": {
-                this.stack.push(String(this.stack.pop()))
-
-                break
-            }
-
-            case "parseNum": {
-                this.stack.push(this.coreTools.isNumber(this.stack.pop()))
-
-                break
-            }
-
-            case "isStr": {
-                this.stack.push(isNaN(this.stack.pop()) ? 1 : 0)
-
-                break
-            }
-
-            case "isNum": {
-                this.stack.push(isNaN(this.stack.pop()) ? 0 : 1)
 
                 break
             }
@@ -341,6 +315,32 @@ export const execute = {
                 const operand = String(this.stack.pop())
 
                 this.stack.push(operand.length)
+
+                break
+            }
+
+            // Data types
+
+            case "parseStr": {
+                this.stack.push(String(this.stack.pop()))
+
+                break
+            }
+
+            case "parseNum": {
+                this.stack.push(this.coreTools.isNumber(this.stack.pop()))
+
+                break
+            }
+
+            case "isStr": {
+                this.stack.push(isNaN(this.stack.pop()) ? 1 : 0)
+
+                break
+            }
+
+            case "isNum": {
+                this.stack.push(isNaN(this.stack.pop()) ? 0 : 1)
 
                 break
             }

@@ -19,18 +19,6 @@ export const FUNCTIONS = {
     "div": 2,
     "//": 2,
 
-    "eq": 2,
-
-    "gt": 2,
-
-    "lt": 2,
-
-    "and": 2,
-
-    "or": 2,
-
-    "not": 1,
-
     "inc": 1,
 
     "dec": 1,
@@ -60,16 +48,21 @@ export const FUNCTIONS = {
 
     "none": 0,
 
+    "eq": 2,
+
+    "gt": 2,
+
+    "lt": 2,
+
+    "and": 2,
+
+    "or": 2,
+
+    "not": 1,
+
     // String functions
 
     "con": null,
-
-    // Data types
-    "parseStr": 1,
-    "parseNum": 1,
-
-    "isStr": 1,
-    "isNum": 1,
 
     "reverse": 1,
 
@@ -83,6 +76,13 @@ export const FUNCTIONS = {
     "endsWith": 2,
 
     "len": 1,
+
+    // Data types
+    "parseStr": 1,
+    "parseNum": 1,
+
+    "isStr": 1,
+    "isNum": 1,
 
     // Date module
 
