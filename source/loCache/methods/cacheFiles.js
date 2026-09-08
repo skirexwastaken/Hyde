@@ -20,7 +20,7 @@ export const cacheFiles = {
             this.filesModified.push(statsMarkdown.mtime)
 
         } else {
-            if (this.filesModified[this.routeMap[route]].getTime() != stats.mtime.getTime()) {
+            if (this.filesModified[this.routeMap[route]].getTime() != statsMarkdown.mtime.getTime()) {
                 const htmlFile = this.Marker.convert(`${route}.md`)
 
                 this.htmlFiles[this.routeMap[route]] = htmlFile
