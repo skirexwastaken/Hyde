@@ -12,12 +12,10 @@ export class coreTools {
 
 Object.assign(
     coreTools.prototype,
-    asyncSleep,
     clearShell,
     codeInput,
     convertToNumberUsingAscii,
     isNumber,
     shellOutput,
-    sleep,
     fractalEval
 )
