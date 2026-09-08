@@ -13,5 +13,7 @@ export const initCache = {
             this.loCache.cacheFiles(file)
 
         }
+
+        console.log(`[Hawk] Cache has been initialized`)
     }
 }

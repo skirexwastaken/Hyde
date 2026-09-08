@@ -10,6 +10,8 @@ export const initServer = {
         this.server = http.createServer((request, result) => {
             let route = request.url.slice(1)
 
+            console.log(`[Hawk] Processing request at route /${route}`)
+
             if (route == "") route = "index"
 
             const fullPath = path.resolve(markdownDirectory, `${route}.md`)

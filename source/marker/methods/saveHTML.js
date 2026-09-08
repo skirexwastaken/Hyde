@@ -30,5 +30,6 @@ ${generatedHTML.join("\n")}
 
         fs.writeFileSync(fullPath, HTMLFile, "utf8")
 
+        console.log(`[Marker] Processed file ${filename}`)
     }
 }

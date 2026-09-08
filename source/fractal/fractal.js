@@ -38,6 +38,8 @@ export class Fractal {
 
         // Main loop that calls individual Fractal steps
 
+        console.log("[Fractal] Execution started")
+
         // 1. Loading raw string
         const rawCode = this.coreTools.codeInput(code)
         if (DEBUG) console.log(rawCode)
@@ -52,6 +54,8 @@ export class Fractal {
 
         // 4. Loading the code from the dictionary and executing instructions
         this.interpreter()
+
+        console.log("[Fractal] Execution finished")
 
         // 5. Generating output arguments, which are the values of the inputArguments at the end of the script
         return this.generateOutputArguments()

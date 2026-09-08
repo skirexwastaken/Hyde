@@ -10,6 +10,8 @@ export const errorMarkdownExists = {
         if (!(fs.existsSync(fullPath, "utf-8"))) {
             fs.writeFileSync(fullPath, "# Error\n\nInvalid path, this website doesn't exist", "utf-8")
 
+            console.log("[Hawk] The error file error.md was created")
+
         }
     }
 }
