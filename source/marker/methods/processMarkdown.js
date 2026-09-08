@@ -1,8 +1,46 @@
+import fs from "node:fs"
+import path from "node:path"
+
+import {scriptsDirectory} from "../constants/paths.js"
+
 export const processMarkdown = {
     // The main goal of this function is to simply determine where new lines should start
-    processMarkdown(rawMarkdown){
+    processMarkdown(rawMarkdown, filename){
         // Removing comments and splitting the file content into separate lines
-        rawMarkdown = rawMarkdown.replace(/<!--[\s\S]*?-->/g,"").split("\n")
+        rawMarkdown = rawMarkdown.replace(/<!--[\s\S]*?-->/g,"")
+
+        let fractalCode = []
+        rawMarkdown = rawMarkdown.replace(/<!==([\s\S]*?)===>/g, (match, codeBlock) => {
+            let codeLine = ""
+            let inString = false
+
+            for (const symbol of codeBlock) {
+                if ((symbol != " " || inString) && (symbol != "\n" || inString)) {
+                    codeLine += symbol
+                }
+
+                if (symbol == "'") {
+                    if (inString == true) {
+                        inString = false
+
+                    } else {
+                        inString = true
+
+                    }
+                }
+            }
+
+            fractalCode.push(codeLine)
+    
+        })
+
+        filename = filename.replace(".md", ".fs")
+
+        const fullPath = path.resolve(scriptsDirectory, filename)
+        
+        fs.writeFileSync(fullPath, JSON.stringify(fractalCode, null, 2), "utf-8")
+
+        rawMarkdown = rawMarkdown.split("\n")
 
         // The symbol \ indicates a new line
         const splitMarkdown = []
