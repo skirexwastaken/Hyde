@@ -8,15 +8,16 @@ const markdownDirectory = path.resolve(currentDirectory, "../../../templates/mar
 
 export const cacheFiles = {
     cacheFiles(route) {
-        const fullPath = path.resolve(markdownDirectory, `${route}.md`)
-        const stats = fs.statSync(fullPath)
+        const fullPathMarkdown = path.resolve(markdownDirectory, `${route}.md`)
+        const statsMarkdown = fs.statSync(fullPathMarkdown)
 
-        if (!(route in this.routeMap)) {
+        if (!(route in this.routeMap)) {  
+            
             const htmlFile = this.Marker.convert(`${route}.md`)
 
             this.routeMap[route] = this.cacheCounter++
             this.htmlFiles.push(htmlFile)
-            this.filesModified.push(stats.mtime)
+            this.filesModified.push(statsMarkdown.mtime)
 
         } else {
             if (this.filesModified[this.routeMap[route]].getTime() != stats.mtime.getTime()) {
