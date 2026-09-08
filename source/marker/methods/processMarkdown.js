@@ -13,19 +13,19 @@ export const processMarkdown = {
         let fractalCode = []
         rawMarkdown = rawMarkdown.replace(/<!==([\s\S]*?)===>/g, (match, codeBlock) => {
             let codeLine = ""
-            let inString = false
+            let definingString  = false
 
             for (const symbol of codeBlock) {
-                if ((symbol != " " || inString) && (symbol != "\n" || inString)) {
+                if ((symbol != " " || definingString ) && (symbol != "\n" || definingString )) {
                     codeLine += symbol
                 }
 
                 if (symbol == "'") {
-                    if (inString == true) {
-                        inString = false
+                    if (definingString  == true) {
+                        definingString  = false
 
                     } else {
-                        inString = true
+                        definingString  = true
 
                     }
                 }
@@ -33,7 +33,7 @@ export const processMarkdown = {
 
             fractalCode.push(codeLine)
     
-            return "<!===#===>"
+            return "<!==#===>"
         })
 
         // Extracting input arguments
@@ -51,8 +51,6 @@ export const processMarkdown = {
         const fullPath = path.resolve(scriptsDirectory, filename)
         
         fs.writeFileSync(fullPath, JSON.stringify(fractalCode, null, 2), "utf-8")
-
-        console.log(inputArguments)
 
         rawMarkdown = rawMarkdown.split("\n")
 

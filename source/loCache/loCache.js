@@ -2,6 +2,8 @@ import {Marker} from "../marker/marker.js"
 
 import {cacheFiles} from "./methods/cacheFiles.js"
 import {getHtml} from "./methods/getHtml.js"
+import {getBytecode} from "./methods/getBytecode.js"
+import {getInputArguments} from "./methods/getInputArguments.js"
 
 export class loCache {
     constructor() {
@@ -12,13 +14,16 @@ export class loCache {
         this.cacheCounter = 0
         this.filesModified = []
         this.htmlFiles = []
+        this.fractalBytecodes = []
+        this.fractalInputArguments = []
 
     }
-
 }
 
 Object.assign(
     loCache.prototype,
     cacheFiles,
-    getHtml
+    getHtml,
+    getBytecode,
+    getInputArguments
 )
