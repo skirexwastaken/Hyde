@@ -1,10 +1,8 @@
 
 import fs from "node:fs";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
 
-const currentDirectory = path.dirname(fileURLToPath(import.meta.url));
-const markdownDirectory = path.resolve(currentDirectory, "../../../templates/markdown")
+import {markdownDirectory} from "../constants/paths.js";
 
 export const cacheFiles = {
     cacheFiles(route) {
