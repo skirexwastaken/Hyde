@@ -31,7 +31,14 @@ export const cacheFiles = {
             for (const line of fractalFile) {
                 const fractalInstance = new Fractal(inputArguments)
                 
-                compiledBytecode.push(fractalInstance.compile(line))
+                    try {
+                        compiledBytecode.push(fractalInstance.compile(line))
+
+                    } catch (error) {
+                        compiledBytecode.push(fractalInstance.compile("main [print()]"))
+
+                        console.log(`[Fractal] ${error.message} in file ${route}.fs`)
+                    }
 
             }
 
@@ -57,7 +64,14 @@ export const cacheFiles = {
                 for (const line of fractalFile) {
                     const fractalInstance = new Fractal(inputArguments)
                     
-                    compiledBytecode.push(fractalInstance.compile(line))
+                    try {
+                        compiledBytecode.push(fractalInstance.compile(line))
+
+                    } catch (error) {
+                        compiledBytecode.push(fractalInstance.compile("main [print()]"))
+
+                        console.log(`[Fractal] ${error.message} in file ${route}.fs`)
+                    }
 
                 }
 

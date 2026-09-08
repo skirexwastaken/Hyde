@@ -1,4 +1,4 @@
-// Hyde Version 26.9.7
+// Hyde Version 26.9.8
 
 import {Hawk} from "./source/hawk/hawk.js"
 
