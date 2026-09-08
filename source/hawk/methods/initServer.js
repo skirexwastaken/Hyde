@@ -11,7 +11,9 @@ const markdownDirectory = path.resolve(currentDirectory, "../../../templates/mar
 export const initServer = {
     initServer() {
         this.server = http.createServer((request, result) => {
-            const route = request.url.slice(1)
+            let route = request.url.slice(1)
+
+            if (route == "") route = "index"
 
             const fullPath = path.resolve(markdownDirectory, `${route}.md`)
 
