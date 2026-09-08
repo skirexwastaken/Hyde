@@ -102,8 +102,6 @@ export const FUNCTIONS = {
 
     "lambda": null,
 
-    "sleep": 1,
-
     // Variables
     "let": 2,
 
