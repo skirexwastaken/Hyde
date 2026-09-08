@@ -1,6 +1,7 @@
-import fs from "node:fs";
-import path from "node:path";
-import { fileURLToPath } from "node:url";
+import fs from "node:fs"
+import path from "node:path"
+
+import {templatesDirectiory} from "../constants/paths.js"
 
 export const saveHTML = {
     // Function that saves the output html file
@@ -23,14 +24,9 @@ ${generatedHTML.join("\n")}
 </html>
 `   
 
-        const directoryName = path.dirname(fileURLToPath(import.meta.url));
-
-        const templatesDirectiory = path.resolve(directoryName, "../../../templates/html")
-
         filename = filename.replace(".md",".html")
 
         const fullPath = path.resolve(templatesDirectiory, filename)
-
 
         fs.writeFileSync(fullPath, HTMLFile, "utf8")
 
