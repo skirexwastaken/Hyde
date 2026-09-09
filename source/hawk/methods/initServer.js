@@ -50,8 +50,6 @@ export const initServer = {
                     htmlFile[htmlLineIndex] = htmlFile[htmlLineIndex].replace(/<!==#===>/, (match) => {
                         const [bytecode, inputArguments] = fractalBytecode[fractalBytecodeIndex++]
 
-                        console.log(inputArguments)
-
                         const fractalInstance = new Fractal(inputArguments)
 
                         const [instructionSets, metaData] = bytecode
