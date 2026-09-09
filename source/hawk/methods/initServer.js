@@ -6,7 +6,6 @@ import path from "node:path"
 import {markdownDirectory} from "../constants/paths.js";
 
 import {Fractal} from "../../fractal/fractal.js"
-import { getInputArguments } from "../../loCache/methods/getInputArguments.js";
 
 export const initServer = {
     initServer() {
@@ -42,7 +41,6 @@ export const initServer = {
                 }
 
                 const fractalBytecode = this.loCache.getBytecode(route)
-                const fractalInputArguments = this.loCache.getInputArguments(route)
 
                 let fractalBytecodeIndex = 0
                 let currentOutputArguments
@@ -50,9 +48,13 @@ export const initServer = {
                 for (let htmlLineIndex = 0; htmlLineIndex < htmlFile.length; htmlLineIndex ++) {
 
                     htmlFile[htmlLineIndex] = htmlFile[htmlLineIndex].replace(/<!==#===>/, (match) => {
-                        const fractalInstance = new Fractal(fractalInputArguments)
+                        const [bytecode, inputArguments] = fractalBytecode[fractalBytecodeIndex++]
 
-                        const [instructionSets, metaData] = fractalBytecode[fractalBytecodeIndex++]
+                        console.log(inputArguments)
+
+                        const fractalInstance = new Fractal(inputArguments)
+
+                        const [instructionSets, metaData] = bytecode
 
                         const [outputArguments, shellOutputBuffer] =  fractalInstance.interpreter(instructionSets, metaData)
 

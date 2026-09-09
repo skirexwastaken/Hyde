@@ -11,40 +11,40 @@ export const processMarkdown = {
 
         // Extracting fractal code
         let fractalCode = []
-        rawMarkdown = rawMarkdown.replace(/<!==([\s\S]*?)===>/g, (match, codeBlock) => {
+        let inputArguments = {}
+
+        rawMarkdown = rawMarkdown.replace(/<!==([\s\S]*?)===>|\$\[(\S*?)\]/g, (match, codeBlock, variableName) => {
             let codeLine = ""
             let definingString  = false
 
-            for (const symbol of codeBlock) {
-                if ((symbol != " " || definingString ) && (symbol != "\n" || definingString )) {
-                    codeLine += symbol
-                }
+            if (match.startsWith("<")) {
+                for (const symbol of codeBlock) {
+                    if ((symbol != " " || definingString ) && (symbol != "\n" || definingString )) {
+                        codeLine += symbol
+                    }
 
-                if (symbol == "'") {
-                    if (definingString  == true) {
-                        definingString  = false
+                    if (symbol == "'") {
+                        if (definingString  == true) {
+                            definingString  = false
 
-                    } else {
-                        definingString  = true
+                        } else {
+                            definingString  = true
 
+                        }
                     }
                 }
+
+                fractalCode.push([codeLine, inputArguments])
+                inputArguments = {}
+        
+                return "<!==#===>"
+
+            } else {
+                inputArguments[variableName] = ""
+
+                return match
             }
-
-            fractalCode.push(codeLine)
-    
-            return "<!==#===>"
         })
-
-        // Extracting input arguments
-        let inputArguments = {}
-        rawMarkdown = rawMarkdown.replace(/\$\[(\S*?)\]/g, (match, variableName) => {
-            inputArguments[variableName] = ""
-
-            return match
-        })
-
-        fractalCode.push(inputArguments)
 
         filename = filename.replace(".md", ".fs")
 

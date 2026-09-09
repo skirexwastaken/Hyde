@@ -24,18 +24,19 @@ export const cacheFiles = {
 
             // Caching Fractal
             const fractalFile = JSON.parse(fs.readFileSync(fullPathFractal, "utf-8"))
-            const inputArguments = fractalFile.pop()
 
             let compiledBytecode = []
 
             for (const line of fractalFile) {
+                const [bytecode, inputArguments] = line
+
                 const fractalInstance = new Fractal(inputArguments)
                 
                     try {
-                        compiledBytecode.push(fractalInstance.compile(line))
+                        compiledBytecode.push([fractalInstance.compile(bytecode), inputArguments])
 
                     } catch (error) {
-                        compiledBytecode.push(fractalInstance.compile("main [print()]"))
+                        compiledBytecode.push([fractalInstance.compile("main [print()]"), inputArguments])
 
                         console.log(`[Fractal] ${error.message} in file ${route}.fs`)
                     }
@@ -43,7 +44,6 @@ export const cacheFiles = {
             }
 
             this.fractalBytecodes.push(compiledBytecode)
-            this.fractalInputArguments.push(inputArguments)
         
             console.log(`[loCache] ${route}.md has been cached`)
 
@@ -53,32 +53,33 @@ export const cacheFiles = {
                 // Caching html
                 const htmlFile = this.Marker.convert(`${route}.md`)
 
-                this.htmlFiles[this.routeMap[route]] = htmlFile
+                this.routeMap[route] = this.cacheCounter++
+                this.htmlFiles.push(htmlFile)
+                this.filesModified.push(statsMarkdown.mtime)
 
                 // Caching Fractal
                 const fractalFile = JSON.parse(fs.readFileSync(fullPathFractal, "utf-8"))
-                const inputArguments = fractalFile.pop()
 
                 let compiledBytecode = []
 
                 for (const line of fractalFile) {
+                    const [bytecode, inputArguments] = line
+
                     const fractalInstance = new Fractal(inputArguments)
                     
-                    try {
-                        compiledBytecode.push(fractalInstance.compile(line))
+                        try {
+                            compiledBytecode.push([fractalInstance.compile(bytecode), inputArguments])
 
-                    } catch (error) {
-                        compiledBytecode.push(fractalInstance.compile("main [print()]"))
+                        } catch (error) {
+                            compiledBytecode.push([fractalInstance.compile("main [print()]"), inputArguments])
 
-                        console.log(`[Fractal] ${error.message} in file ${route}.fs`)
-                    }
+                            console.log(`[Fractal] ${error.message} in file ${route}.fs`)
+                        }
 
                 }
 
-                this.fractalBytecodes[this.routeMap[route]] = compiledBytecode
-        
-                this.fractalInputArguments[this.routeMap[route]] = inputArguments
-
+                this.fractalBytecodes[this.routeMap[route]] = (compiledBytecode)
+                
                 console.log(`[loCache] ${route}.md has been recached`)
             }
         }
