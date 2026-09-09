@@ -43,7 +43,7 @@ export const initServer = {
                 const fractalBytecode = this.loCache.getBytecode(route)
 
                 let fractalBytecodeIndex = 0
-                let currentOutputArguments
+                let allOutputArguments = {}
 
                 for (let htmlLineIndex = 0; htmlLineIndex < htmlFile.length; htmlLineIndex ++) {
 
@@ -56,7 +56,11 @@ export const initServer = {
 
                         const [outputArguments, shellOutputBuffer] =  fractalInstance.interpreter(instructionSets, metaData)
 
-                        currentOutputArguments = outputArguments
+                        for (const outputArgument in outputArguments) {
+                            allOutputArguments[outputArgument] = outputArguments[outputArgument]
+
+                        }
+
 
                         let htmlLines = ""
 
@@ -67,17 +71,14 @@ export const initServer = {
                 
                         return htmlLines
                     })
+                
+                }
 
+                for (let htmlLineIndex = 0; htmlLineIndex < htmlFile.length; htmlLineIndex ++) {
                     htmlFile[htmlLineIndex] = htmlFile[htmlLineIndex].replace(/\$\[(\S*?)\]/g, (match, variableName) => {
-                        if (variableName in currentOutputArguments) {
-                            return currentOutputArguments[variableName]
-
-                        } else {
-                            return ""
-
-                        }
+                        return allOutputArguments[variableName]
+                        
                     })
-                    
                 }
 
                 result.statusCode = 200

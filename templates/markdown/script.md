@@ -12,16 +12,16 @@ main [
 ]
 ===>
 
+My name is $[name]
+
+My age is $[age]
+
 <!==
 main [
     let('name', 'Daniel'),
     let('age', 19)
 ]
 ===>
-
-My name is $[name]
-
-My age is $[age]
 
 <!==
 main [
