@@ -1,6 +1,6 @@
 // Hyde Version 26.9.10
 
-import {garbageCollector} from "./source/garbageCollector/garbageCollector.js"
+import {garbageCollector} from "./source/startupScripts/garbageCollector.js"
 import {Hawk} from "./source/hawk/hawk.js"
 
 garbageCollector()
