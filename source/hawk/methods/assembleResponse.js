@@ -27,7 +27,7 @@ export const assembleResponse = {
                 // Variables embded in text are turned into scopes during Markdown -> HTML translation process
                 // Each code block inside of the Markdown file only has access to the variables above it
                 for (const outputArgument in outputArguments) {
-                    allOutputArguments = outputArguments
+                    allOutputArguments[outputArgument] = outputArguments[outputArgument]
 
                 }
 
