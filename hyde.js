@@ -1,6 +1,9 @@
 // Hyde Version 26.9.10
 
+import {garbageCollector} from "./source/garbageCollector/garbageCollector.js"
 import {Hawk} from "./source/hawk/hawk.js"
+
+garbageCollector()
 
 const hawkInstance = new Hawk()
 
