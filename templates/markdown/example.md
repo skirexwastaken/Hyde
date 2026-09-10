@@ -30,8 +30,7 @@ Line 3
 `Code block alpha` `Code block beta`
 
 ```
-multi
-line
+multiline
 code
 block
 ```
