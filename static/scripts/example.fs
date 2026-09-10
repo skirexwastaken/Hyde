@@ -1,13 +1,5 @@
 [
   [
-    "main[print('Hello World!')]",
-    {}
-  ],
-  [
-    "main[print('Hello World!')]",
-    {}
-  ],
-  [
     "main[let('name','Daniel'),let('age',19)]",
     {
       "name": "",
