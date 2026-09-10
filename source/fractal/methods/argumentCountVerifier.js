@@ -1,4 +1,4 @@
-import {FUNCTIONS} from "../constants/constants.js"
+import {FUNCTIONS} from "../constants/functions.js"
 
 export const argumentCountVerifier = {
     // Part of lexer, it counts arguments of individual functions

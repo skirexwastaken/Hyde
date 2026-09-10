@@ -1,4 +1,4 @@
-import {FUNCTIONS} from "../constants/constants.js"
+import {FUNCTIONS} from "../constants/functions.js"
 
 // This function translates the raw string into the following function and argument format [function [arguments]] and separates code into code blocks
 // For example [print['Hello World!']]

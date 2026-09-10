@@ -1,7 +1,7 @@
 // Importing needed modules
 import {coreTools} from "./coreTools/coreTools.js"
 import {MemoryManager} from "./memoryManager/memoryManager.js"
-import {FUNCTIONS, NFUNCTIONS, CFUNCTIONS} from "./constants/constants.js"
+import {FUNCTIONS, NFUNCTIONS, CFUNCTIONS} from "./constants/functions.js"
 
 // Importing Fractal modules
 import {argumentCounter} from "./methods/argumentCounter.js"
