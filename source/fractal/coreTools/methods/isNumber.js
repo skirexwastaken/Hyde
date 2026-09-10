@@ -1,15 +1,12 @@
 // Function that checks if an argument is a number and if not applies the convertToNumberUsingAscii function on it
+// This function is used for example when parsing an argument to a mathematical function such as add where the argument can't be a string
 export const isNumber = {
     isNumber(argument){
-        let number
-
         if (isNaN(argument)){
-            number = this.convertToNumberUsingAscii(argument)
+            return this.convertToNumberUsingAscii(argument)
 
         } else {
-            number = Number(argument)
+            return Number(argument)
         }
-
-        return number
     }
 } 

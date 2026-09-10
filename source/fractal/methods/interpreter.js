@@ -1,35 +1,40 @@
+// Interpreted goes thru the executionStack and executes all functions from it
+// Fractal interpreter uses executionStack, which acts as a pointer to the currently executed code block and its specific function
+// The interpreter uses standard LIFO stack to hold values
 export const interpreter = {
-    // Function that goes thru one instruction at a time and executes it using the execute function
     interpreter(instructionSets, metaData){
         console.log("[Fractal] Execution started")
 
+        // Allocating memory and loading input arguments into memory
         this.MemoryManager.allocateMemorySpace(metaData["variableCount"])
-
         this.loadInputArguments()
 
-        let codeBlocks = [] // Variable that contains all code blocks
-        this.codeBlockMap = {} // Variable that stores name:index of code blocks
+        // Variable that stores name:index of code blocks
+        this.codeBlockMap = {}
+
+        // Variable that contains all code blocks which are indexable by getting the index from codeBlockMap
+        let codeBlocks = []
 
         // Execution stack is a array of 2D arrays
         // Each 2D array contains:
         //  Index of the currently executed code block
         //  Index of currently executed instruction inside of this specific code block
-        // This esentially allows recursion
+        // This esentially allows recursion without the standard JS recursion limit
         this.executionStack = []
 
-        this.stack = [] // REgular stack that holds return values of functions
+        // Regular stack that holds return values of functions using the LIFO logic
+        this.stack = []
 
         // Loading the code blocks from instructionSets dictionary, adding them to codeBlocks array and saving their path to codeBlocksMap
         let codeBlockCounter = 0
         for (const codeBlockName in instructionSets){
             this.codeBlockMap[codeBlockName] = codeBlockCounter
-
             codeBlocks.push(instructionSets[codeBlockName])
 
             codeBlockCounter++
         }
 
-        // Main is executed first
+        // Adding main into executionStack
         this.executionStack.push([this.codeBlockMap["main"],0])
 
         // Executing individual instructions
@@ -43,7 +48,6 @@ export const interpreter = {
 
         console.log("[Fractal] Execution finished")
 
-        
         // Generating output arguments, which are the values of the inputArguments at the end of the script
         return [this.generateOutputArguments(), this.coreTools.shellOutputBuffer]
 

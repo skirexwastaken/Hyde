@@ -1,3 +1,4 @@
+// The execution function itself that executes individual Fractal functions
 export const execute = {
     // Function that runs individual instructions
     execute(func){
@@ -458,7 +459,7 @@ export const execute = {
                 break
             }
 
-            // Functions that define a data type, these can't be used by user
+            // Functions that the user can't write
 
             // Functions that return direct values
 

@@ -1,3 +1,6 @@
+// Function that loads the input arguments from a dictionary into memory
+// The purpose of input arguments is to create a sort of API between Markdown and Fractal
+
 export const loadInputArguments = {
     loadInputArguments() {
         let variableCounter = 0

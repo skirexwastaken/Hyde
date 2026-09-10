@@ -1,4 +1,5 @@
-// Function that converts a string into a sum of its characters ascii values
+// Function that converts a string into a number
+// This is done by converting each character to its ascii values and then returning the sum of those ascii values
 export const convertToNumberUsingAscii = {
     convertToNumberUsingAscii(string){
         let number = 0
@@ -6,8 +7,10 @@ export const convertToNumberUsingAscii = {
         for (const char of string){
             if (isNaN(char)){
                 number += Number(char.charCodeAt(0))
+
             } else {
                 number += Number(char)
+
             }
         }
 

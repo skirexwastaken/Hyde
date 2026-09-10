@@ -6,6 +6,7 @@ import {shellOutput} from "./methods/shellOutput.js"
 import {fractalEval} from "./methods/fractalEval.js"
 
 // Additional tools used in Fractal
+// These tools are not necesarilly part of the execution loop of Fractal so I decided to split them into a separate class
 export class coreTools {
     constructor() {
         this.shellOutputBuffer = []

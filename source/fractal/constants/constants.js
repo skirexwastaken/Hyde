@@ -1,8 +1,4 @@
-// Debug messages showing the state of the code at each step
-export const DEBUG = false
-
-// Dictionary of functions and their amount of arguments where null means any
-// Note: The interpreter recognizes additional functions that help with execution
+// Dictionary of functions and their amount of arguments where null means any amount of arguments
 export const FUNCTIONS = {
     // IO
     "print": null,
@@ -38,7 +34,6 @@ export const FUNCTIONS = {
     "sum": null,
 
     "average": null,
-
 
     // Boolean
 
@@ -109,11 +104,11 @@ export const FUNCTIONS = {
     "exit": 1
 }
 
-// Functions that can have variable amount of arguments
+// Functions that can have variable amount of arguments, it is used in various parts of the code as an easy way to get all of those functions
 export let NFUNCTIONS = []
 for (const functionName in FUNCTIONS){
     if (FUNCTIONS[functionName] == null) NFUNCTIONS.push(functionName)
 }
 
-// Functions that control the flow of code
+// Functions that control the flow of code, those functions require having code block names as some of their arguments
 export const CFUNCTIONS = ["if"]

@@ -1,3 +1,4 @@
+// Function that compiles the individual compilation steps and returns the output
 export const compile = {
     compile(code) {
         this.codeBlocksIf = 0 // Counter of how many if code blocks were created inside lexer function
@@ -16,6 +17,7 @@ export const compile = {
         // 3. Turning the tokenized code into single dictionary and replacing keywords with direct function calls
         const [instructionSets, metaData] = this.parser(tokenizedCode)
 
+        // 4. Returning the compiled bytecode
         return [instructionSets, metaData]
     }
 }

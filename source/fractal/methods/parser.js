@@ -1,31 +1,44 @@
 import {FUNCTIONS, NFUNCTIONS} from "../constants/constants.js"
 
+// Parser generates an array of function calls in a dictionary format
 export const parser =  {
-    // This function converts tokenized code into direct function calls
     parser(tokenizedCode){
+
+        // codeBlockName : arrayOfFunctionCalls
         const instructionSets = {}
 
+        // All variable names are replaced with indexes to their memory location
         let variableCounter = this.loadInputArguments()
 
         // Going thru every code block
         for (const codeBlockName in tokenizedCode){
             const codeBlock = tokenizedCode[codeBlockName]
 
-            // Going thru every line
+            // The whole parsing logic is based on two concepts
+                // Polish Notation -> function before arguments, for example print "Hello World"
+                // Reverse Polish Notation -> function after arguments, for example "Hello World" print
+            // Reverse polish notation works well with stack based VMs which is what Fractal uses to interpret the bytecode Parser generates
+
+            // reversedPolishNotationCode = entire code block
             let reversedPolishNotationCode = []
             for (let lineIndex = 0; lineIndex < codeBlock.length; lineIndex += 2){
+
+                // Grabbing the function and arguments and flattening the arguments
+                // For example [print] [merge ["Hello ", "World", "!"]] -> [print] [merge, "Hello ", "World", "!"]
                 const func = [codeBlock[lineIndex]]
                 const arg = codeBlock[lineIndex + 1].flat(Infinity)
 
-                // Polish notation follows this format function argument1 argument2 ... argumentX
+                // Merging the function and arguments into one array
+                // For example [print] [merge, "Hello ", "World", "!"] -> [print, merge, "Hello ", "World", "!"]
                 const polishNotationLine = func.concat(arg)
 
-                // Reverse polish notation follows this format argumentX .. argument2 argument 1 function
-                // This format is ideal for a stack based virtual machine
-                // For example: 'Hello World' print1 -> Instruction 'Hello World' adds the string to a stack and then print takes it from the stack using the LIFO system
+                // Turning Polish Notation line into Reverse Polish Notation line
+                // For example [print, merge, "Hello ", "World", "!"] -> ["!", "World", "Hello ", merge, print]
                 let reversedPolishNotationLine = polishNotationLine.reverse()
 
-                // Going thru every keyword on a line
+                // Since standard stack works on the Last In First Out principle, the arguments in the previous example will be assembled in the correct order and merged into "Hello World!" and then printed
+
+                // After generating the Reverse Polish Notation Line, individual keywords are translated to direct function calls
                 for (let keywordIndex = 0; keywordIndex < reversedPolishNotationLine.length; keywordIndex++){
                     let keyword = reversedPolishNotationLine[keywordIndex]
 
@@ -79,21 +92,33 @@ export const parser =  {
                     } else {
 
                         // Specific case for functions with variable amount of arguments which is stored after the functionName itself
+                        // For example print3 expects 3 arguments
                         for (const functionName of NFUNCTIONS){
                             if (!isNaN(keyword.replace(functionName,""))){
                                 reversedPolishNotationLine[keywordIndex] = {"function":functionName,"arguments":Number(keyword.replace(functionName,""))}
                                 break
+
                             }
                         }
 
-                        if (reversedPolishNotationLine[keywordIndex] instanceof Object) continue
+                        // Checking if this specific keyword was a function with a variable amount of arguments
+                        if (reversedPolishNotationLine[keywordIndex] instanceof Object) {
+                            continue
+
+                        }
 
                         // Variable path
 
                         // Variable can't start with a number
-                        if (!isNaN(keyword[0])) throw new Error(`Syntax Error: Variable [${keyword}] starts with a number`)
+                        if (!isNaN(keyword[0])) {
+                            throw new Error(`Syntax Error: Variable [${keyword}] starts with a number`)
+
+                        }
                         
                         // In case that the next keyword is let, the variable name is treated as a string
+                        // So both of the following examples are legal ways to set a value of a variable
+                            // let('x', 10)
+                            // let(x, 10)
                         if (["let",":="].includes(reversedPolishNotationLine[keywordIndex + 1])){
                             reversedPolishNotationLine[keywordIndex] = {"function":"string", "value":keyword}
                         
@@ -101,10 +126,9 @@ export const parser =  {
                         } else {
 
                             // Variable needs to be declared before being used
-                            if (!(keyword in this.MemoryManager.memoryMap)) throw new Error(`Syntax Error: Variable [${keyword}] is undeclared`)
+                            if (!(keyword in this.MemoryManager.memoryMap)) {
+                                throw new Error(`Syntax Error: Variable [${keyword}] is undeclared`)
 
-                            for (const func in FUNCTIONS){
-                                if (keyword.includes(func)) throw new Error(`Syntax Error: Variable [${keyword}] contains a function name`)
                             }
 
                             reversedPolishNotationLine[keywordIndex] = {"function":"variable", "value":this.MemoryManager.memoryMap[keyword]}
@@ -112,7 +136,7 @@ export const parser =  {
                     }
                 }
 
-                // All instructions are added to a single line
+                // All instructions from single line are added to the code block
                 for (const instruction of reversedPolishNotationLine){
                     reversedPolishNotationCode.push(instruction)
                 }
