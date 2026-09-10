@@ -1,0 +1,16 @@
+Find more features that should be implemented in those individual stacks
+
+Write tests for all functions of Fractal
+
+Turn Hyde into CLI management app that show stats like request history, last server IPs, statistics of cache, serving, etc. could also include memory utilization and other system statistics and controls
+    https://beta.docs.nodejs.org/process/resourceUsage
+
+Improve documentation
+
+Think of a way to switch Fractal Bytecode from objects to strings
+    If not function -> will result to default -> string
+                    -> String end vs function end? -> String Table!!!
+                    -> Perhaps index will have some symbol infront of itself?
+
+    Number -> Regualar number
+           -> If variable keyword after it -> variable index, simple pop

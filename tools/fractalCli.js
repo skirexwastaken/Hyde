@@ -18,6 +18,7 @@ try {
 
     console.log(JSON.stringify(outputArguments), shellOutputBuffer)
 
+// The erros are all custom written Fractal errors that should be more or less descriptive of what the issue is
 } catch (error) {
         console.log(error.message)
 

@@ -25,65 +25,63 @@ export const initServer = {
 
                 let htmlFile
 
-                if (fs.existsSync(fullPath)) {
+                if (!(fs.existsSync(fullPath))) {
+                    result.statusCode = 404
+                    result.setHeader('Content-Type', 'text/html')
+                    result.end("<h1>404 Not Found</h1>")
+
+                } else {
                     // Caching all files
                     this.loCache.cacheFiles(route)
 
                     // Getting the HTML file from cache
                     htmlFile = this.loCache.getHtml(route)
 
-                } else {
-                    // Caching all files
-                    this.loCache.cacheFiles("error")
+                    const fractalBytecode = this.loCache.getBytecode(route)
 
-                    // Getting the HTML file from cache
-                    htmlFile = this.loCache.getHtml("error")
+                    let fractalBytecodeIndex = 0
+                    let allOutputArguments = {}
+
+                    for (let htmlLineIndex = 0; htmlLineIndex < htmlFile.length; htmlLineIndex ++) {
+
+                        htmlFile[htmlLineIndex] = htmlFile[htmlLineIndex].replace(/<!==#===>/, (match) => {
+                            const [bytecode, inputArguments] = fractalBytecode[fractalBytecodeIndex++]
+
+                            const fractalInstance = new Fractal(inputArguments)
+
+                            const [instructionSets, metaData] = bytecode
+
+                            const [outputArguments, shellOutputBuffer] =  fractalInstance.interpreter(instructionSets, metaData)
+
+                            for (const outputArgument in outputArguments) {
+                                allOutputArguments[outputArgument] = outputArguments[outputArgument]
+
+                            }
+
+
+                            let htmlLines = ""
+
+                            for (const line of shellOutputBuffer) {
+                                htmlLines += `<p>${line}</p>`
+
+                            }
+                    
+                            return htmlLines
+                        })
+                    
+                    }
+
+                    for (let htmlLineIndex = 0; htmlLineIndex < htmlFile.length; htmlLineIndex ++) {
+                        htmlFile[htmlLineIndex] = htmlFile[htmlLineIndex].replace(/\$\[(\S*?)\]/g, (match, variableName) => {
+                            return allOutputArguments[variableName]
+                            
+                        })
+                    }
+
+                    result.statusCode = 200
+                    result.setHeader('Content-Type', 'text/html')
+                    result.end(htmlFile.join(""))
                 }
-
-                const fractalBytecode = this.loCache.getBytecode(route)
-
-                let fractalBytecodeIndex = 0
-                let allOutputArguments = {}
-
-                for (let htmlLineIndex = 0; htmlLineIndex < htmlFile.length; htmlLineIndex ++) {
-
-                    htmlFile[htmlLineIndex] = htmlFile[htmlLineIndex].replace(/<!==#===>/, (match) => {
-                        const [bytecode, inputArguments] = fractalBytecode[fractalBytecodeIndex++]
-
-                        const fractalInstance = new Fractal(inputArguments)
-
-                        const [instructionSets, metaData] = bytecode
-
-                        const [outputArguments, shellOutputBuffer] =  fractalInstance.interpreter(instructionSets, metaData)
-
-                        for (const outputArgument in outputArguments) {
-                            allOutputArguments[outputArgument] = outputArguments[outputArgument]
-
-                        }
-
-
-                        let htmlLines = ""
-
-                        for (const line of shellOutputBuffer) {
-                            htmlLines += `<p>${line}</p>`
-
-                        }
-                
-                        return htmlLines
-                    })
-                
-                }
-
-                for (let htmlLineIndex = 0; htmlLineIndex < htmlFile.length; htmlLineIndex ++) {
-                    htmlFile[htmlLineIndex] = htmlFile[htmlLineIndex].replace(/\$\[(\S*?)\]/g, (match, variableName) => {
-                        return allOutputArguments[variableName]
-                        
-                    })
-                }
-
-                result.statusCode = 200
-                result.setHeader('Content-Type', 'text/html')
-                result.end(htmlFile.join(""))
             }
         })
     }

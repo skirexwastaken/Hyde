@@ -1,3 +1,13 @@
 Implement CSS
-Implement For and While loop
-Improve documentation
+
+Finish the individual to do lists
+
+add check when html is not in cache yet -> compare it with markdown and just load it if it's newer,  translation layer for / -> index
+
+Worker threads
+
+https://www.freecodecamp.org/news/how-to-implement-multi-threading-in-nodejs-with-worker-threads-full-handbook/#heading-communication-between-threads
+
+https://oneuptime.com/blog/post/2026-01-30-how-to-create-worker-thread-pools-in-nodejs/view
+
+https://stackoverflow.com/questions/4019230/javascript-web-workers-how-do-i-pass-arguments

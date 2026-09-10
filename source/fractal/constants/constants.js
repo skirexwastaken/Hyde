@@ -95,8 +95,6 @@ export const FUNCTIONS = {
 
     "if": 3,
 
-    "lambda": null,
-
     // Variables
     "let": 2,
 
