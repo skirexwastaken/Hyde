@@ -1,4 +1,4 @@
-import {FUNCTIONS} from "../constants/functions.js"
+import {FUNCTIONS} from "../../constants/functions.js"
 
 // Function that makes sure that input arguments are in a form of an object variableName : variableValue
 // Additionaly there's a standard variable check that makes sure function names are not part of a variable name

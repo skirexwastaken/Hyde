@@ -4,17 +4,20 @@ import {MemoryManager} from "./memoryManager/memoryManager.js"
 import {FUNCTIONS, NFUNCTIONS, CFUNCTIONS} from "./constants/functions.js"
 
 // Importing Fractal modules
-import {argumentCounter} from "./methods/argumentCounter.js"
-import {argumentCountVerifier} from "./methods/argumentCountVerifier.js"
-import {checkInputArguments} from "./methods/checkInputArguments.js"
-import {execute} from "./methods/execute.js"
-import {generateOutputArguments} from "./methods/generateOutputArguments.js"
-import {interpreter} from "./methods/interpreter.js"
-import {lexer} from "./methods/lexer.js"
-import {loadInputArguments} from "./methods/loadInputArguments.js"
-import {parser} from "./methods/parser.js"
-import {scanner} from "./methods/scanner.js"
-import { compile } from "./methods/compile.js"
+import {checkInputArguments} from "./methods/argumentsSupport/checkInputArguments.js"
+import {generateOutputArguments} from "./methods/argumentsSupport/generateOutputArguments.js"
+import {loadInputArguments} from "./methods/argumentsSupport/loadInputArguments.js"
+
+
+import {argumentCounter} from "./methods/compiler/argumentCounter.js"
+import {argumentCountVerifier} from "./methods/compiler/argumentCountVerifier.js"
+import {compile} from "./methods/compiler/compile.js"
+import {lexer} from "./methods/compiler/lexer.js"
+import {parser} from "./methods/compiler/parser.js"
+import {scanner} from "./methods/compiler/scanner.js"
+
+import {execute} from "./methods/interpreter/execute.js"
+import {interpreter} from "./methods/interpreter/interpreter.js"
 
 // Fractal is combination of a compiler and a VM for the Fractal programming language
 // Fractal code compiles into reusable bytecode that is then interpreted by a virtual machine
@@ -32,15 +35,15 @@ export class Fractal {
 
 Object.assign(
     Fractal.prototype,
+    checkInputArguments,
+    generateOutputArguments,
+    loadInputArguments,
     argumentCounter,
     argumentCountVerifier,
-    checkInputArguments,
-    execute,
-    generateOutputArguments,
-    interpreter,
+    compile,
     lexer,
-    loadInputArguments,
     parser,
     scanner,
-    compile
+    execute,
+    interpreter
 )

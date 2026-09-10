@@ -1,4 +1,4 @@
-import {FUNCTIONS, NFUNCTIONS} from "../constants/functions.js"
+import {FUNCTIONS, NFUNCTIONS} from "../../constants/functions.js"
 
 // Parser generates an array of function calls in a dictionary format
 export const parser =  {

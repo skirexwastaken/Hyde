@@ -1,4 +1,4 @@
-import {FUNCTIONS, CFUNCTIONS} from "../constants/functions.js"
+import {FUNCTIONS, CFUNCTIONS} from "../../constants/functions.js"
 
 export const argumentCounter = {
     // Recursive function used in argumentCountVerifier
