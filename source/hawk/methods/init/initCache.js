@@ -1,8 +1,9 @@
 import fs from "node:fs"
 import path from "node:path"
 
-import { initCachePath } from "../../constants/paths.js"
+import { initCachePath } from "../../../constants/paths.js"
 
+// This function allows to cache specific files at startup allowing users to access them straight away without the caching delay
 export const initCache = {
     initCache() {
         const filesToBeCached = JSON.parse(fs.readFileSync(initCachePath, "utf-8"))
