@@ -7,7 +7,7 @@ export const argumentCounter = {
 
         // When the first agument of If function is a function, it is turned into a separate code block and then the name of the code block is added as the new first argument of the If function
         if (CFUNCTIONS.includes(functionArray[functionIndex])){
-            if (functionArray[functionIndex + 1][0] in FUNCTIONS && functionArray[functionIndex + 1][2]){
+            if (functionArray[functionIndex + 1][0] in FUNCTIONS && functionArray[functionIndex + 1][2] in FUNCTIONS){
                 const ifCodeBlockName = `ifCodeBlock${this.codeBlocksFlow++}`
                 const elseCodeBlockName = `elseCodeBlock${this.codeBlocksFlow++}`
 
@@ -34,13 +34,15 @@ export const argumentCounter = {
 
             } else {
                 argumentCounter += 1
+
             }
         }
 
-        // Argument count check
+        // Functions that have variable amount of arguments get their argument count added behind them
         if (FUNCTIONS[functionArray[functionIndex]] == null){
             functionArray[functionIndex] = `${functionArray[functionIndex]}${argumentCounter}`
-
+        
+        // Checking if functions with set amount of arguments have the right amount of arguments
         } else {
             if (FUNCTIONS[functionArray[functionIndex]] > argumentCounter) {
                 throw new Error(`Syntax Error: Function [${functionArray[functionIndex]}] is missing arguments`)

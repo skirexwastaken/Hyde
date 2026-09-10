@@ -23,6 +23,7 @@ export const argumentCountVerifier = {
 
             }
 
+            // This is needed if a new code block is created
             codeBlocks = Object.keys(tokenizedCode)
             codeBlocksIndex++
         }
