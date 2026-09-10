@@ -11,6 +11,8 @@ export const argumentCountVerifier = {
             const codeBlockName = codeBlocks[codeBlocksIndex]
 
             for (let index = 0; index < tokenizedCode[codeBlockName].length; index += 2){
+
+                // Removing invalid strings / numbers, for example "some string" "print" ["Hello World"]
                 if (!(tokenizedCode[codeBlockName][index] in FUNCTIONS) || !(tokenizedCode[codeBlockName][index + 1] instanceof Array)){
                     tokenizedCode[codeBlockName].splice(index,1)
                     index -= 2

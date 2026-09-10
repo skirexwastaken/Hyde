@@ -8,17 +8,18 @@ export const argumentCounter = {
         // When the first agument of If function is a function, it is turned into a separate code block and then the name of the code block is added as the new first argument of the If function
         if (CFUNCTIONS.includes(functionArray[functionIndex])){
             if (functionArray[functionIndex + 1][0] in FUNCTIONS && functionArray[functionIndex + 1][2]){
-                const ifCodeBlockName = `ifCodeBlock${this.codeBlocksIf++}`
-                const elseCodeBlockName = `elseCodeBlock${this.codeBlocksElse++}`
+                const ifCodeBlockName = `ifCodeBlock${this.codeBlocksFlow++}`
+                const elseCodeBlockName = `elseCodeBlock${this.codeBlocksFlow++}`
 
                 tokenizedCode[ifCodeBlockName] = [functionArray[functionIndex + 1][0], functionArray[functionIndex + 1][1]]
                 tokenizedCode[elseCodeBlockName] = [functionArray[functionIndex + 1][2], functionArray[functionIndex + 1][3]]
                 
 
-                functionArray[functionIndex + 1].shift()
-                functionArray[functionIndex + 1].shift()
-                functionArray[functionIndex + 1].shift()
-                functionArray[functionIndex + 1].shift()
+                for (let index = 0; index < 4; index++){
+                    functionArray[functionIndex + 1].shift()
+
+                }
+
                 functionArray[functionIndex + 1].unshift(`'${elseCodeBlockName}'`)
                 functionArray[functionIndex + 1].unshift(`'${ifCodeBlockName}'`)
             }

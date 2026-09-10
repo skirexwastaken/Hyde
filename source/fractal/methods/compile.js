@@ -1,9 +1,7 @@
 // Function that compiles the individual compilation steps and returns the output
 export const compile = {
     compile(code) {
-        this.codeBlocksIf = 0 // Counter of how many if code blocks were created inside lexer function
-        this.codeBlocksElse = 0
-        this.codeBlocksLambda = 0
+        this.codeBlocksFlow = 0 // Counter of how many flow code blocks were created inside lexer function
 
         this.currentLineIndex
         this.codeBlockName

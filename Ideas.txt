@@ -14,5 +14,3 @@ Think of a way to switch Fractal Bytecode from objects to strings
 
     Number -> Regualar number
            -> If variable keyword after it -> variable index, simple pop
-
-Split files even more into more folders 
