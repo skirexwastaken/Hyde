@@ -1,7 +1,7 @@
 import fs from "node:fs"
 import path from "node:path"
 
-import {templatesDirectiory} from "../constants/paths.js"
+import {htmlDirectory} from "../../constants/paths.js"
 
 export const saveHTML = {
     // Function that saves the output html file
@@ -29,7 +29,7 @@ ${generatedHTML.join("\n")}
 
         filename = filename.replace(".md",".html")
 
-        const fullPath = path.resolve(templatesDirectiory, filename)
+        const fullPath = path.resolve(htmlDirectory, filename)
 
         fs.writeFileSync(fullPath, HTMLFile, "utf8")
 

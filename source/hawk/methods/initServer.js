@@ -3,8 +3,8 @@ import http from "http"
 import fs from "node:fs"
 import path from "node:path"
 
-import {markdownDirectory} from "../constants/paths.js";
-import {stylesDirectory} from "../constants/paths.js";
+import {markdownDirectory} from "../../constants/paths.js";
+import {stylesDirectory} from "../../constants/paths.js";
 
 import {Fractal} from "../../fractal/fractal.js"
 

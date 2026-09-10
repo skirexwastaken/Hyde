@@ -1,7 +1,7 @@
 import fs from "node:fs"
 import path from "node:path"
 
-import {scriptsDirectory} from "../constants/paths.js"
+import {scriptDirectory} from "../../constants/paths.js"
 
 export const extractFractal = {
     extractFractal(rawMarkdown, filename) {
@@ -44,7 +44,7 @@ export const extractFractal = {
 
         filename = filename.replace(".md", ".fs")
 
-        const fullPath = path.resolve(scriptsDirectory, filename)
+        const fullPath = path.resolve(scriptDirectory, filename)
         
         fs.writeFileSync(fullPath, JSON.stringify(fractalCode, null, 2), "utf-8")
 

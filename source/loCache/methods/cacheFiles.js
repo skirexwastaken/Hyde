@@ -2,7 +2,7 @@
 import fs from "node:fs";
 import path from "node:path";
 
-import {markdownDirectory, scriptsDirectory} from "../constants/paths.js";
+import {markdownDirectory, scriptDirectory} from "../../constants/paths.js";
 
 import {Fractal} from "../../fractal/fractal.js"
 
@@ -11,7 +11,7 @@ export const cacheFiles = {
         const fullPathMarkdown = path.resolve(markdownDirectory, `${route}.md`)
         const statsMarkdown = fs.statSync(fullPathMarkdown)
 
-        const fullPathFractal = path.resolve(scriptsDirectory, `${route}.fs`)
+        const fullPathFractal = path.resolve(scriptDirectory, `${route}.fs`)
 
         if (!(route in this.routeMap)) {  
             

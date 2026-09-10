@@ -1,9 +1,7 @@
 import fs from "node:fs"
 import path from "node:path"
 
-import {currentDirectory} from "../constants/paths.js"
-
-const initCachePath = path.resolve(currentDirectory, "../constants/initCache.json")
+import { initCachePath } from "../../constants/paths.js"
 
 export const initCache = {
     initCache() {

@@ -2,7 +2,7 @@
 import fs from "node:fs";
 import path from "node:path";
 
-import { stylesDirectory } from "../constants/paths.js"
+import {stylesDirectory} from "../../constants/paths.js"
 
 export const cacheCss = {
     cacheCss(route) {

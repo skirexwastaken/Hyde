@@ -1,9 +1,7 @@
 import fs from "node:fs"
 import path from "node:path";
 
-import {markdownDirectory} from './constants/paths.js'
-import {htmlDirectory} from './constants/paths.js'
-import {scriptDirectory} from './constants/paths.js'
+import {markdownDirectory, htmlDirectory, scriptDirectory} from "../constants/paths.js"
 
 // Garbage collector is a simple function that makes sure that there are no left over files if user decides to delete the Markdown file from which the files were generated
 export function garbageCollector() {
