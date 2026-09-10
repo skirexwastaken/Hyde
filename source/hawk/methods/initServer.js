@@ -52,7 +52,7 @@ export const initServer = {
                     this.loCache.cacheFiles(route)
 
                     // Getting the HTML file from cache
-                    htmlFile = this.loCache.getHtml(route)
+                    htmlFile = this.loCache.getHtml(route).split('\n')
 
                     const fractalBytecode = this.loCache.getBytecode(route)
 

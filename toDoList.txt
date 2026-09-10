@@ -1,5 +1,3 @@
-Implement CSS style files
-
 Finish the individual to do lists
 
 add check when html is not in cache yet -> compare it with markdown and just load it if it's newer,  translation layer for / -> index

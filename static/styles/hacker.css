@@ -1,3 +1,40 @@
-h1 {
-    color: red
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=IBM+Plex+Mono:wght@400;700&family=Inconsolata:wght@400;700&family=JetBrains+Mono:wght@400;700&family=Share+Tech+Mono&family=Space+Mono:wght@400;700&family=VT323&display=swap');
+
+body {
+    background-color: #131516;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 0;
+    padding: 40px 20px;
+    box-sizing: border-box;
+}
+
+.markdownContainer {
+    width: 100%;
+    max-width: 140ch;
+    box-sizing: border-box;
+    text-align: left;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #69db7c;
+    font-family: 'JetBrains Mono', monospace !important;
+}
+
+p {
+    color:#69db7c;
+    font-family: 'JetBrains Mono', monospace !important;
+}
+
+a {
+    color:#69db7c;
+    font-family: 'JetBrains Mono', monospace !important;
+}
+
+br {
+    display: block;
+    font-family: 'JetBrains Mono', monospace !important;
 }

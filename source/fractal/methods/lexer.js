@@ -96,17 +96,16 @@ export const lexer = {
 
                             // Replacing ${} with variable names
                             for (const index in dollarString) {
-                                const currentToken = dollarString[index]
+                                let currentToken = dollarString[index]
 
                                 // Removing the ${ and } that's around the variable name, making it a valid variable name
                                 if (currentToken.startsWith("${") && currentToken.endsWith("}")){
                                     dollarString[index] = currentToken.slice(2, currentToken.length - 1)
 
                                 } else {
-
                                     // Making sure the individual substrings that will be later merged are valid
                                     if (currentToken[0] != "'"){
-                                        dollarString[index] = `'${currentToken}`
+                                        dollarString[index] = (currentToken = `'${currentToken}`)
 
                                     } 
                                     

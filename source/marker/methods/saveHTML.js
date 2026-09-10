@@ -20,7 +20,9 @@ export const saveHTML = {
     <link rel="stylesheet" href="${cssFile}">
 </head>
 <body>
+<div class="markdownContainer">
 ${generatedHTML.join("\n")}
+<div>
 </body>
 </html>
 `   

@@ -4,7 +4,7 @@ export const generateHTML = {
         let generatedHTML = []
         let insideCodeBlock = false
 
-        let cssFile = ""
+        let cssFile = "dark.css"
 
         for (let line of processedMarkdown){
 
@@ -66,6 +66,11 @@ export const generateHTML = {
                 } else {
 
                     // Standard line
+                    if (line == "") {
+                        continue
+
+                    }
+
                     line = `<p>${line}</p>`
 
                     // Code block
@@ -87,7 +92,7 @@ export const generateHTML = {
                     line = this.processWrapper(line, "_", /(\_)/, "i")
 
                     // Striked style
-                     line = this.processWrapper(line, "~~", /(\~\~)/, "s")
+                    line = this.processWrapper(line, "~~", /(\~\~)/, "s")
 
                     line = this.processWrapper(line, "~", /(\~)/, "s")
 
