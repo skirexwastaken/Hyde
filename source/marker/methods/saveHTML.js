@@ -5,7 +5,7 @@ import {templatesDirectiory} from "../constants/paths.js"
 
 export const saveHTML = {
     // Function that saves the output html file
-    saveHTML(filename, generatedHTML){
+    saveHTML(filename, generatedHTML, cssFile){
         for (let index = 0; index < generatedHTML.length; index ++){
             generatedHTML[index] = `    ${generatedHTML[index]}`
         }
@@ -16,7 +16,8 @@ export const saveHTML = {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>${filename.split('.')[0]}</title>
+    <link rel="stylesheet" href="${cssFile}">
 </head>
 <body>
 ${generatedHTML.join("\n")}
@@ -31,5 +32,7 @@ ${generatedHTML.join("\n")}
         fs.writeFileSync(fullPath, HTMLFile, "utf8")
 
         console.log(`[Marker] Processed file ${filename}`)
+
+        return HTMLFile
     }
 }

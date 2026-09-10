@@ -4,11 +4,9 @@ export const convert = {
 
         const processedMarkdown = this.processMarkdown(rawMarkdown, filename)
 
-        const generatedHTML = this.generateHTML(processedMarkdown)
+        const [generatedHTML, cssFile] = this.generateHTML(processedMarkdown)
 
-        this.saveHTML(filename, generatedHTML)
-
-        return generatedHTML
+        return this.saveHTML(filename, generatedHTML, cssFile)
 
     }
 }

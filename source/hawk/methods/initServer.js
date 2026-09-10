@@ -4,6 +4,7 @@ import fs from "node:fs"
 import path from "node:path"
 
 import {markdownDirectory} from "../constants/paths.js";
+import {stylesDirectory} from "../constants/paths.js";
 
 import {Fractal} from "../../fractal/fractal.js"
 
@@ -11,13 +12,29 @@ export const initServer = {
     initServer() {
         this.server = http.createServer((request, result) => {
             if (request.url.endsWith(".css")) {
-                
+                let route = request.url.slice(1)
+
+                const fullPath = path.resolve(stylesDirectory, route)
+
+                if (fs.existsSync(fullPath)) {
+                    this.loCache.cacheCss(route);
+
+                    const cssFile = this.loCache.getCss(route)
+
+                    result.statusCode = 200
+                    result.setHeader('Content-Type', 'text/css')
+                    result.end(cssFile)
+
+                } else {
+                    result.statusCode = 404
+                    result.setHeader('Content-Type', 'text/css')
+                    result.end("")
+
+                }
 
             } else {
                 
                 let route = request.url.slice(1)
-
-                console.log(`[Hawk] Processing request at route /${route}`)
 
                 if (route == "") route = "index"
 

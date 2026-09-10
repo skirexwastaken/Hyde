@@ -6,6 +6,8 @@ export const processMarkdown = {
 
         rawMarkdown = this.extractFractal(rawMarkdown, filename)
 
+        rawMarkdown = this.processJsonWeb(rawMarkdown)
+
         rawMarkdown = rawMarkdown.split("\n")
 
         // The symbol \ indicates a new line

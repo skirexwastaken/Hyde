@@ -1,4 +1,4 @@
-Implement CSS
+Implement CSS style files
 
 Finish the individual to do lists
 

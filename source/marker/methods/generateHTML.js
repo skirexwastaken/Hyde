@@ -4,6 +4,8 @@ export const generateHTML = {
         let generatedHTML = []
         let insideCodeBlock = false
 
+        let cssFile = ""
+
         for (let line of processedMarkdown){
 
             // Similar logic as in processMarkdown function for code blocks
@@ -29,6 +31,16 @@ export const generateHTML = {
             // Line on which styles are applied
             // Note: Some of the easier syntax is simply processed by regex but some of the more complex one requires custom interpreter, such as wrappers
             } else {
+                line = line.replace(/\@\[(\S*?)\]/g, (match, subString) => {
+                    cssFile = subString
+
+                    return ""
+                })
+
+                line = line.replace(/\[(.*)\]\((\S.*)\)/g, (match, name, route) => {
+                    return `<a href="${route}">${name}</a>`
+                    
+                })
 
                 // Title H1 <-> H6
                 // Note: Styles are also not applied to titles
@@ -48,6 +60,7 @@ export const generateHTML = {
                             })
 
                             break
+
                     }
 
                 } else {
@@ -85,6 +98,6 @@ export const generateHTML = {
             }
         }
 
-        return generatedHTML
+        return [generatedHTML, cssFile]
     }
 }
