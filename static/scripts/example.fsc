@@ -1,0 +1,313 @@
+[
+  [
+    [
+      {
+        "main": [
+          {
+            "function": "string",
+            "value": "Daniel"
+          },
+          {
+            "function": "number",
+            "value": 0
+          },
+          {
+            "function": "let"
+          },
+          {
+            "function": "pop"
+          },
+          {
+            "function": "number",
+            "value": "19"
+          },
+          {
+            "function": "number",
+            "value": 1
+          },
+          {
+            "function": "let"
+          },
+          {
+            "function": "pop"
+          },
+          {
+            "function": "end"
+          }
+        ]
+      },
+      {
+        "variableCount": 2
+      }
+    ],
+    {
+      "name": "",
+      "age": ""
+    }
+  ],
+  [
+    [
+      {
+        "main": [
+          {
+            "function": "datetime"
+          },
+          {
+            "function": "number",
+            "value": 0
+          },
+          {
+            "function": "let"
+          },
+          {
+            "function": "pop"
+          },
+          {
+            "function": "string",
+            "value": ""
+          },
+          {
+            "function": "datetime"
+          },
+          {
+            "function": "string",
+            "value": "This is the current date: "
+          },
+          {
+            "function": "merge",
+            "arguments": 3
+          },
+          {
+            "function": "print",
+            "arguments": 1
+          },
+          {
+            "function": "pop"
+          },
+          {
+            "function": "end"
+          }
+        ]
+      },
+      {
+        "variableCount": 1
+      }
+    ],
+    {}
+  ],
+  [
+    [
+      {
+        "main": [
+          {
+            "function": "getSecond"
+          },
+          {
+            "function": "number",
+            "value": 0
+          },
+          {
+            "function": "let"
+          },
+          {
+            "function": "pop"
+          },
+          {
+            "function": "getMinute"
+          },
+          {
+            "function": "number",
+            "value": 1
+          },
+          {
+            "function": "let"
+          },
+          {
+            "function": "pop"
+          },
+          {
+            "function": "getHour"
+          },
+          {
+            "function": "number",
+            "value": 2
+          },
+          {
+            "function": "let"
+          },
+          {
+            "function": "pop"
+          },
+          {
+            "function": "number",
+            "value": "10"
+          },
+          {
+            "function": "variable",
+            "value": 1
+          },
+          {
+            "function": "lt"
+          },
+          {
+            "function": "string",
+            "value": "elseCodeBlock1"
+          },
+          {
+            "function": "string",
+            "value": "ifCodeBlock0"
+          },
+          {
+            "function": "if"
+          },
+          {
+            "function": "pop"
+          },
+          {
+            "function": "number",
+            "value": "10"
+          },
+          {
+            "function": "variable",
+            "value": 0
+          },
+          {
+            "function": "lt"
+          },
+          {
+            "function": "string",
+            "value": "elseCodeBlock3"
+          },
+          {
+            "function": "string",
+            "value": "ifCodeBlock2"
+          },
+          {
+            "function": "if"
+          },
+          {
+            "function": "pop"
+          },
+          {
+            "function": "string",
+            "value": ""
+          },
+          {
+            "function": "variable",
+            "value": 0
+          },
+          {
+            "function": "string",
+            "value": ":"
+          },
+          {
+            "function": "variable",
+            "value": 1
+          },
+          {
+            "function": "string",
+            "value": ":"
+          },
+          {
+            "function": "variable",
+            "value": 2
+          },
+          {
+            "function": "string",
+            "value": "Current time: "
+          },
+          {
+            "function": "merge",
+            "arguments": 7
+          },
+          {
+            "function": "print",
+            "arguments": 1
+          },
+          {
+            "function": "pop"
+          },
+          {
+            "function": "end"
+          }
+        ],
+        "ifCodeBlock0": [
+          {
+            "function": "string",
+            "value": ""
+          },
+          {
+            "function": "variable",
+            "value": 1
+          },
+          {
+            "function": "string",
+            "value": "0"
+          },
+          {
+            "function": "merge",
+            "arguments": 3
+          },
+          {
+            "function": "number",
+            "value": 1
+          },
+          {
+            "function": "let"
+          },
+          {
+            "function": "end"
+          }
+        ],
+        "elseCodeBlock1": [
+          {
+            "function": "none"
+          },
+          {
+            "function": "end"
+          }
+        ],
+        "ifCodeBlock2": [
+          {
+            "function": "string",
+            "value": ""
+          },
+          {
+            "function": "variable",
+            "value": 0
+          },
+          {
+            "function": "string",
+            "value": "0"
+          },
+          {
+            "function": "merge",
+            "arguments": 3
+          },
+          {
+            "function": "number",
+            "value": 0
+          },
+          {
+            "function": "let"
+          },
+          {
+            "function": "end"
+          }
+        ],
+        "elseCodeBlock3": [
+          {
+            "function": "none"
+          },
+          {
+            "function": "end"
+          }
+        ]
+      },
+      {
+        "variableCount": 3
+      }
+    ],
+    {}
+  ]
+]

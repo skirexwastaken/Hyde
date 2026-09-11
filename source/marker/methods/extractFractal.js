@@ -3,6 +3,8 @@ import path from "node:path"
 
 import {scriptDirectory} from "../../constants/paths.js"
 
+import {compileFractalCode} from "../../loCache/methods/compileFractalCode.js"
+
 export const extractFractal = {
     extractFractal(rawMarkdown, filename) {
         // Extracting fractal code
@@ -42,11 +44,13 @@ export const extractFractal = {
             }
         })
 
-        filename = filename.replace(".md", ".fs")
+        const fractalbytecode = compileFractalCode.compileFractalCode(fractalCode)
 
-        const fullPath = path.resolve(scriptDirectory, filename)
-        
-        fs.writeFileSync(fullPath, JSON.stringify(fractalCode, null, 2), "utf-8")
+        const filenameA = filename.replace(".md",".fsc")
+
+        const fullPathA = path.resolve(scriptDirectory, filenameA)
+
+        fs.writeFileSync(fullPathA, JSON.stringify(fractalbytecode, null, 2), "utf-8")
 
         return [rawMarkdown, fractalCode]
     }

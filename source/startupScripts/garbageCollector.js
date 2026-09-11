@@ -21,7 +21,7 @@ export function garbageCollector() {
     }
 
     for (const scriptFile of scriptFiles) {
-        const markdownFile = scriptFile.replace(".fs",".md")
+        const markdownFile = scriptFile.replace(".fsc",".md")
 
         if (!(markdownFiles.includes(markdownFile))) {
             const scriptFilePath = path.resolve(scriptDirectory, scriptFile)
