@@ -1,20 +1,21 @@
 export const processMarkdown = {
     // The main goal of this function is to simply determine where new lines should start
-    processMarkdown(rawMarkdown, filename){
-        // Removing comments and splitting the file content into separate lines
-        rawMarkdown = rawMarkdown.replace(/<!--[\s\S]*?-->/g,"")
+    processMarkdown(markdownContent, filename){
 
+        // Removing comments
+        markdownContent = markdownContent.replace(/<!--[\s\S]*?-->/g,"")
+
+        // Extracting Fractal code from the Markdown file
         let fractalCode
+        [markdownContent, fractalCode] = this.extractFractal(markdownContent, filename)
 
-        [rawMarkdown, fractalCode] = this.extractFractal(rawMarkdown, filename)
-
-        rawMarkdown = this.processJsonWeb(rawMarkdown)
-
-        rawMarkdown = rawMarkdown.split("\n")
+        // Adding styles to dictionaries inside of the JSON web tag
+        markdownContent = this.processJsonWeb(markdownContent)
+        markdownContent = markdownContent.split("\n")
 
         // The symbol \ indicates a new line
         const splitMarkdown = []
-        for (const line of rawMarkdown){
+        for (const line of markdownContent){
             if (line.endsWith("\\")){
                 splitMarkdown.push(line.slice(0, -1))
                 splitMarkdown.push("")

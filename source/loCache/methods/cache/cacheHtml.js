@@ -51,9 +51,7 @@ export const cacheHtml = {
                 }
 
             } else {
-                [htmlFile, fractalCode] = this.Marker.convert(`${route}.md`)
-
-                fractalBytecode = this.compileFractalCode(fractalCode)
+                [htmlFile, fractalBytecode] = this.Marker.convert(`${route}.md`)
 
                 console.log(`[loCache] ${route}.md has been cached`)
 
@@ -67,9 +65,7 @@ export const cacheHtml = {
 
         } else {
                 if (this.htmlFilesModified[this.routeMap[route]].getTime() != statsMarkdown.mtime.getTime()) {
-                    const [htmlFile, fractalCode] = this.Marker.convert(`${route}.md`)
-
-                    const fractalBytecode = this.compileFractalCode(fractalCode)
+                    const [htmlFile, fractalBytecode] = this.Marker.convert(`${route}.md`)
 
                     this.htmlFiles[this.routeMap[route]] = htmlFile
                     this.fractalBytecodes[this.routeMap[route]] = fractalBytecode

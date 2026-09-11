@@ -1,11 +1,15 @@
+import {loadMarkdown} from "./methods/inputOutput/loadMarkdown.js"
+import {saveHtml} from "./methods/inputOutput/saveHtml.js"
+
+import {compileFractalCode} from "./methods/segmentSpecific/fractal/compileFractalCode.js"
+import {extractFractal} from "./methods/segmentSpecific/fractal/extractFractal.js"
+
+import {processJsonWeb} from "./methods/segmentSpecific/processJsonWeb.js"
+import {processWrapper} from "./methods/segmentSpecific/processWrapper.js"
+
 import {convert} from "./methods/convert.js"
-import {extractFractal} from "./methods/extractFractal.js"
-import {generateHTML} from "./methods/generateHTML.js"
-import {getMarkdown} from "./methods/getMarkdown.js"
-import {processJsonWeb} from "./methods/processJsonWeb.js"
+import {generateHtml} from "./methods/generateHtml.js"
 import {processMarkdown} from "./methods/processMarkdown.js"
-import {processWrapper} from "./methods/processWrapper.js"
-import {saveHTML} from "./methods/saveHTML.js"
 
 export class Marker {
 
@@ -13,13 +17,17 @@ export class Marker {
 
 Object.assign(
     Marker.prototype,
-    convert,
+    loadMarkdown,
+    saveHtml,
+
+    compileFractalCode,
     extractFractal,
-    generateHTML,
-    getMarkdown,
+
     processJsonWeb,
-    processMarkdown,
     processWrapper,
-    saveHTML
+
+    convert,
+    generateHtml,
+    processMarkdown,
 
 )

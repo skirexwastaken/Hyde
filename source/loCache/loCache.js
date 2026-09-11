@@ -2,10 +2,10 @@ import {Marker} from "../marker/marker.js"
 
 import {cacheCss} from "./methods/cache/cacheCss.js"
 import {cacheHtml} from "./methods/cache/cacheHtml.js"
+
 import {getHtml} from "./methods/get/getHtml.js"
 import {getCss} from "./methods/get/getCss.js"
 import {getBytecode} from "./methods/get/getBytecode.js"
-import {compileFractalCode} from "./methods/compileFractalCode.js"
 
 export class loCache {
     constructor() {
@@ -33,5 +33,4 @@ Object.assign(
     getBytecode,
     cacheCss,
     getCss,
-    compileFractalCode
 )

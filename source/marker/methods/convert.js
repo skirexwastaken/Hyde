@@ -1,12 +1,18 @@
 export const convert = {
     convert(filename) {
-        const rawMarkdown = this.getMarkdown(filename)
 
-        const [processedMarkdown, fractalCode] = this.processMarkdown(rawMarkdown, filename)
+        // 1. Loading content of the specified Markdown file
+        const markdownContent = this.loadMarkdown(filename)
 
-        const [generatedHTML, cssFile] = this.generateHTML(processedMarkdown)
+        // 2. Processed markdown is something between html and Markdown file, it contains things from both
+        // This is the stage when Fractal code is extracted
+        const [processedMarkdown, fractalBytecode] = this.processMarkdown(markdownContent, filename)
 
-        return [this.saveHTML(filename, generatedHTML, cssFile), fractalCode]
+        // 3. At this point there is pure html file generated
+        const [generatedHTML, cssFile] = this.generateHtml(processedMarkdown)
+
+        // 4. Returning html file and fractalBytecode to loCache
+        return [this.saveHtml(filename, generatedHTML, cssFile), fractalBytecode]
 
     }
 }

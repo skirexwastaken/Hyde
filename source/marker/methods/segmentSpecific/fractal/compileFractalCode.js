@@ -1,4 +1,4 @@
-import {Fractal} from "../../fractal/fractal.js"
+import {Fractal} from "../../../../fractal/fractal.js"
 
 export const compileFractalCode = {
     compileFractalCode(fractalCode) {

@@ -1,9 +1,10 @@
-export const generateHTML = {
-    // Function that converts the processed markdown into pure HTML
-    generateHTML(processedMarkdown){
+// Function that converts the processed markdown into pure HTML
+export const generateHtml = {
+    generateHtml(processedMarkdown){
         let generatedHTML = []
         let insideCodeBlock = false
 
+        // Default style if no style is specified
         let cssFile = "dark.css"
 
         for (let line of processedMarkdown){
@@ -63,9 +64,10 @@ export const generateHTML = {
 
                     }
 
+                // Standard line
                 } else {
 
-                    // Standard line
+                    // Empty lines are skipped
                     if (line == "") {
                         continue
 
