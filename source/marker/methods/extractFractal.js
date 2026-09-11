@@ -48,6 +48,6 @@ export const extractFractal = {
         
         fs.writeFileSync(fullPath, JSON.stringify(fractalCode, null, 2), "utf-8")
 
-        return rawMarkdown
+        return [rawMarkdown, fractalCode]
     }
 }

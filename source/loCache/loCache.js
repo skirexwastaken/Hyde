@@ -1,10 +1,11 @@
 import {Marker} from "../marker/marker.js"
 
-import {cacheCss} from "./methods/cacheCss.js"
-import {cacheFiles} from "./methods/cacheFiles.js"
-import {getHtml} from "./methods/getHtml.js"
-import {getCss} from "./methods/getCss.js"
-import {getBytecode} from "./methods/getBytecode.js"
+import {cacheCss} from "./methods/cache/cacheCss.js"
+import {cacheHtml} from "./methods/cache/cacheHtml.js"
+import {getHtml} from "./methods/get/getHtml.js"
+import {getCss} from "./methods/get/getCss.js"
+import {getBytecode} from "./methods/get/getBytecode.js"
+import {compileFractalCode} from "./methods/compileFractalCode.js"
 
 export class loCache {
     constructor() {
@@ -12,8 +13,8 @@ export class loCache {
 
         this.routeMap = {}
 
-        this.cacheCounter = 0
-        this.filesModified = []
+        this.htmlCacheCounter = 0
+        this.htmlFilesModified = []
         this.htmlFiles = []
         this.fractalBytecodes = []
 
@@ -27,9 +28,10 @@ export class loCache {
 
 Object.assign(
     loCache.prototype,
-    cacheFiles,
+    cacheHtml,
     getHtml,
     getBytecode,
     cacheCss,
-    getCss
+    getCss,
+    compileFractalCode
 )

@@ -2,12 +2,11 @@
 import fs from "node:fs";
 import path from "node:path";
 
-import {stylesDirectory} from "../../constants/paths.js"
+import {stylesDirectory} from "../../../constants/paths.js"
 
 export const cacheCss = {
     cacheCss(route) {
         const fullPath = path.resolve(stylesDirectory, route)
-
         const cssStats = fs.statSync(fullPath)
 
         if (!(route in this.cssRouteMap)) {

@@ -4,7 +4,9 @@ export const processMarkdown = {
         // Removing comments and splitting the file content into separate lines
         rawMarkdown = rawMarkdown.replace(/<!--[\s\S]*?-->/g,"")
 
-        rawMarkdown = this.extractFractal(rawMarkdown, filename)
+        let fractalCode
+
+        [rawMarkdown, fractalCode] = this.extractFractal(rawMarkdown, filename)
 
         rawMarkdown = this.processJsonWeb(rawMarkdown)
 
@@ -76,6 +78,6 @@ export const processMarkdown = {
             lineIndex++
         }
 
-        return processedMarkdown
+        return [processedMarkdown, fractalCode]
     }
 }
