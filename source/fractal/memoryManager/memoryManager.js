@@ -16,6 +16,7 @@ export class MemoryManager {
 
 Object.assign(
     MemoryManager.prototype,
+    
     allocateMemorySpace,
     getVariableValue,
     setVariableValue
