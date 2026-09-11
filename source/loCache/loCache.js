@@ -28,8 +28,10 @@ export class loCache {
 
 Object.assign(
     loCache.prototype,
+
     cacheHtml,
     getHtml,
+    
     getBytecode,
     cacheCss,
     getCss,

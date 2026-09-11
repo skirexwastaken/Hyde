@@ -17,6 +17,7 @@ export class Marker {
 
 Object.assign(
     Marker.prototype,
+    
     loadMarkdown,
     saveHtml,
 

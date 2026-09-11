@@ -3,6 +3,7 @@ import {Mytharis} from "../mytharis/mytharis.js"
 
 import {initCache} from "./methods/init/initCache.js"
 import {initServer} from "./methods/init/initServer.js"
+
 import {assembleResponse} from "./methods/assembleResponse.js"
 import {runServer} from "./methods/runServer.js"
 
@@ -18,8 +19,10 @@ export class Hawk{
 
 Object.assign(
     Hawk.prototype,
+
     initCache,
     initServer,
+
     assembleResponse,
     runServer
 )

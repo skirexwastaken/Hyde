@@ -35,15 +35,18 @@ export class Fractal {
 
 Object.assign(
     Fractal.prototype,
+
     checkInputArguments,
     generateOutputArguments,
     loadInputArguments,
+
     argumentCounter,
     argumentCountVerifier,
     compile,
     lexer,
     parser,
     scanner,
+    
     execute,
     interpreter
 )
