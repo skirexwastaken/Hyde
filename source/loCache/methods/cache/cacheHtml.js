@@ -47,6 +47,7 @@ export const cacheHtml = {
                     fractalBytecode = []
 
                     console.log(`[loCache] There has been an error when parsing ${route}.fcs to JSON`)
+
                 }
 
             } else {
@@ -55,6 +56,7 @@ export const cacheHtml = {
                 fractalBytecode = this.compileFractalCode(fractalCode)
 
                 console.log(`[loCache] ${route}.md has been cached`)
+
             }
 
             this.routeMap[route] = this.htmlCacheCounter++
@@ -73,6 +75,7 @@ export const cacheHtml = {
                     this.fractalBytecodes[this.routeMap[route]] = fractalBytecode
                     
                     console.log(`[loCache] ${route}.md has been recached`)
+                    
             }
         }
     }
