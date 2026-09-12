@@ -43,7 +43,7 @@ code {
   display: inline-block;
   font-family: 'JetBrains Mono', monospace !important;
   color: #69db7c;
-  background-color: #151b23;
+  border: 2px solid #69db7c;
   padding: 12px 16px;
   tab-size: 4;
   margin: 10px 0;
