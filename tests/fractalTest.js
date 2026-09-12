@@ -1,7 +1,9 @@
 import {Fractal} from "../source/fractal/fractal.js"
 
 // Silencing the debug prints from Fractal as they are not needed here
-console.log = function() {}
+console.log = function() {
+
+}
 
 // Individual tests that will be ran
 const testCases = [
