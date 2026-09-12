@@ -1,41 +1,63 @@
 clear
 
-leftBuffer=10
-rightBuffer=10
+leftBuffer=12
+rightBuffer=12
 
 currentDate=$(date '+%Y-%m-%d')
 
 logDirectory="./logs"
 logFilename="${currentDate}.log"
 
-echo "${logFullPath}"
-
 case $1 in
 
     "hyde")
         echo "[Hyde Runtime] Launching Hyde"
 
-        logFullPath="${logDirectory}/hyde/${logFilename}"
+        if [[ $2 == "production" ]]; then
+            mkdir -p "${logDirectory}/hyde"
 
-        node hyde.js | tee -a "${logFullPath}"
+            logFullPath="${logDirectory}/hyde/${logFilename}"
+
+            node hyde.js | tee -a "${logFullPath}"
+
+        else 
+            node hyde.js
+
+        fi
 
     ;;
  
     "docker")
         echo "[Hyde Runtime] Launching Hyde inside of docker"
 
-        logFullPath="${logDirectory}/hydeDocker/${logFilename}"
+        if [[ $2 == "production" ]]; then
+            mkdir -p "${logDirectory}/hydeDocker"
 
-        sudo docker-compose up | tee -a "${logFullPath}"
+            logFullPath="${logDirectory}/hydeDocker/${logFilename}"
+
+            sudo docker-compose up | tee -a "${logFullPath}"
+
+        else
+            sudo docker-compose up 
+
+        fi
 
     ;;
 
     "cli")
         echo "[Hyde Runtime] Launching Fractal CLI"
 
-        logFullPath="${logDirectory}/fractalCli/${logFilename}"
+        if [[ $2 == "production" ]]; then
+            mkdir -p "${logDirectory}/fractalCli"
 
-        node ./tools/fractalCli.js | tee -a "${logFullPath}"   
+            logFullPath="${logDirectory}/fractalCli/${logFilename}"
+
+            node ./tools/fractalCli.js | tee -a "${logFullPath}"   
+
+        else
+            node ./tools/fractalCli.js
+
+        fi
 
     ;;
 
@@ -43,8 +65,10 @@ case $1 in
     echo "[Hyde Runtime] Options overview"
     echo ""
     printf "%-${leftBuffer}s %${rightBuffer}s\n" "hyde" "Launches hyde"
-    printf "%-${leftBuffer}s %${rightBuffer}s\n" "docke" "Launches hyde inside of docker"
+    printf "%-${leftBuffer}s %${rightBuffer}s\n" "docker" "Launches hyde inside of docker"
     printf "%-${leftBuffer}s %${rightBuffer}s\n" "cli" "Launches Fractal CLI"
+    echo ""
+    printf "%-${leftBuffer}s %${rightBuffer}s\n" "production" "Add behind options to run in production mode"
 
     ;;
 
