@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 clear
 
 leftBuffer=12
@@ -8,12 +10,19 @@ currentDate=$(date '+%Y-%m-%d')
 logDirectory="./logs"
 logFilename="${currentDate}.log"
 
+mode=${2:-"development"}
+
+if [[ "$mode" != "production" && "$mode" != "development" ]]; then
+    echo "[Hyde Runtime] Unrecognized mode '$2'. Defaulting to 'development' mode."
+
+fi
+
 case $1 in
 
     "hyde")
-        echo "[Hyde Runtime] Launching Hyde"
+        echo "[Hyde Runtime] Launching Hyde in $mode mode"
 
-        if [[ $2 == "production" ]]; then
+        if [[ "$mode" == "production" ]]; then
             mkdir -p "${logDirectory}/hyde"
 
             logFullPath="${logDirectory}/hyde/${logFilename}"
@@ -28,9 +37,9 @@ case $1 in
     ;;
  
     "docker")
-        echo "[Hyde Runtime] Launching Hyde inside of docker"
+        echo "[Hyde Runtime] Launching Hyde inside of docker in $mode mode"
 
-        if [[ $2 == "production" ]]; then
+        if [[ "$mode" == "production" ]]; then
             mkdir -p "${logDirectory}/hydeDocker"
 
             logFullPath="${logDirectory}/hydeDocker/${logFilename}"
@@ -45,9 +54,9 @@ case $1 in
     ;;
 
     "cli")
-        echo "[Hyde Runtime] Launching Fractal CLI"
+        echo "[Hyde Runtime] Launching Fractal CLI in $mode mode"
 
-        if [[ $2 == "production" ]]; then
+        if [[ "$mode" == "production" ]]; then
             mkdir -p "${logDirectory}/fractalCli"
 
             logFullPath="${logDirectory}/fractalCli/${logFilename}"
