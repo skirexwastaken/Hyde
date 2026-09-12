@@ -1,19 +1,50 @@
-echo "[Hyde Runtime Helper] Processing your request"
+clear
+
+leftBuffer=10
+rightBuffer=10
+
+currentDate=$(date '+%Y-%m-%d')
+
+logDirectory="./logs"
+logFilename="${currentDate}.log"
+
+echo "${logFullPath}"
 
 case $1 in
 
     "hyde")
-        node hyde.js
+        echo "[Hyde Runtime] Launching Hyde"
+
+        logFullPath="${logDirectory}/hyde/${logFilename}"
+
+        node hyde.js | tee -a "${logFullPath}"
 
     ;;
-
+ 
     "docker")
-        sudo docker-compose up
+        echo "[Hyde Runtime] Launching Hyde inside of docker"
+
+        logFullPath="${logDirectory}/hydeDocker/${logFilename}"
+
+        sudo docker-compose up | tee -a "${logFullPath}"
 
     ;;
 
     "cli")
-        node ./tools/fractalCli.js        
+        echo "[Hyde Runtime] Launching Fractal CLI"
+
+        logFullPath="${logDirectory}/fractalCli/${logFilename}"
+
+        node ./tools/fractalCli.js | tee -a "${logFullPath}"   
+
+    ;;
+
+    *)
+    echo "[Hyde Runtime] Options overview"
+    echo ""
+    printf "%-${leftBuffer}s %${rightBuffer}s\n" "hyde" "Launches hyde"
+    printf "%-${leftBuffer}s %${rightBuffer}s\n" "docke" "Launches hyde inside of docker"
+    printf "%-${leftBuffer}s %${rightBuffer}s\n" "cli" "Launches Fractal CLI"
 
     ;;
 
