@@ -44,10 +44,10 @@ case $1 in
 
             logFullPath="${logDirectory}/hydeDocker/${logFilename}"
 
-            sudo docker-compose up | tee -a "${logFullPath}"
+            sudo docker compose up | tee -a "${logFullPath}"
 
         else
-            sudo docker-compose up 
+            sudo docker compose up 
 
         fi
 
