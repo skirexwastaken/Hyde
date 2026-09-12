@@ -53,7 +53,7 @@ case $1 in
 
     ;;
 
-    "cli")
+    "fractal")
         echo "[Hyde Runtime] Launching Fractal CLI in $mode mode"
 
         if [[ "$mode" == "production" ]]; then
@@ -70,12 +70,31 @@ case $1 in
 
     ;;
 
+    "fractalTest")
+        echo "[Hyde Runtime] Launching Fractal test in $mode mode"
+
+        if [[ "$mode" == "production" ]]; then
+            mkdir -p "${logDirectory}/tests/fractalTest"
+
+            logFullPath="${logDirectory}/tests/fractalTest/${logFilename}"
+
+            node ./tests/fractalTest.js | tee -a "${logFullPath}"   
+
+        else
+            node ./tests/fractalTest.js
+
+        fi
+
+    ;;
+
     *)
     echo "[Hyde Runtime] Options overview"
     echo ""
     printf "%-${leftBuffer}s %${rightBuffer}s\n" "hyde" "Launches hyde"
     printf "%-${leftBuffer}s %${rightBuffer}s\n" "docker" "Launches hyde inside of docker"
-    printf "%-${leftBuffer}s %${rightBuffer}s\n" "cli" "Launches Fractal CLI"
+    printf "%-${leftBuffer}s %${rightBuffer}s\n" "fractal" "Launches Fractal CLI"
+    echo ""
+    printf "%-${leftBuffer}s %${rightBuffer}s\n" "fractalTest" "Launches test of Fractal"
     echo ""
     printf "%-${leftBuffer}s %${rightBuffer}s\n" "development" "Add behind options to run in development mode"
     printf "%-${leftBuffer}s %${rightBuffer}s\n" "production" "Add behind options to run in production mode"
