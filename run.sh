@@ -77,6 +77,7 @@ case $1 in
     printf "%-${leftBuffer}s %${rightBuffer}s\n" "docker" "Launches hyde inside of docker"
     printf "%-${leftBuffer}s %${rightBuffer}s\n" "cli" "Launches Fractal CLI"
     echo ""
+    printf "%-${leftBuffer}s %${rightBuffer}s\n" "development" "Add behind options to run in development mode"
     printf "%-${leftBuffer}s %${rightBuffer}s\n" "production" "Add behind options to run in production mode"
 
     ;;
