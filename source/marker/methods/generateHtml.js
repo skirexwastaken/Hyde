@@ -62,13 +62,13 @@ export const generateHtml = {
                 })
 
                 // Image
-                line = line.replace(/image\[([\S\s]*?)\]\((\S*?)\)/g, (match, altText, source) => {                    
+                line = line.replace(/image\[([\S\s]*?)\]\((\S*?)\)|\!\[([\S\s]*?)\]\((\S*?)\)/g, (match, altText, source) => {                    
                     return `<img src='${source}' alt='${altText}'>`
 
                 })
 
                 // Website link
-                line = line.replace(/link\[(.*)\]\((\S.*)\)/g, (match, name, route) => {
+                line = line.replace(/link\[(.*)\]\((\S.*)\)|\[(.*)\]\((\S.*)\)/g, (match, name, route) => {
                     return `<a href="${route}">${name}</a>`
                     
                 })
