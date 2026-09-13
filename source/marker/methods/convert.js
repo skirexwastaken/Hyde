@@ -9,10 +9,10 @@ export const convert = {
         const [processedMarkdown, fractalBytecode] = this.processMarkdown(markdownContent, filename)
 
         // 3. At this point there is pure html file generated
-        const [generatedHTML, cssFile] = this.generateHtml(processedMarkdown)
+        const [generatedHTML, cssFile, iconFile] = this.generateHtml(processedMarkdown)
 
         // 4. Returning html file and fractalBytecode to loCache
-        return [this.saveHtml(filename, generatedHTML, cssFile), fractalBytecode]
+        return [this.saveHtml(filename, generatedHTML, cssFile, iconFile), fractalBytecode]
 
     }
 }

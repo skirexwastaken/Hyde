@@ -58,6 +58,8 @@ _This Text is also italic_
 
 This line is loading a css file @[hacker.css]
 
+This line sets the website icon #[favicon.ico]
+
 # Bellow you can see an example of JSON web parser
 
 <#==

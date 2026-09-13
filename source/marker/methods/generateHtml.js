@@ -7,6 +7,9 @@ export const generateHtml = {
         // Default style if no style is specified
         let cssFile = "dark.css"
 
+        // Default icon if no icon is specified
+        let iconFile = "favicon.ico"
+
         for (let line of processedMarkdown){
 
             // Similar logic as in processMarkdown function for code blocks
@@ -34,6 +37,12 @@ export const generateHtml = {
             } else {
                 line = line.replace(/\@\[(\S*?)\]/g, (match, subString) => {
                     cssFile = subString
+
+                    return ""
+                })
+
+                line = line.replace(/\#\[(\S*?)\]/g, (match, subString) => {
+                    iconFile = subString
 
                     return ""
                 })
@@ -105,6 +114,6 @@ export const generateHtml = {
             }
         }
 
-        return [generatedHTML, cssFile]
+        return [generatedHTML, cssFile, iconFile]
     }
 }

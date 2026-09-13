@@ -3,7 +3,7 @@ import http from "http"
 import fs from "node:fs"
 import path from "node:path"
 
-import {markdownDirectory, stylesDirectory} from "../../../constants/paths.js";
+import {markdownDirectory, stylesDirectory, iconDirectory} from "../../../constants/paths.js"
 
 // The core of the entire Hyde project, a webserver written using the http Node module
 export const initServer = {
@@ -11,7 +11,7 @@ export const initServer = {
         this.server = http.createServer((request, result) => {
 
             // Removes the / at the start
-            let [route, extension] = request.url.slice(1).split(".")
+             let [route, extension] = request.url.slice(1).split(".")
 
             switch (extension) {
 
@@ -79,11 +79,36 @@ export const initServer = {
 
                 }
 
+                case "ico": {
+                    const filename = `${route}.ico`
+                    const iconFilePath = path.resolve(iconDirectory, filename)
+
+                    if (fs.existsSync(iconFilePath)) {
+                        this.loCache.cacheIcon(filename)
+
+                        const iconFile = this.loCache.getIcon(filename)
+
+                        result.statusCode = 200
+                        result.setHeader('Content-Type', 'image/x-icon')
+                        result.end(iconFile)
+                    
+                    } else {
+                        result.statusCode = 404
+                        result.setHeader('Content-Type', 'image/x-icon')
+                        result.end("")
+
+                    }
+
+                    break
+
+                }
+
                 // Unsupported Files
                 default:
                     result.statusCode = 404
                     result.setHeader('Content-Type', 'text/html')
                     result.end("<h1>404 Not Found</h1>")
+
             }
         })
     }
