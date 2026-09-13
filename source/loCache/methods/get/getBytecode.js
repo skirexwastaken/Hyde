@@ -1,6 +1,6 @@
 export const getBytecode = {
     getBytecode(route) {
-        return this.fractalBytecodes[this.routeMap[route]]
+        return this.fractalBytecodes[this.htmlRouteMap[route]]
         
     }
 }

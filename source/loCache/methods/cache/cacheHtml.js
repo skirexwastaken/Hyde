@@ -21,7 +21,7 @@ export const cacheHtml = {
         const fullPathHtml = path.resolve(htmlDirectory, `${route}.html`)
         const fullPathFractal = path.resolve(scriptDirectory, `${route}.fsc`)
 
-        if (!(route in this.routeMap)) {  
+        if (!(route in this.htmlRouteMap)) {  
 
             let filesAreFresh = false
             if (fs.existsSync(fullPathHtml) && fs.existsSync(fullPathFractal)){
@@ -57,18 +57,18 @@ export const cacheHtml = {
 
             }
 
-            this.routeMap[route] = this.htmlCacheCounter++
+            this.htmlRouteMap[route] = this.htmlCacheCounter++
             this.htmlFiles.push(htmlFile)
             this.htmlFilesModified.push(statsMarkdown.mtime)
 
             this.fractalBytecodes.push(fractalBytecode)
 
         } else {
-                if (this.htmlFilesModified[this.routeMap[route]].getTime() != statsMarkdown.mtime.getTime()) {
+                if (this.htmlFilesModified[this.htmlRouteMap[route]].getTime() != statsMarkdown.mtime.getTime()) {
                     const [htmlFile, fractalBytecode] = this.Marker.convert(`${route}.md`)
 
-                    this.htmlFiles[this.routeMap[route]] = htmlFile
-                    this.fractalBytecodes[this.routeMap[route]] = fractalBytecode
+                    this.htmlFiles[this.htmlRouteMap[route]] = htmlFile
+                    this.fractalBytecodes[this.htmlRouteMap[route]] = fractalBytecode
                     
                     console.log(`[loCache] ${route}.md has been recached`)
                     
