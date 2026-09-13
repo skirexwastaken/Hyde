@@ -52,7 +52,7 @@ export const generateHtml = {
                 })
 
                 // Image
-                line = line.replace(/\!\[([\S\s]*?)\]\((\S*?)\)/g, (match, source, altText) => {                    
+                line = line.replace(/\!\[([\S\s]*?)\]\((\S*?)\)/g, (match, altText, source) => {                    
                     return `<img src='${source}' alt='${altText}'>`
 
                 })
