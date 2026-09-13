@@ -12,7 +12,7 @@
 
 ###### Sixth title
 
-This is an example of link to [Hyde](https://git.danbtw.org/skirex/Hyde) repository
+This is an example of link to link[Hyde](https://git.danbtw.org/skirex/Hyde) repository
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit
 
@@ -56,15 +56,15 @@ _This Text is also italic_
 
 ~~There is a line going over this text~~
 
-This line is loading a css file @[hacker.css]
+This line is loading a css file css[hacker.css]
 
-This line sets the website icon #[favicon.ico]
+This line sets the website icon ico[favicon.ico]
 
-This line sets the website title &[Example]
+This line sets the website title title[Example]
 
 # Image example bellow
 
-![Hyde logo](hyde.png)
+image[Hyde logo](hyde.png)
 
 # Bellow you can see an example of JSON web parser
 

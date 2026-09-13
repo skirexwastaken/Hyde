@@ -39,14 +39,14 @@ export const generateHtml = {
             } else {
 
                 // CSS File
-                line = line.replace(/\@\[(\S*?)\]/g, (match, filename) => {
+                line = line.replace(/css\[(\S*?)\]/g, (match, filename) => {
                     cssFile = filename
 
                     return ""
                 })
 
                 // Favicon file
-                line = line.replace(/\#\[(\S*?)\]/g, (match, filename) => {
+                line = line.replace(/ico\[(\S*?)\]/g, (match, filename) => {
                     iconFile = filename
 
                     return ""
@@ -54,7 +54,7 @@ export const generateHtml = {
                 })
 
                 // Html Title
-                line = line.replace(/\&\[(\S*?)\]/g, (match, title) => {
+                line = line.replace(/title\[(\S*?)\]/g, (match, title) => {
                     htmlTitle = title
 
                     return ""
@@ -62,13 +62,13 @@ export const generateHtml = {
                 })
 
                 // Image
-                line = line.replace(/\!\[([\S\s]*?)\]\((\S*?)\)/g, (match, altText, source) => {                    
+                line = line.replace(/image\[([\S\s]*?)\]\((\S*?)\)/g, (match, altText, source) => {                    
                     return `<img src='${source}' alt='${altText}'>`
 
                 })
 
                 // Website link
-                line = line.replace(/\[(.*)\]\((\S.*)\)/g, (match, name, route) => {
+                line = line.replace(/link\[(.*)\]\((\S.*)\)/g, (match, name, route) => {
                     return `<a href="${route}">${name}</a>`
                     
                 })
