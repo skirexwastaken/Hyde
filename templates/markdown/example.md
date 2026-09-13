@@ -101,9 +101,9 @@ image[Hyde logo](hyde.png)
 
 # And some scripts too
 
-My name is $[name]
+My name is ${name}
 
-My age is $[age]
+My age is ${age}
 
 <!==
 main [

@@ -11,7 +11,7 @@ export const extractFractal = {
         let fractalCode = []
         let inputArguments = {}
 
-        rawMarkdown = rawMarkdown.replace(/<!==([\s\S]*?)===>|\$\[(\S*?)\]/g, (match, codeBlock, variableName) => {
+        rawMarkdown = rawMarkdown.replace(/<!==([\s\S]*?)===>|\$\{(\S*?)\}/g, (match, codeBlock, variableName) => {
             let codeLine = ""
             let definingString  = false
 

@@ -44,7 +44,7 @@ export const assembleResponse = {
 
         // All variables embeded in text are replaced with their values from output arguments
         for (let htmlLineIndex = 0; htmlLineIndex < htmlFile.length; htmlLineIndex ++) {
-            htmlFile[htmlLineIndex] = htmlFile[htmlLineIndex].replace(/\$\[(\S*?)\]/g, (match, variableName) => {
+            htmlFile[htmlLineIndex] = htmlFile[htmlLineIndex].replace(/\$\{(\S*?)\}/g, (match, variableName) => {
                 return allOutputArguments[variableName]
                 
             })
