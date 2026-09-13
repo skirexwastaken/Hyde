@@ -37,23 +37,23 @@ export const generateHtml = {
             } else {
 
                 // CSS File
-                line = line.replace(/\@\[(\S*?)\]/g, (match, subString) => {
-                    cssFile = subString
+                line = line.replace(/\@\[(\S*?)\]/g, (match, filename) => {
+                    cssFile = filename
 
                     return ""
                 })
 
                 // Favicon file
-                line = line.replace(/\#\[(\S*?)\]/g, (match, subString) => {
-                    iconFile = subString
+                line = line.replace(/\#\[(\S*?)\]/g, (match, filename) => {
+                    iconFile = filename
 
                     return ""
 
                 })
 
                 // Image
-                line = line.replace(/\!\[([\S\s]*?)\]\((\S*?)\)/g, (match, subStringAlpha, subStringBeta) => {                    
-                    return `<img src='${subStringBeta}' alt='${subStringAlpha}'>`
+                line = line.replace(/\!\[([\S\s]*?)\]\((\S*?)\)/g, (match, source, altText) => {                    
+                    return `<img src='${source}' alt='${altText}'>`
 
                 })
 
