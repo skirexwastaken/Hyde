@@ -35,18 +35,29 @@ export const generateHtml = {
             // Line on which styles are applied
             // Note: Some of the easier syntax is simply processed by regex but some of the more complex one requires custom interpreter, such as wrappers
             } else {
+
+                // CSS File
                 line = line.replace(/\@\[(\S*?)\]/g, (match, subString) => {
                     cssFile = subString
 
                     return ""
                 })
 
+                // Favicon file
                 line = line.replace(/\#\[(\S*?)\]/g, (match, subString) => {
                     iconFile = subString
 
                     return ""
+
                 })
 
+                // Image
+                line = line.replace(/\!\[([\S\s]*?)\]\((\S*?)\)/g, (match, subStringAlpha, subStringBeta) => {                    
+                    return `<img src='${subStringBeta}' alt='${subStringAlpha}'>`
+
+                })
+
+                // Website link
                 line = line.replace(/\[(.*)\]\((\S.*)\)/g, (match, name, route) => {
                     return `<a href="${route}">${name}</a>`
                     

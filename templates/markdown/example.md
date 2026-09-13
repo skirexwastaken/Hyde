@@ -60,6 +60,10 @@ This line is loading a css file @[hacker.css]
 
 This line sets the website icon #[favicon.ico]
 
+# Image example bellow
+
+![Hyde logo](hyde.png)
+
 # Bellow you can see an example of JSON web parser
 
 <#==
