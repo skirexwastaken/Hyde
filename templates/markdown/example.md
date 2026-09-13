@@ -58,7 +58,7 @@ _This Text is also italic_
 
 This line is loading a css file css[hacker.css]
 
-This line sets the website icon ico[favicon.ico]
+This line sets the website icon icon[favicon.ico]
 
 This line sets the website title title[Example]
 

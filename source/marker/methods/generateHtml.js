@@ -46,7 +46,7 @@ export const generateHtml = {
                 })
 
                 // Favicon file - Marker Specific
-                line = line.replace(/ico\[(\S*?)\]/g, (match, filename) => {
+                line = line.replace(/icon\[(\S*?)\]/g, (match, filename) => {
                     iconFile = filename
 
                     return ""
