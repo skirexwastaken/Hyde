@@ -60,6 +60,8 @@ This line is loading a css file @[hacker.css]
 
 This line sets the website icon #[favicon.ico]
 
+This line sets the website title &[Example]
+
 # Image example bellow
 
 ![Hyde logo](hyde.png)

@@ -10,6 +10,8 @@ export const generateHtml = {
         // Default icon if no icon is specified
         let iconFile = "favicon.ico"
 
+        let htmlTitle = ""
+
         for (let line of processedMarkdown){
 
             // Similar logic as in processMarkdown function for code blocks
@@ -46,6 +48,14 @@ export const generateHtml = {
                 // Favicon file
                 line = line.replace(/\#\[(\S*?)\]/g, (match, filename) => {
                     iconFile = filename
+
+                    return ""
+
+                })
+
+                // Html Title
+                line = line.replace(/\&\[(\S*?)\]/g, (match, title) => {
+                    htmlTitle = title
 
                     return ""
 
@@ -125,6 +135,6 @@ export const generateHtml = {
             }
         }
 
-        return [generatedHTML, cssFile, iconFile]
+        return [generatedHTML, cssFile, iconFile, htmlTitle]
     }
 }
