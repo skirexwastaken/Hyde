@@ -9,7 +9,7 @@ export const initCache = {
         const filesToBeCached = JSON.parse(fs.readFileSync(initCachePath, "utf-8"))
 
         for (const file of filesToBeCached) {
-            this.loCache.cacheHtml(file)
+            this.loCache.cacheMarkdown(file)
 
         }
 

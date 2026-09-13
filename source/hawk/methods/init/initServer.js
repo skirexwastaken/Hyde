@@ -61,7 +61,7 @@ export const initServer = {
                     const markdownFilePath = path.resolve(markdownDirectory, `${route}.md`)
 
                     if (fs.existsSync(markdownFilePath)) {
-                        this.loCache.cacheHtml(route)
+                        this.loCache.cacheMarkdown(route)
 
                         let htmlFile = this.loCache.getFile(route, "html").split('\n')
 

@@ -13,8 +13,8 @@ import {markdownDirectory, htmlDirectory, scriptDirectory} from "../../../consta
     // Markdown is already cached
         // If there is newer version of this file it will be recached using Marker
 
-export const cacheHtml = {
-    cacheHtml(route) {
+export const cacheMarkdown = {
+    cacheMarkdown(route) {
         const fullPathMarkdown = path.resolve(markdownDirectory, `${route}.md`)
         const statsMarkdown = fs.statSync(fullPathMarkdown)
 

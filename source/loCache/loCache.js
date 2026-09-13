@@ -1,9 +1,9 @@
 import {Marker} from "../marker/marker.js"
 
 import {cacheCss} from "./methods/cache/cacheCss.js"
-import {cacheHtml} from "./methods/cache/cacheHtml.js"
 import {cacheIcon} from "./methods/cache/cacheIcon.js"
 import {cacheImage} from "./methods/cache/cacheImage.js"
+import {cacheMarkdown} from "./methods/cache/cacheMarkdown.js"
 
 import {getFile} from "./methods/get/getFile.js"
 
@@ -40,7 +40,7 @@ Object.assign(
     loCache.prototype,
 
     cacheCss,
-    cacheHtml,
+    cacheMarkdown,
     cacheIcon,
     cacheImage,
     
