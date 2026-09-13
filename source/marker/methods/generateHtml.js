@@ -38,14 +38,14 @@ export const generateHtml = {
             // Note: Some of the easier syntax is simply processed by regex but some of the more complex one requires custom interpreter, such as wrappers
             } else {
 
-                // CSS File
+                // CSS File - Marker Specific
                 line = line.replace(/css\[(\S*?)\]/g, (match, filename) => {
                     cssFile = filename
 
                     return ""
                 })
 
-                // Favicon file
+                // Favicon file - Marker Specific
                 line = line.replace(/ico\[(\S*?)\]/g, (match, filename) => {
                     iconFile = filename
 
@@ -53,7 +53,7 @@ export const generateHtml = {
 
                 })
 
-                // Html Title
+                // Html Title - Marker Specifc
                 line = line.replace(/title\[(\S*?)\]/g, (match, title) => {
                     htmlTitle = title
 
@@ -61,17 +61,32 @@ export const generateHtml = {
 
                 })
 
-                // Image
-                line = line.replace(/image\[([\S\s]*?)\]\((\S*?)\)|\!\[([\S\s]*?)\]\((\S*?)\)/g, (match, altText, source) => {                    
+                // Image - Marker Specific
+                line = line.replace(/image\[([\S\s]*?)\]\((\S*?)\)/g, (match, altText, source) => {                    
                     return `<img src='${source}' alt='${altText}'>`
 
                 })
 
-                // Website link
-                line = line.replace(/link\[(.*)\]\((\S.*)\)|\[(.*)\]\((\S.*)\)/g, (match, name, route) => {
+                // Image - Markdown
+                line = line.replace(/\!\[([\S\s]*?)\]\((\S*?)\)/g, (match, altText, source) => {                    
+                    return `<img src='${source}' alt='${altText}'>`
+
+                })
+
+
+                // Website link - Marker Specific
+                line = line.replace(/link\[(.*)\]\((\S.*)\)/g, (match, name, route) => {
                     return `<a href="${route}">${name}</a>`
                     
                 })
+
+                // Website - Markdown
+                line = line.replace(/\[(.*)\]\((\S.*)\)/g, (match, name, route) => {
+                    return `<a href="${route}">${name}</a>`
+                    
+                })
+
+
 
                 // Title H1 <-> H6
                 // Note: Styles are also not applied to titles
