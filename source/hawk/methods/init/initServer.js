@@ -23,7 +23,7 @@ export const initServer = {
                     if (fs.existsSync(cssFilePath)) {
                         this.loCache.cacheCss(filename);
 
-                        const cssFile = this.loCache.getCss(filename)
+                        const cssFile = this.loCache.getFile(filename, "css")
 
                         result.statusCode = 200
                         result.setHeader('Content-Type', 'text/css')
@@ -49,6 +49,11 @@ export const initServer = {
 
                     }
 
+                    if (extension == undefined) {
+                        extension = "html"
+
+                    }
+
                     // When requesting a HTML file, the file is firstly loaded together with Fractal code associated with it
                     // Then the Fractal code is executed, code blocks inside of the HTML file are replaced with print output of the code that's located there
                     // Finally, variables embeded inside of text are resolved
@@ -58,9 +63,9 @@ export const initServer = {
                     if (fs.existsSync(markdownFilePath)) {
                         this.loCache.cacheHtml(route)
 
-                        let htmlFile = this.loCache.getHtml(route).split('\n')
+                        let htmlFile = this.loCache.getFile(route, "html").split('\n')
 
-                        const fractalBytecode = this.loCache.getBytecode(route)
+                        const fractalBytecode = this.loCache.getFile(route, "bytecode")
 
                         htmlFile = this.assembleResponse(htmlFile, fractalBytecode)
 
@@ -86,7 +91,7 @@ export const initServer = {
                     if (fs.existsSync(iconFilePath)) {
                         this.loCache.cacheIcon(filename)
 
-                        const iconFile = this.loCache.getIcon(filename)
+                        const iconFile = this.loCache.getFile(filename, "ico")
 
                         result.statusCode = 200
                         result.setHeader('Content-Type', 'image/x-icon')
@@ -110,7 +115,7 @@ export const initServer = {
                     if (fs.existsSync(imageFilePath)) {
                         this.loCache.cacheImage(filename)
 
-                        const imageFile = this.loCache.getImage(filename)
+                        const imageFile = this.loCache.getFile(filename, "image")
 
                         result.statusCode = 200
                         result.setHeader('Content-Type', 'image/x-icon')

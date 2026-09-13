@@ -5,11 +5,7 @@ import {cacheHtml} from "./methods/cache/cacheHtml.js"
 import {cacheIcon} from "./methods/cache/cacheIcon.js"
 import {cacheImage} from "./methods/cache/cacheImage.js"
 
-import {getHtml} from "./methods/get/getHtml.js"
-import {getCss} from "./methods/get/getCss.js"
-import {getBytecode} from "./methods/get/getBytecode.js"
-import {getIcon} from "./methods/get/getIcon.js"
-import {getImage} from "./methods/get/getImage.js"
+import {getFile} from "./methods/get/getFile.js"
 
 export class loCache {
     constructor() {
@@ -43,14 +39,11 @@ export class loCache {
 Object.assign(
     loCache.prototype,
 
+    cacheCss,
     cacheHtml,
-    getHtml,
     cacheIcon,
     cacheImage,
     
-    getBytecode,
-    cacheCss,
-    getCss,
-    getIcon,
-    getImage
+    getFile
+    
 )
