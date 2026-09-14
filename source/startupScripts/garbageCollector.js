@@ -1,5 +1,6 @@
 import fs from "node:fs"
 import path from "node:path";
+import {fileURLToPath} from "node:url"
 
 import {markdownDirectory, htmlDirectory, scriptDirectory} from "../constants/paths.js"
 
@@ -17,6 +18,8 @@ export function garbageCollector() {
 
             fs.unlinkSync(htmlFilePath)
 
+            console.log(`[Garbage Collector] Removing ${htmlFile}`)
+
         }
     }
 
@@ -28,9 +31,16 @@ export function garbageCollector() {
     
             fs.unlinkSync(scriptFilePath)
 
+            console.log(`[Garbage Collector] Removing ${scriptFile}`)
+
         }
     }
 
     console.log("[Garbage Collector] Old files have been cleared")
+
+}
+
+if (process.argv[1] == fileURLToPath(import.meta.url)) {
+    garbageCollector()
 
 }
