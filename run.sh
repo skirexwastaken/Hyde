@@ -87,6 +87,25 @@ case $1 in
 
     ;;
 
+    "garbageCollector")
+        echo "[Hyde Runtime] Launching Garbage Collector in $mode mode"
+
+        if [[ "$mode" == "production" ]]; then
+            mkdir -p "${logDirectory}/startupScripts/garbageCollector"
+
+            logFullPath="${logDirectory}/startupScripts/garbageCollector/${logFilename}"
+
+            node ./source/startupScripts/garbageCollector.js | tee -a "${logFullPath}"   
+
+        else
+            node ./source/startupScripts/garbageCollector.js
+
+        fi
+
+
+
+    ;;
+
     *)
     echo "[Hyde Runtime] Options overview"
     echo ""
@@ -95,6 +114,8 @@ case $1 in
     printf "%-${leftBuffer}s %${rightBuffer}s\n" "fractal" "Launches Fractal CLI"
     echo ""
     printf "%-${leftBuffer}s %${rightBuffer}s\n" "fractalTest" "Launches test of Fractal"
+    echo ""
+    printf "%-${leftBuffer}s %${rightBuffer}s\n" "garbageCollector" "Cleans left over html and fcs files"
     echo ""
     printf "%-${leftBuffer}s %${rightBuffer}s\n" "development" "Add behind options to run in development mode"
     printf "%-${leftBuffer}s %${rightBuffer}s\n" "production" "Add behind options to run in production mode"
