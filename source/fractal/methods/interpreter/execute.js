@@ -221,7 +221,7 @@ export const execute = {
                 const operandAlpha = this.coreTools.isNumber(this.stack.pop())
                 const operandBeta = this.coreTools.isNumber(this.stack.pop())
 
-                this.stack.push(operandAlpha > 0 || operandBeta > 1 ? 1 : 0)
+                this.stack.push(operandAlpha > 0 || operandBeta > 0 ? 1 : 0)
 
                 break
             }
