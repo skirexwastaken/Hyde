@@ -157,6 +157,5 @@ for (const testIndex in testCases) {
 
     console.info(`[Fractal] Finished test (${Number(testIndex) + 1}/${totalTests})`)
 
-    if (Number(testIndex + 1) == totalTests) console.info(`[Fractal] All tests have passed successfully`)
-
+    if ((Number(testIndex) + 1) == totalTests) console.info(`[Fractal] All tests have passed successfully`)
 }
