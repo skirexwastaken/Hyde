@@ -112,7 +112,7 @@ export const execute = {
             }
 
             case "min": {
-                let totalValue = 0
+                let values = []
 
                 for (let index = 0; index < func["arguments"]; index++) {
                     values.push(this.coreTools.isNumber(this.stack.pop()))
