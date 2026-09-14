@@ -320,6 +320,22 @@ export const execute = {
                 break
             }
 
+            case "upper": {
+                const operand = String(this.stack.pop())
+
+                this.stack.push(operand.toUpperCase())
+
+                break
+            }
+
+            case "lower":{
+                const operand = String(this.stack.pop())
+
+                this.stack.push(operand.toLowerCase())
+
+                break 
+            }
+
             // Data types
 
             case "parseStr": {

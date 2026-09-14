@@ -72,6 +72,9 @@ export const FUNCTIONS = {
 
     "len": 1,
 
+    "upper": 1,
+    "lower": 1,
+
     // Data types
     "parseStr": 1,
     "parseNum": 1,
