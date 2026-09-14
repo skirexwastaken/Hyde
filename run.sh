@@ -113,7 +113,7 @@ case $1 in
     echo ""
     printf "%-${leftBuffer}s %${rightBuffer}s\n" "fractalTest" "Launches test of Fractal"
     echo ""
-    printf "%-${leftBuffer}s %${rightBuffer}s\n" "garbageCollector" "Cleans left over html and fcs files"
+    printf "%-${leftBuffer}s %${rightBuffer}s\n" "garbageCollector" "Cleans left over html and fsc files"
     echo ""
     printf "%-${leftBuffer}s %${rightBuffer}s\n" "development" "Add behind options to run in development mode"
     printf "%-${leftBuffer}s %${rightBuffer}s\n" "production" "Add behind options to run in production mode"
