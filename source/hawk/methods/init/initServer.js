@@ -36,7 +36,7 @@ export const initServer = {
                         result.setHeader('Content-Type', 'text/css')
                         result.end("")
 
-                        console.log(`[Hawk] Origin ${request.socket.remoteAddress} has requested invalid file named ${filename}`)
+                        console.log(`[Hawk] [WARNING] Origin ${request.socket.remoteAddress} has requested invalid file named ${filename}`)
 
                     }
 
@@ -84,7 +84,7 @@ export const initServer = {
                         result.setHeader('Content-Type', 'text/html')
                         result.end("<h1>404 Not Found</h1>")
 
-                        console.log(`[Hawk] Origin ${request.socket.remoteAddress} has requested invalid file named ${route}.md`)
+                        console.log(`[Hawk] [WARNING] Origin ${request.socket.remoteAddress} has requested invalid file named ${route}.md`)
 
                     }
 
@@ -112,7 +112,7 @@ export const initServer = {
                         result.setHeader('Content-Type', 'image/x-icon')
                         result.end("")
 
-                        console.log(`[Hawk] Origin ${request.socket.remoteAddress} has requested invalid file named ${filename}`)
+                        console.log(`[Hawk] [WARNING] Origin ${request.socket.remoteAddress} has requested invalid file named ${filename}`)
 
                     }
 
@@ -140,7 +140,7 @@ export const initServer = {
                         result.setHeader('Content-Type', 'image/x-icon')
                         result.end("")
 
-                        console.log(`[Hawk] Origin ${request.socket.remoteAddress} has requested invalid file named ${filename}`)
+                        console.log(`[Hawk] [WARNING] Origin ${request.socket.remoteAddress} has requested invalid file named ${filename}`)
 
                     }
 
