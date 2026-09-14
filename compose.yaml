@@ -15,5 +15,5 @@ services:
         reservations:
           cpus: 0.5
           memory: 256M
-    command: node hyde.js
+    command: node --env-file=.env hyde.js
 networks: {}

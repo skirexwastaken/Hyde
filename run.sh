@@ -27,10 +27,10 @@ case $1 in
 
             logFullPath="${logDirectory}/hyde/${logFilename}"
 
-            node hyde.js | tee -a "${logFullPath}"
+            node --env-file=.env hyde.js | tee -a "${logFullPath}"
 
         else 
-            node hyde.js
+            node --env-file=.env hyde.js
 
         fi
 
