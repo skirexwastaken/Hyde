@@ -13,7 +13,6 @@ export const FUNCTIONS = {
     "mul": 2,
 
     "div": 2,
-    "//": 2,
 
     "inc": 1,
 
