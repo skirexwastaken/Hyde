@@ -56,7 +56,12 @@ const testCases = [
     "main [print(parseNum(100))]",
     "main [let(x, 10), print(x), let(x, 20), print(x)]",
     "main [let(x, 10), print(x), exit('Exiting'), print(x)]",
-    "main [let(index, 10), exec('loop')] loop [print(index), let(index, dec(index)), if(exec('loop'), none(), gt(index, 0))]"
+    "main [let(index, 10), exec('loop')] loop [print(index), let(index, dec(index)), if(exec('loop'), none(), gt(index, 0))]",
+    "main [print(upper('wOrD'))]",
+    "main [print(lower('wOrD'))]",
+    "main [print(capital('word'))]",
+    "main [print(unCapital('WorD'))]",
+    "main [print(capital(unCapital('Word')))]"
 ]
 
 // Expected output buffers of the individual tests
@@ -111,7 +116,13 @@ const expectedOutputBuffers = [
     ["100"],
     ["10", "20"],
     ["10", "Exiting"],
-    ["10", "9", "8", "7", "6", "5", "4", "3", "2", "1"]
+    ["10", "9", "8", "7", "6", "5", "4", "3", "2", "1"],
+    ["WORD"],
+    ["word"],
+    ["Word"],
+    ["worD"],
+    ["Word"]
+
 ]
 
 const totalTests = testCases.length
