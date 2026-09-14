@@ -2,8 +2,8 @@
 
 clear
 
-leftBuffer=12
-rightBuffer=12
+leftBuffer=18
+rightBuffer=18
 
 currentDate=$(date '+%Y-%m-%d')
 
@@ -87,6 +87,31 @@ case $1 in
 
     ;;
 
+    "hawkTest")
+        echo "[Hyde Runtime] Launching Hawk test in $mode mode"
+
+        if [[ "$mode" == "production" ]]; then
+            mkdir -p "${logDirectory}/tests/hawkTest"
+
+            logFullPath="${logDirectory}/tests/hawkTest/${logFilename}"
+
+            ./tests/hawkTest.sh 1 | tee -a "${logFullPath}"  
+
+            ./tests/hawkTest.sh 10 | tee -a "${logFullPath}"  
+
+            ./tests/hawkTest.sh 100 | tee -a "${logFullPath}"   
+
+        else
+            ./tests/hawkTest.sh 1
+
+            ./tests/hawkTest.sh 10
+
+            ./tests/hawkTest.sh 100
+
+        fi
+
+    ;;
+
     "garbageCollector")
         echo "[Hyde Runtime] Launching Garbage Collector in $mode mode"
 
@@ -107,16 +132,17 @@ case $1 in
     *)
     echo "[Hyde Runtime] Options overview"
     echo ""
-    printf "%-${leftBuffer}s %${rightBuffer}s\n" "hyde" "Launches hyde"
-    printf "%-${leftBuffer}s %${rightBuffer}s\n" "docker" "Launches hyde inside of docker"
-    printf "%-${leftBuffer}s %${rightBuffer}s\n" "fractal" "Launches Fractal CLI"
+    printf "%-${leftBuffer}s %-${rightBuffer}s\n" "hyde" "Launches hyde"
+    printf "%-${leftBuffer}s %-${rightBuffer}s\n" "docker" "Launches hyde inside of docker"
+    printf "%-${leftBuffer}s %-${rightBuffer}s\n" "fractal" "Launches Fractal CLI"
     echo ""
-    printf "%-${leftBuffer}s %${rightBuffer}s\n" "fractalTest" "Launches test of Fractal"
+    printf "%-${leftBuffer}s %-${rightBuffer}s\n" "fractalTest" "Tests if Fractal interprets code correctly"
+    printf "%-${leftBuffer}s %-${rightBuffer}s\n" "hawkTest" "Tests the performance of Hawk, requires Hawk instance running"
     echo ""
-    printf "%-${leftBuffer}s %${rightBuffer}s\n" "garbageCollector" "Cleans left over html and fsc files"
+    printf "%-${leftBuffer}s %-${rightBuffer}s\n" "garbageCollector" "Cleans left over html and fsc files"
     echo ""
-    printf "%-${leftBuffer}s %${rightBuffer}s\n" "development" "Add behind options to run in development mode"
-    printf "%-${leftBuffer}s %${rightBuffer}s\n" "production" "Add behind options to run in production mode"
+    printf "%-${leftBuffer}s %-${rightBuffer}s\n" "development" "Add behind options to run in development mode"
+    printf "%-${leftBuffer}s %-${rightBuffer}s\n" "production" "Add behind options to run in production mode"
 
     ;;
 
