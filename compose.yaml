@@ -6,14 +6,14 @@ services:
     volumes:
       - .:/app
     ports:
-      - 127.0.0.1:8080:8080
+      - ${DOCKER_HOST}:${DOCKER_PORT}:${HAWK_PORT}
     deploy:
       resources:
         limits:
-          cpus: 1
-          memory: 512M
+          cpus: ${DOCKER_CPU_MAX}
+          memory: ${DOCKER_RAM_MAX}
         reservations:
-          cpus: 0.5
-          memory: 256M
+          cpus: ${DOCKER_CPU_MIN}
+          memory: ${DOCKER_RAM_MIN}
     command: node --env-file=.env hyde.js
 networks: {}

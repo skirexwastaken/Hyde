@@ -8,4 +8,4 @@ garbageCollector()
 const hawkInstance = new Hawk()
 
 hawkInstance.initServer()
-hawkInstance.runServer(process.env.HOST, process.env.PORT)
+hawkInstance.runServer(process.env.HAWK_HOST, process.env.HAWK_PORT)
