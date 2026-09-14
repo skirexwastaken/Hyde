@@ -3,8 +3,6 @@
 // The interpreter uses standard LIFO stack to hold values
 export const interpreter = {
     interpreter(instructionSets, metaData){
-        console.log("[Fractal] Execution started")
-
         // Allocating memory and loading input arguments into memory
         this.MemoryManager.allocateMemorySpace(metaData["variableCount"])
         this.loadInputArguments()
@@ -45,8 +43,6 @@ export const interpreter = {
 
             this.execute(codeBlocks[codeBlockIndex][codeBlockInstructionIndex])
         }
-
-        console.log("[Fractal] Execution finished")
 
         // Generating output arguments, which are the values of the inputArguments at the end of the script
         return [this.generateOutputArguments(), this.coreTools.shellOutputBuffer]

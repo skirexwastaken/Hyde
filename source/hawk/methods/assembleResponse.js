@@ -42,6 +42,8 @@ export const assembleResponse = {
             })
         }
 
+        console.log("[Fractal] Executed fractal code")
+
         // All variables embeded in text are replaced with their values from output arguments
         for (let htmlLineIndex = 0; htmlLineIndex < htmlFile.length; htmlLineIndex ++) {
             htmlFile[htmlLineIndex] = htmlFile[htmlLineIndex].replace(/\$\{(\S*?)\}/g, (match, variableName) => {
@@ -49,6 +51,8 @@ export const assembleResponse = {
                 
             })
         }
+
+        console.log("[Hawk] Html file assembled")
 
         // Returning the modified HTML file merged back together into a string
         return htmlFile.join("\n")
