@@ -26,6 +26,7 @@ export const initServer = {
                     const filename = `${route}.css`
                     const cssFilePath = path.resolve(stylesDirectory, filename)
 
+                    // Anti directory traversal check
                     if (!(cssFilePath).startsWith(stylesDirectory)) {
                             result.statusCode = 404
                             result.setHeader('Content-Type', 'text/css')
@@ -79,6 +80,7 @@ export const initServer = {
 
                     const markdownFilePath = path.resolve(markdownDirectory, `${route}.md`)
 
+                    // Anti directory traversal check
                     if (!(markdownFilePath.startsWith(markdownDirectory))) {
                             result.statusCode = 404
                             result.setHeader('Content-Type', 'text/html')
@@ -120,6 +122,7 @@ export const initServer = {
                     const filename = `${route}.ico`
                     const iconFilePath = path.resolve(iconDirectory, filename)
 
+                    // Anti directory traversal check
                     if (!(iconFilePath.startsWith(iconDirectory))) {
                             result.statusCode = 404
                             result.setHeader('Content-Type', 'image/x-icon')
@@ -157,6 +160,7 @@ export const initServer = {
                     const filename = `${route}.${extension}`
                     const imageFilePath = path.resolve(imageDirectory, filename)
 
+                    // Anti directory traversal check
                     if (!(imageFilePath.startsWith(imageDirectory))) {
                             result.statusCode = 404
                             result.setHeader('Content-Type', 'image/x-icon')
