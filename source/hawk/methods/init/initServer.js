@@ -163,7 +163,7 @@ export const initServer = {
                     // Anti directory traversal check
                     if (!(imageFilePath.startsWith(imageDirectory))) {
                             result.statusCode = 404
-                            result.setHeader('Content-Type', 'image/x-icon')
+                            result.setHeader('Content-Type', `image/${extension}`)
                             result.end("")
 
                             console.log(`[Hawk] [WARNING] Origin ${request.socket.remoteAddress} has tried to traverse directories with the following path ${imageFilePath}`)
@@ -175,14 +175,14 @@ export const initServer = {
                             const imageFile = this.loCache.getFile(filename, "image")
 
                             result.statusCode = 200
-                            result.setHeader('Content-Type', 'image/x-icon')
+                            result.setHeader('Content-Type', `image/${extension}`)
                             result.end(imageFile)
 
                             console.log(`[Hawk] Origin ${request.socket.remoteAddress} has requested file named ${filename}`)
                         
                         } else {
                             result.statusCode = 404
-                            result.setHeader('Content-Type', 'image/x-icon')
+                            result.setHeader('Content-Type', `image/${extension}`)
                             result.end("")
 
                             console.log(`[Hawk] [WARNING] Origin ${request.socket.remoteAddress} has requested invalid file named ${filename}`)
