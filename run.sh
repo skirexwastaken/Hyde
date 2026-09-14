@@ -20,8 +20,6 @@ elif [[ "$mode" == "p" ]]; then
 
 fi
 
-
-
 if [[ "$mode" != "production" && "$mode" != "development" ]]; then
     echo "[Hyde Runtime] Unrecognized mode '$2'. Defaulting to 'development' mode."
 
@@ -37,10 +35,10 @@ case $1 in
 
             logFullPath="${logDirectory}/hyde/${logFilename}"
 
-            node --env-file=.env hyde.js | tee -a "${logFullPath}"
+            trap "clear" EXIT; node --env-file=.env hyde.js | tee -a "${logFullPath}"
 
         else 
-            node --env-file=.env hyde.js
+            trap "clear" EXIT; node --env-file=.env hyde.js
 
         fi
 
@@ -54,10 +52,10 @@ case $1 in
 
             logFullPath="${logDirectory}/hydeDocker/${logFilename}"
 
-            sudo docker compose up | tee -a "${logFullPath}"
+            trap "clear" EXIT; sudo docker compose up | tee -a "${logFullPath}"
 
         else
-            sudo docker compose up 
+            trap "clear" EXIT; sudo docker compose up 
 
         fi
 
@@ -78,6 +76,9 @@ case $1 in
 
         fi
 
+        read -p "Press Enter to EXIT"
+        clear
+
     ;;
 
     "fractalTest"|"ft")
@@ -88,12 +89,15 @@ case $1 in
 
             logFullPath="${logDirectory}/tests/fractalTest/${logFilename}"
 
-            node ./tests/fractalTest.js | tee -a "${logFullPath}"   
+            trap "clear" EXIT; node ./tests/fractalTest.js | tee -a "${logFullPath}"   
 
         else
-            node ./tests/fractalTest.js
+            trap "clear" EXIT; node ./tests/fractalTest.js
 
         fi
+
+        read -p "Press Enter to EXIT"
+        clear
 
     ;;
 
@@ -120,6 +124,9 @@ case $1 in
 
         fi
 
+        read -p "Press Enter to EXIT"
+        clear
+
     ;;
 
     "garbageCollector"|"gc")
@@ -136,6 +143,9 @@ case $1 in
             node ./source/startupScripts/garbageCollector.js
 
         fi
+
+        read -p "Press Enter to EXIT"
+        clear
 
     ;;
 
@@ -158,6 +168,9 @@ case $1 in
     printf "%-${commandBuffer}s %-${shortcutBuffer}s %-s\n" "development" "d" "Run in development mode"
     printf "%-${commandBuffer}s %-${shortcutBuffer}s %-s\n" "production" "p" "Run in production mode"
     echo ""
+
+    read -p "Press Enter to EXIT"
+    clear
 
     ;;
 
