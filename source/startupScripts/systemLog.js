@@ -1,0 +1,16 @@
+export const systemLog = setInterval(() => {
+    const memoryUsageData = process.memoryUsage()
+    const cpuUsageData = process.cpuUsage()
+    const upTimeData = process.uptime()
+
+    const systemLogMessage = 
+        `[System Log] ` +
+        `CPU: ${Math.ceil((cpuUsageData.user + cpuUsageData.system) / 1000)} ms | ` +
+        `Memory: ${Math.ceil(memoryUsageData.rss / 1024 / 1024)} MB | ` +
+        `Uptime: ${Math.ceil(upTimeData)} s`
+
+
+    console.log(systemLogMessage)
+
+
+}, process.env.SYSTEM_LOG_DELAY * 1000)
