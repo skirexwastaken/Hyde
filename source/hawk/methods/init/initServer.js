@@ -153,12 +153,15 @@ export const initServer = {
                     result.setHeader('Content-Type', 'text/html')
                     result.end("<h1>404 Not Found</h1>")
 
-                    console.log(`[Hawk] Origin ${request.socket.remoteAddress} has requested invalid file named ${route}.${extension}`)
+                    // The files in the array bellow are common targets for bots trying to abuse legacy webserver vulnerabilities
+                    if (["php", "env", "json", "git", "db"].includes(extension)) {
+                        console.log(`[Hawk] [WARNING] Origin ${request.socket.remoteAddress} has requested a ${extension} file named ${route}.${extension}`)
+                        console.log("[Hawk] [WARNING] This could potentially be an attempt at trying to abuse common web server vulnerabilities")
+                        console.log("[HAWK] [WARNING] Such as trying to request admin.php or .env file containing passwords")
+                        console.log("[Hawk] [WARNING] Note that those vulnerabilities are not present in Hyde")
 
-                    if (extension == "php") {
-                        console.log(`[Hawk] [WARNING] Origin ${request.socket.remoteAddress} has requested a php file named ${route}.${extension}`)
-                        console.log("[Hawk] [WARNING] This could potentially be an attempt at trying to abuse php vulnerabilities")
-                        console.log("[HAWK] [WARNING] Such as trying to request passwords.php or admin.php which are not present")
+                    } else {
+                        console.log(`[Hawk] [Warning] Origin ${request.socket.remoteAddress} has requested invalid file named ${route}.${extension}`)
 
                     }
                 }
