@@ -87,26 +87,26 @@ case $1 in
 
     ;;
 
-    "hawkTest")
+    "hawkTestPerformance")
         echo "[Hyde Runtime] Launching Hawk test in $mode mode"
 
         if [[ "$mode" == "production" ]]; then
-            mkdir -p "${logDirectory}/tests/hawkTest"
+            mkdir -p "${logDirectory}/tests/hawkTestPerformance"
 
-            logFullPath="${logDirectory}/tests/hawkTest/${logFilename}"
+            logFullPath="${logDirectory}/tests/hawkTestPerformance/${logFilename}"
 
-            ./tests/hawkTest.sh 1 | tee -a "${logFullPath}"  
+            ./tests/hawkTestPerformance.sh 1 | tee -a "${logFullPath}"  
 
-            ./tests/hawkTest.sh 10 | tee -a "${logFullPath}"  
+            ./tests/hawkTestPerformance.sh 10 | tee -a "${logFullPath}"  
 
-            ./tests/hawkTest.sh 100 | tee -a "${logFullPath}"   
+            ./tests/hawkTestPerformance.sh 100 | tee -a "${logFullPath}"   
 
         else
-            ./tests/hawkTest.sh 1
+            ./tests/hawkTestPerformance.sh 1
 
-            ./tests/hawkTest.sh 10
+            ./tests/hawkTestPerformance.sh 10
 
-            ./tests/hawkTest.sh 100
+            ./tests/hawkTestPerformance.sh 100
 
         fi
 
@@ -137,7 +137,7 @@ case $1 in
     printf "%-${leftBuffer}s %-${rightBuffer}s\n" "fractal" "Launches Fractal CLI"
     echo ""
     printf "%-${leftBuffer}s %-${rightBuffer}s\n" "fractalTest" "Tests if Fractal interprets code correctly"
-    printf "%-${leftBuffer}s %-${rightBuffer}s\n" "hawkTest" "Tests the performance of Hawk, requires Hawk instance running"
+    printf "%-${leftBuffer}s %-${rightBuffer}s\n" "hawkTestPerformance" "Tests the performance of Hawk, requires Hawk instance running"
     echo ""
     printf "%-${leftBuffer}s %-${rightBuffer}s\n" "garbageCollector" "Cleans left over html and fsc files"
     echo ""
