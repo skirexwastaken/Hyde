@@ -480,15 +480,15 @@ export const execute = {
             }
 
             case "exit": {
-                let exitLine = ""
-
-                for (let index = 0; index < func["arguments"]; index++){
-                    exitLine += this.stack.pop()
-                }
+                let exitLine = String(this.stack.pop())
                 
                 exitLine = exitLine.trim()
+                this.coreTools.shellOutput(exitLine)
 
-                throw new Error(exitLine)
+                while (this.executionStack.length != 0) {
+                    this.executionStack.pop()
+
+                }
 
                 break
             }
