@@ -8,8 +8,6 @@ The markdown will include the custom scripting language and following PHP philos
 
 The project will also include a database for persistant data
 
-Note: This is a very early version of Hyde
-
 ## Fractal
 
 The scripting language of the stack
