@@ -2,8 +2,8 @@
 
 clear
 
-leftBuffer=18
-rightBuffer=18
+shortcutBuffer=5
+commandBuffer=21
 
 currentDate=$(date '+%Y-%m-%d')
 
@@ -12,6 +12,16 @@ logFilename="${currentDate}.log"
 
 mode=${2:-"development"}
 
+if [[ "$mode" == "d" ]]; then
+    mode="development"
+
+elif [[ "$mode" == "p" ]]; then
+    mode="production"
+
+fi
+
+
+
 if [[ "$mode" != "production" && "$mode" != "development" ]]; then
     echo "[Hyde Runtime] Unrecognized mode '$2'. Defaulting to 'development' mode."
 
@@ -19,7 +29,7 @@ fi
 
 case $1 in
 
-    "hyde")
+    "hyde"|"h")
         echo "[Hyde Runtime] Launching Hyde in $mode mode"
 
         if [[ "$mode" == "production" ]]; then
@@ -36,7 +46,7 @@ case $1 in
 
     ;;
  
-    "docker")
+    "docker"|"d")
         echo "[Hyde Runtime] Launching Hyde inside of docker in $mode mode"
 
         if [[ "$mode" == "production" ]]; then
@@ -53,7 +63,7 @@ case $1 in
 
     ;;
 
-    "fractal")
+    "fractal"|"f")
         echo "[Hyde Runtime] Launching Fractal CLI in $mode mode"
 
         if [[ "$mode" == "production" ]]; then
@@ -70,7 +80,7 @@ case $1 in
 
     ;;
 
-    "fractalTest")
+    "fractalTest"|"ft")
         echo "[Hyde Runtime] Launching Fractal test in $mode mode"
 
         if [[ "$mode" == "production" ]]; then
@@ -87,7 +97,7 @@ case $1 in
 
     ;;
 
-    "hawkTestPerformance")
+    "hawkTestPerformance"|"htp")
         echo "[Hyde Runtime] Launching Hawk test in $mode mode"
 
         if [[ "$mode" == "production" ]]; then
@@ -112,7 +122,7 @@ case $1 in
 
     ;;
 
-    "garbageCollector")
+    "garbageCollector"|"gc")
         echo "[Hyde Runtime] Launching Garbage Collector in $mode mode"
 
         if [[ "$mode" == "production" ]]; then
@@ -132,17 +142,18 @@ case $1 in
     *)
     echo "[Hyde Runtime] Options overview"
     echo ""
-    printf "%-${leftBuffer}s %-${rightBuffer}s\n" "hyde" "Launches hyde"
-    printf "%-${leftBuffer}s %-${rightBuffer}s\n" "docker" "Launches hyde inside of docker"
-    printf "%-${leftBuffer}s %-${rightBuffer}s\n" "fractal" "Launches Fractal CLI"
+    printf "%-${shortcutBuffer}s %-${commandBuffer}s %-s\n" "h" "hyde" "Launches hyde"
+    printf "%-${shortcutBuffer}s %-${commandBuffer}s %-s\n" "d" "docker" "Launches hyde inside of docker"
+    printf "%-${shortcutBuffer}s %-${commandBuffer}s %-s\n" "f" "fractal" "Launches Fractal CLI"
     echo ""
-    printf "%-${leftBuffer}s %-${rightBuffer}s\n" "fractalTest" "Tests if Fractal interprets code correctly"
-    printf "%-${leftBuffer}s %-${rightBuffer}s\n" "hawkTestPerformance" "Tests the performance of Hawk, requires Hawk instance running"
+    printf "%-${shortcutBuffer}s %-${commandBuffer}s %-s\n" "ft" "fractalTest" "Tests if Fractal interprets code correctly"
+    printf "%-${shortcutBuffer}s %-${commandBuffer}s %-s\n" "htp" "hawkTestPerformance" "Tests the performance of Hawk, requires Hawk instance running"
     echo ""
-    printf "%-${leftBuffer}s %-${rightBuffer}s\n" "garbageCollector" "Cleans left over html and fsc files"
+    printf "%-${shortcutBuffer}s %-${commandBuffer}s %-s\n" "gc" "garbageCollector" "Cleans left over html and fsc files"
     echo ""
-    printf "%-${leftBuffer}s %-${rightBuffer}s\n" "development" "Add behind options to run in development mode"
-    printf "%-${leftBuffer}s %-${rightBuffer}s\n" "production" "Add behind options to run in production mode"
+    printf "%-${shortcutBuffer}s %-${commandBuffer}s %-s\n" "d" "development" "Add behind options to run in development mode"
+    printf "%-${shortcutBuffer}s %-${commandBuffer}s %-s\n" "p" "production" "Add behind options to run in production mode"
+    echo ""
 
     ;;
 
