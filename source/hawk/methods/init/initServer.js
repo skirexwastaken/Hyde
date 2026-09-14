@@ -5,8 +5,6 @@ import path from "node:path"
 
 import {markdownDirectory, stylesDirectory, iconDirectory, imageDirectory} from "../../../constants/paths.js"
 
-import {Worker} from "node:worker_threads"
-
 // The core of the entire Hyde project, a webserver written using the http Node module
 export const initServer = {
     initServer() {
@@ -103,8 +101,6 @@ export const initServer = {
                             result.statusCode = 200
                             result.setHeader('Content-Type', 'text/html')
                             result.end(htmlFile)
-
-
 
                             console.log(`[Hawk] Origin ${request.socket.remoteAddress} has requested file named ${route}.md`)
 

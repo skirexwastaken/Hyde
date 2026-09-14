@@ -11,7 +11,7 @@ export class Hawk{
     constructor() {
         this.loCache = new loCache()
         this.mytharis = new Mytharis()
-        this.workerPool = new workerPool("./source/hawk/methods/assembleResponse.js", 11)
+        this.workerPool = new workerPool("./source/hawk/methods/assembleResponse.js", process.env.WORKER_POOL_THREADS)
 
         this.initCache()
 
