@@ -328,13 +328,31 @@ export const execute = {
                 break
             }
 
-            case "lower":{
+            case "lower": {
                 const operand = String(this.stack.pop())
 
                 this.stack.push(operand.toLowerCase())
 
                 break 
             }
+
+            case "capital": {
+                const operand = String(this.stack.pop())
+
+                this.stack.push(`${operand[0].toUpperCase()}${operand.slice(1)}`)
+
+                break
+            }
+
+            case "unCapital":{
+                const operand = String(this.stack.pop())
+
+                this.stack.push(`${operand[0].toLowerCase()}${operand.slice(1)}`)
+
+                break
+            }
+
+            
 
             // Data types
 

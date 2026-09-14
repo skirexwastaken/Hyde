@@ -75,6 +75,9 @@ export const FUNCTIONS = {
     "upper": 1,
     "lower": 1,
 
+    "capital": 1,
+    "unCapital": 1,
+
     // Data types
     "parseStr": 1,
     "parseNum": 1,
