@@ -28,11 +28,15 @@ export const initServer = {
                         result.statusCode = 200
                         result.setHeader('Content-Type', 'text/css')
                         result.end(cssFile)
+
+                        console.log(`[Hawk] Origin ${request.socket.remoteAddress} has requested file named ${filename}`)
                     
                     } else {
                         result.statusCode = 404
                         result.setHeader('Content-Type', 'text/css')
                         result.end("")
+
+                        console.log(`[Hawk] Origin ${request.socket.remoteAddress} has requested invalid file named ${filename}`)
 
                     }
 
@@ -73,10 +77,14 @@ export const initServer = {
                         result.setHeader('Content-Type', 'text/html')
                         result.end(htmlFile)
 
+                        console.log(`[Hawk] Origin ${request.socket.remoteAddress} has requested file named ${route}.md`)
+
                     } else {
                         result.statusCode = 404
                         result.setHeader('Content-Type', 'text/html')
                         result.end("<h1>404 Not Found</h1>")
+
+                        console.log(`[Hawk] Origin ${request.socket.remoteAddress} has requested invalid file named ${route}.md`)
 
                     }
 
@@ -96,11 +104,15 @@ export const initServer = {
                         result.statusCode = 200
                         result.setHeader('Content-Type', 'image/x-icon')
                         result.end(iconFile)
+
+                        console.log(`[Hawk] Origin ${request.socket.remoteAddress} has requested file named ${filename}`)
                     
                     } else {
                         result.statusCode = 404
                         result.setHeader('Content-Type', 'image/x-icon')
                         result.end("")
+
+                        console.log(`[Hawk] Origin ${request.socket.remoteAddress} has requested invalid file named ${filename}`)
 
                     }
 
@@ -120,11 +132,15 @@ export const initServer = {
                         result.statusCode = 200
                         result.setHeader('Content-Type', 'image/x-icon')
                         result.end(imageFile)
+
+                        console.log(`[Hawk] Origin ${request.socket.remoteAddress} has requested file named ${filename}`)
                     
                     } else {
                         result.statusCode = 404
                         result.setHeader('Content-Type', 'image/x-icon')
                         result.end("")
+
+                        console.log(`[Hawk] Origin ${request.socket.remoteAddress} has requested invalid file named ${filename}`)
 
                     }
 
@@ -137,6 +153,14 @@ export const initServer = {
                     result.setHeader('Content-Type', 'text/html')
                     result.end("<h1>404 Not Found</h1>")
 
+                    console.log(`[Hawk] Origin ${request.socket.remoteAddress} has requested invalid file named ${route}.${extension}`)
+
+                    if (extension == "php") {
+                        console.log(`[Hawk] [WARNING] Origin ${request.socket.remoteAddress} has requested a php file named ${route}.${extension}`)
+                        console.log("[Hawk] [WARNING] This could potentially be an attempt at trying to abuse php vulnerabilities")
+                        console.log("[HAWK] [WARNING] Such as trying to request passwords.php or admin.php which are not present")
+
+                    }
                 }
             }
         })
