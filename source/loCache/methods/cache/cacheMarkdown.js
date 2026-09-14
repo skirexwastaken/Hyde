@@ -32,7 +32,7 @@ export const cacheMarkdown = {
 
             }
 
-            let htmlFile, fractalCode, fractalBytecode
+            let htmlFile, fractalBytecode
 
             if (filesAreFresh == true) {
                 htmlFile = fs.readFileSync(fullPathHtml, "utf8")
