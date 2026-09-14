@@ -59,9 +59,10 @@ function assembleResponse(htmlFile, fractalBytecode) {
     return htmlFile.join("\n")
 }
 
+parentPort.on('message', (message) => {
+    let {htmlFile, fractalBytecode} = message
 
-let {htmlFile, fractalBytecode} = workerData
+    htmlFile = assembleResponse(htmlFile, fractalBytecode)
 
-htmlFile = assembleResponse(htmlFile, fractalBytecode)
-
-parentPort.postMessage(htmlFile)
+    parentPort.postMessage(htmlFile)
+})

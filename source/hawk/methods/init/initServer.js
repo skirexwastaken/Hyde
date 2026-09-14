@@ -10,7 +10,7 @@ import {Worker} from "node:worker_threads"
 // The core of the entire Hyde project, a webserver written using the http Node module
 export const initServer = {
     initServer() {
-        this.server = http.createServer((request, result) => {
+        this.server = http.createServer(async (request, result) => {
 
             // Removes the / at the start
             const extension = path.extname(request.url).slice(1)
@@ -98,22 +98,13 @@ export const initServer = {
 
                             const fractalBytecode = this.loCache.getFile(route, "bytecode")
                             
-                            const worker = new Worker("./source/hawk/methods/assembleResponse.js", {workerData: {htmlFile: htmlFile, fractalBytecode: fractalBytecode }})
+                            htmlFile = await this.workerPool.runTask({htmlFile: htmlFile, fractalBytecode: fractalBytecode})
 
-                            worker.on('message', (htmlFile) => {
-                                result.statusCode = 200
-                                result.setHeader('Content-Type', 'text/html')
-                                result.end(htmlFile)
-                            })
+                            result.statusCode = 200
+                            result.setHeader('Content-Type', 'text/html')
+                            result.end(htmlFile)
 
-                            worker.on('error', (error) => {
-                                result.statusCode = 404
-                                result.setHeader('Content-Type', 'text/html')
-                                result.end("<h1>404 Not Found</h1>")
 
-                                console.error(`[Hawk] Worker has run into an error '${error}'`)
-
-                            })
 
                             console.log(`[Hawk] Origin ${request.socket.remoteAddress} has requested file named ${route}.md`)
 
