@@ -1,6 +1,6 @@
-import {Fractal} from "../../fractal/fractal.js"
+import {parentPort, workerData} from 'worker_threads'
 
-import { parentPort, workerData } from 'worker_threads'
+import {Fractal} from "../../fractal/fractal.js"
 
 function assembleResponse(htmlFile, fractalBytecode) {
     let fractalBytecodeIndex = 0
@@ -60,6 +60,8 @@ function assembleResponse(htmlFile, fractalBytecode) {
 }
 
 
-let { htmlFile, fractalBytecode } = workerData
-    htmlFile = assembleResponse(htmlFile, fractalBytecode)
+let {htmlFile, fractalBytecode} = workerData
+
+htmlFile = assembleResponse(htmlFile, fractalBytecode)
+
 parentPort.postMessage(htmlFile)
