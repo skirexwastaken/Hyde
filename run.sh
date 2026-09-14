@@ -35,10 +35,10 @@ case $1 in
 
             logFullPath="${logDirectory}/hyde/${logFilename}"
 
-            trap "clear" EXIT; node --env-file=.env hyde.js | tee -a "${logFullPath}"
+            node --env-file=.env hyde.js | tee -a "${logFullPath}"
 
         else 
-            trap "clear" EXIT; node --env-file=.env hyde.js
+            node --env-file=.env hyde.js
 
         fi
 
@@ -52,10 +52,10 @@ case $1 in
 
             logFullPath="${logDirectory}/hydeDocker/${logFilename}"
 
-            trap "clear" EXIT; sudo docker compose up | tee -a "${logFullPath}"
+            sudo docker compose up | tee -a "${logFullPath}"
 
         else
-            trap "clear" EXIT; sudo docker compose up 
+            sudo docker compose up 
 
         fi
 
@@ -76,9 +76,6 @@ case $1 in
 
         fi
 
-        read -p "Press Enter to EXIT"
-        clear
-
     ;;
 
     "fractalTest"|"ft")
@@ -89,15 +86,12 @@ case $1 in
 
             logFullPath="${logDirectory}/tests/fractalTest/${logFilename}"
 
-            trap "clear" EXIT; node ./tests/fractalTest.js | tee -a "${logFullPath}"   
+            node ./tests/fractalTest.js | tee -a "${logFullPath}"   
 
         else
-            trap "clear" EXIT; node ./tests/fractalTest.js
+            node ./tests/fractalTest.js
 
         fi
-
-        read -p "Press Enter to EXIT"
-        clear
 
     ;;
 
@@ -124,9 +118,6 @@ case $1 in
 
         fi
 
-        read -p "Press Enter to EXIT"
-        clear
-
     ;;
 
     "garbageCollector"|"gc")
@@ -143,9 +134,6 @@ case $1 in
             node ./source/startupScripts/garbageCollector.js
 
         fi
-
-        read -p "Press Enter to EXIT"
-        clear
 
     ;;
 
@@ -168,9 +156,6 @@ case $1 in
     printf "%-${commandBuffer}s %-${shortcutBuffer}s %-s\n" "development" "d" "Run in development mode"
     printf "%-${commandBuffer}s %-${shortcutBuffer}s %-s\n" "production" "p" "Run in production mode"
     echo ""
-
-    read -p "Press Enter to EXIT"
-    clear
 
     ;;
 
