@@ -14,7 +14,7 @@ Bellow is a short explanation of how Hyde processes markdown files
 
 ## Architecture
 
-Bello is a scheme of how the individual modules are connected to each other inside of the stack
+Bellow is a scheme of how the individual modules are connected to each other inside of the stack
 
 ```mermaid
 graph LR
@@ -27,9 +27,11 @@ E[Mytharis]
 F[workerPool]
 G[Fractal]
 H[Marker]
+I[systemLog]
 
 A --> B
 A <--> C
+A --> I
 
 C <--> D
 C <--> E
