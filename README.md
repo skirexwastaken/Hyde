@@ -22,12 +22,25 @@ graph LR
 A[Hyde]
 B[Garbage Collector]
 C[Hawk]
+D[loCache]
+E[Mytharis]
+F[workerPool]
+G[Fractal]
+H[Marker]
 
 A --> B
 A <--> C
 
-```
+C <--> D
+C <--> E
+C <--> F
 
+D <--> H
+
+H <--> G
+
+F <--> G
+```
 
 ## Components
 
