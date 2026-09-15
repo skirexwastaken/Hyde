@@ -35,7 +35,16 @@ export const initServer = {
                             console.log(`[Hawk] [WARNING] Origin ${request.socket.remoteAddress} has tried to traverse directories with the following path ${cssFilePath}`)
 
                     } else {
-                        if (fs.existsSync(cssFilePath)) {
+                        if (filename in this.loCache.cssRouteMap){
+                            const cssFile = this.loCache.getFile(filename, "css")
+
+                            result.statusCode = 200
+                            result.setHeader('Content-Type', 'text/css')
+                            result.end(cssFile)
+
+                            console.log(`[Hawk] Origin ${request.socket.remoteAddress} has requested file named ${filename}`)
+
+                        } else if (fs.existsSync(cssFilePath)) {
                             this.loCache.cacheCss(filename);
 
                             const cssFile = this.loCache.getFile(filename, "css")
@@ -89,7 +98,20 @@ export const initServer = {
                             console.log(`[Hawk] [WARNING] Origin ${request.socket.remoteAddress} has tried to traverse directories with the following path ${markdownFilePath}`)
 
                     } else {
-                        if (fs.existsSync(markdownFilePath)) {
+                        if (route in this.loCache.htmlRouteMap) {
+                            let htmlFile = this.loCache.getFile(route, "html").split('\n')
+
+                            const fractalBytecode = this.loCache.getFile(route, "bytecode")
+                            
+                            htmlFile = await this.workerPool.runTask({htmlFile: htmlFile, fractalBytecode: fractalBytecode})
+
+                            result.statusCode = 200
+                            result.setHeader('Content-Type', 'text/html')
+                            result.end(htmlFile)
+
+                            console.log(`[Hawk] Origin ${request.socket.remoteAddress} has requested file named ${route}.md`)
+
+                        } else if (fs.existsSync(markdownFilePath)) {
                             this.loCache.cacheMarkdown(route)
 
                             let htmlFile = this.loCache.getFile(route, "html").split('\n')
@@ -131,7 +153,16 @@ export const initServer = {
                             console.log(`[Hawk] [WARNING] Origin ${request.socket.remoteAddress} has tried to traverse directories with the following path ${iconFilePath}`)
 
                     } else {
-                        if (fs.existsSync(iconFilePath)) {
+                        if (filename in this.loCache.iconRouteMap) {
+                            const iconFile = this.loCache.getFile(filename, "ico")
+
+                            result.statusCode = 200
+                            result.setHeader('Content-Type', 'image/x-icon')
+                            result.end(iconFile)
+
+                            console.log(`[Hawk] Origin ${request.socket.remoteAddress} has requested file named ${filename}`)
+
+                        } else if (fs.existsSync(iconFilePath)) {
                             this.loCache.cacheIcon(filename)
 
                             const iconFile = this.loCache.getFile(filename, "ico")
@@ -169,7 +200,16 @@ export const initServer = {
                             console.log(`[Hawk] [WARNING] Origin ${request.socket.remoteAddress} has tried to traverse directories with the following path ${imageFilePath}`)
 
                     } else {
-                        if (fs.existsSync(imageFilePath)) {
+                        if (filename in this.loCache.imageRouteMap) {
+                            const imageFile = this.loCache.getFile(filename, "image")
+
+                            result.statusCode = 200
+                            result.setHeader('Content-Type', `image/${extension}`)
+                            result.end(imageFile)
+
+                            console.log(`[Hawk] Origin ${request.socket.remoteAddress} has requested file named ${filename}`)
+
+                        } else if (fs.existsSync(imageFilePath)) {
                             this.loCache.cacheImage(filename)
 
                             const imageFile = this.loCache.getFile(filename, "image")

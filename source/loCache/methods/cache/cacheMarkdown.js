@@ -21,58 +21,45 @@ export const cacheMarkdown = {
         const fullPathHtml = path.resolve(htmlDirectory, `${route}.html`)
         const fullPathFractal = path.resolve(scriptDirectory, `${route}.fsc`)
 
-        if (!(route in this.htmlRouteMap)) {  
+        let filesAreFresh = false
+        if (fs.existsSync(fullPathHtml) && fs.existsSync(fullPathFractal)){
+            const statsHtml = fs.statSync(fullPathHtml)
+            const statsFractal = fs.statSync(fullPathFractal)
 
-            let filesAreFresh = false
-            if (fs.existsSync(fullPathHtml) && fs.existsSync(fullPathFractal)){
-                const statsHtml = fs.statSync(fullPathHtml)
-                const statsFractal = fs.statSync(fullPathFractal)
+            filesAreFresh = (statsHtml.mtime.getTime() > statsMarkdown.mtime.getTime() && statsFractal.mtime.getTime() > statsMarkdown.mtime.getTime())
 
-                filesAreFresh = (statsHtml.mtime.getTime() > statsMarkdown.mtime.getTime() && statsFractal.mtime.getTime() > statsMarkdown.mtime.getTime())
+        }
 
-            }
+        let htmlFile, fractalBytecode
 
-            let htmlFile, fractalBytecode
+        if (filesAreFresh == true) {
+            htmlFile = fs.readFileSync(fullPathHtml, "utf8")
+            const rawfractalBytecode = fs.readFileSync(fullPathFractal, "utf8")
 
-            if (filesAreFresh == true) {
-                htmlFile = fs.readFileSync(fullPathHtml, "utf8")
-                const rawfractalBytecode = fs.readFileSync(fullPathFractal, "utf8")
+            try {
+                fractalBytecode = JSON.parse(rawfractalBytecode)
 
-                try {
-                    fractalBytecode = JSON.parse(rawfractalBytecode)
+                console.log(`[loCache] ${route}.md has been cached from ${route}.html and ${route}.fsc`)
 
-                    console.log(`[loCache] ${route}.md has been cached from ${route}.html and ${route}.fsc`)
+            } catch (error) {
+                fractalBytecode = []
 
-                } catch (error) {
-                    fractalBytecode = []
-
-                    console.log(`[loCache] There has been an error when parsing ${route}.fcs to JSON`)
-
-                }
-
-            } else {
-                [htmlFile, fractalBytecode] = this.Marker.convert(`${route}.md`)
-
-                console.log(`[loCache] ${route}.md has been cached`)
+                console.log(`[loCache] There has been an error when parsing ${route}.fcs to JSON`)
 
             }
-
-            this.htmlRouteMap[route] = this.htmlCacheCounter++
-            this.htmlFiles.push(htmlFile)
-            this.htmlFilesModified.push(statsMarkdown.mtime)
-
-            this.fractalBytecodes.push(fractalBytecode)
 
         } else {
-                if (this.htmlFilesModified[this.htmlRouteMap[route]].getTime() != statsMarkdown.mtime.getTime()) {
-                    const [htmlFile, fractalBytecode] = this.Marker.convert(`${route}.md`)
+            [htmlFile, fractalBytecode] = this.Marker.convert(`${route}.md`)
 
-                    this.htmlFiles[this.htmlRouteMap[route]] = htmlFile
-                    this.fractalBytecodes[this.htmlRouteMap[route]] = fractalBytecode
-                    
-                    console.log(`[loCache] ${route}.md has been recached`)
-                    
-            }
+            console.log(`[loCache] ${route}.md has been cached`)
+
         }
+
+        this.htmlRouteMap[route] = this.htmlCacheCounter++
+        this.htmlFiles.push(htmlFile)
+        this.htmlFilesModified.push(statsMarkdown.mtime)
+
+        this.fractalBytecodes.push(fractalBytecode)
+
     }
 }
