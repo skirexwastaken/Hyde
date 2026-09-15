@@ -7,8 +7,8 @@ import {Fractal} from "../source/fractal/fractal.js"
 
 // Individual tests that will be ran
 const testCases = [
-    "main [print('Hello World!')]", 
-    "main [print(1), print(2), print(3)]",
+/* 1 */ "main [print('Hello World!')]", 
+        "main [print(1), print(2), print(3)]",
     "main [print('This message will be cleared'), clear()]",
     "main [print(add(add(5, 5),add(10, 10)))]",
     "main [print(add(sub(10, 10), 5))]",
@@ -61,7 +61,10 @@ const testCases = [
     "main [print(lower('wOrD'))]",
     "main [print(capital('word'))]",
     "main [print(unCapital('WorD'))]",
-    "main [print(capital(unCapital('Word')))]"
+    "main [print(capital(unCapital('Word')))]",
+    "main [print(sin(1))]",
+    "main [print(cos(1))]",
+    "main [print(tan(1))]"
 ]
 
 // Expected output buffers of the individual tests
@@ -121,8 +124,10 @@ const expectedOutputBuffers = [
     ["word"],
     ["Word"],
     ["worD"],
-    ["Word"]
-
+    ["Word"],
+    ["0.8414709848078965"],
+    ["0.5403023058681398"],
+    ["1.5574077246549023"]
 ]
 
 const totalTests = testCases.length

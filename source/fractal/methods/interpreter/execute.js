@@ -163,6 +163,30 @@ export const execute = {
                 break
             }
 
+            case "sin": {
+                const operand = this.stack.pop()
+
+                this.stack.push(Math.sin(operand))
+
+                break
+            }
+
+            case "cos": {
+                const operand = this.stack.pop()
+
+                this.stack.push(Math.cos(operand))
+
+                break
+            }
+
+            case "tan": {
+                const operand = this.stack.pop()
+
+                this.stack.push(Math.tan(operand))
+
+                break
+            }
+
             case "true": {
                 this.stack.push(1)
 

@@ -34,6 +34,12 @@ export const FUNCTIONS = {
 
     "average": null,
 
+    "sin": 1,
+
+    "cos": 1,
+    
+    "tan": 1,
+
     // Boolean
 
     "true": 0,
