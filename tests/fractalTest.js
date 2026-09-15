@@ -64,7 +64,8 @@ const testCases = [
     "main [print(capital(unCapital('Word')))]",
     "main [print(sin(1))]",
     "main [print(cos(1))]",
-    "main [print(tan(1))]"
+    "main [print(tan(1))]",
+    "main [print('test', 'test', 'test')]"
 ]
 
 // Expected output buffers of the individual tests
@@ -127,7 +128,8 @@ const expectedOutputBuffers = [
     ["Word"],
     ["0.8414709848078965"],
     ["0.5403023058681398"],
-    ["1.5574077246549023"]
+    ["1.5574077246549023"],
+    ["test test test"]
 ]
 
 const totalTests = testCases.length
