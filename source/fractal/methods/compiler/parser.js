@@ -44,7 +44,7 @@ export const parser =  {
 
                     // Function
                     if (keyword in FUNCTIONS){
-                        reversedPolishNotationLine[keywordIndex] = {"function":keyword}
+                        reversedPolishNotationLine[keywordIndex] = ["function", keyword]
                         
                         // Functions that require specific data type as argument
 
@@ -52,45 +52,45 @@ export const parser =  {
                         if (["let",":="].includes(keyword)){
 
                             // In written code, the variable value must be a string
-                            if (reversedPolishNotationLine[keywordIndex - 1]["function"] != "string"){
-                                throw new Error (`Syntax Error: Variable [${reversedPolishNotationLine[keywordIndex - 1]["value"]}] has an identifier that is not a string`)
+                            if (reversedPolishNotationLine[keywordIndex - 1][0] != "string"){
+                                throw new Error (`Syntax Error: Variable [${reversedPolishNotationLine[keywordIndex - 1][1]}] has an identifier that is not a string`)
 
                             } else {
-                                const stringName = reversedPolishNotationLine[keywordIndex - 1]["value"]
+                                const variableName = reversedPolishNotationLine[keywordIndex - 1][1]
 
                                 for (const func in FUNCTIONS){
-                                    if (stringName.includes(func)) throw new Error(`Syntax Error: Variable [${stringName}] contains a function name`)
+                                    if (variableName.includes(func)) throw new Error(`Syntax Error: Variable [${variableName}] contains a function name`)
                                 }
                             }
                             
                             // In order for efficient variable lookup during execution, all variable names are replaced with indexes to memory array
-                            if(!(reversedPolishNotationLine[keywordIndex - 1]["value"] in this.MemoryManager.memoryMap)) this.MemoryManager.memoryMap[reversedPolishNotationLine[keywordIndex - 1]["value"]] = variableCounter++
+                            if(!(reversedPolishNotationLine[keywordIndex - 1][1] in this.MemoryManager.memoryMap)) this.MemoryManager.memoryMap[reversedPolishNotationLine[keywordIndex - 1][1]] = variableCounter++
 
-                            reversedPolishNotationLine[keywordIndex - 1]["function"] = "number"
-                            reversedPolishNotationLine[keywordIndex - 1]["value"] = this.MemoryManager.memoryMap[reversedPolishNotationLine[keywordIndex - 1]["value"]]   
+                            reversedPolishNotationLine[keywordIndex - 1][0] = "number"
+                            reversedPolishNotationLine[keywordIndex - 1][1] = this.MemoryManager.memoryMap[reversedPolishNotationLine[keywordIndex - 1][1]]   
                         
                         // Exec expects a string that refers to a valid codename
                         } else if (["exec","if"].includes(keyword)){
-                            if (reversedPolishNotationLine[keywordIndex - 1]["function"] != "string"){
-                                throw new Error (`Syntax Error: ${keyword.charAt(0).toUpperCase()}${keyword.slice(1)} function expects a string [${reversedPolishNotationLine[keywordIndex - 1]["value"]}] `)
+                            if (reversedPolishNotationLine[keywordIndex - 1][0] != "string"){
+                                throw new Error (`Syntax Error: ${keyword.charAt(0).toUpperCase()}${keyword.slice(1)} function expects a string [${reversedPolishNotationLine[keywordIndex - 1][1]}] `)
 
-                            } else if (!(reversedPolishNotationLine[keywordIndex - 1]["value"] in tokenizedCode)) {
-                                throw new Error (`Syntax Error: Invalid code block named [${reversedPolishNotationLine[keywordIndex - 1]["value"]}] has been passed to ${keyword} function`)
+                            } else if (!(reversedPolishNotationLine[keywordIndex - 1][1] in tokenizedCode)) {
+                                throw new Error (`Syntax Error: Invalid code block named [${reversedPolishNotationLine[keywordIndex - 1][1]}] has been passed to ${keyword} function`)
 
                             }
                         }
 
                     // Number
                     } else if (!isNaN(keyword) && keyword != ""){
-                        reversedPolishNotationLine[keywordIndex] = {"function":"number","value":keyword}
+                        reversedPolishNotationLine[keywordIndex] = ["number", keyword]
                     
                     // String
                     } else if (keyword[0] == "'" || keyword == ""){
-                        reversedPolishNotationLine[keywordIndex] = {"function":"string","value":keyword.slice(1, -1)}
+                        reversedPolishNotationLine[keywordIndex] = ["string", keyword.slice(1, -1)]
 
                     // Variable / Function with a variable amount of arguments
                     } else {
-                        
+
                         // Variable path
 
                         // Variable can't start with a number
@@ -104,7 +104,7 @@ export const parser =  {
                             // let('x', 10)
                             // let(x, 10)
                         if (["let",":="].includes(reversedPolishNotationLine[keywordIndex + 1])){
-                            reversedPolishNotationLine[keywordIndex] = {"function":"string", "value":keyword}
+                            reversedPolishNotationLine[keywordIndex] = ["string", keyword]
                         
                         // Proper variable
                         } else {
@@ -115,7 +115,7 @@ export const parser =  {
 
                             }
 
-                            reversedPolishNotationLine[keywordIndex] = {"function":"variable", "value":this.MemoryManager.memoryMap[keyword]}
+                            reversedPolishNotationLine[keywordIndex] = ["variable", this.MemoryManager.memoryMap[keyword]]
                         }
                     }
                 }
@@ -126,7 +126,7 @@ export const parser =  {
                 }
 
                 // Since every function returns a value, it is important to clear the return value of a function with depth of 0 in order to prevent stack memory leak
-                reversedPolishNotationCode.push({"function":"pop"})
+                reversedPolishNotationCode.push(["function", "pop"])
             }
 
             // The last pop instruction of all other codeblocks is removed to allow the function to pass an argument back
@@ -135,7 +135,7 @@ export const parser =  {
 
             // End determines where the code block ends
             // The benefit of this is that the interpreter doesn't have to compare the instruction index against the code block length each time
-            reversedPolishNotationCode.push({"function":"end"})
+            reversedPolishNotationCode.push(["function", "end"])
 
             instructionSets[codeBlockName] = reversedPolishNotationCode
         }
