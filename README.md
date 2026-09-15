@@ -19,7 +19,7 @@ Bello is a scheme of how the individual modules are connected to each other insi
 ```mermaid
 graph LR
 
-A[Hyde] --> B[Hawk]
+A[Hyde] <--> B[Hawk]
 
 ```
 
