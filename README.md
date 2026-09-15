@@ -17,6 +17,7 @@ Bellow is a short explanation of how Hyde processes markdown files
 Bello is a scheme of how the individual modules are connected to each other inside of the stack
 
 ```mermaid
+graph LR
 
 A[Hyde] --> B[Hawk]
 
