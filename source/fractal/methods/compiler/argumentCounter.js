@@ -40,7 +40,7 @@ export const argumentCounter = {
 
         // Functions that have variable amount of arguments get their argument count added behind them
         if (FUNCTIONS[functionArray[functionIndex]] == null){
-            functionArray[functionIndex] = `${functionArray[functionIndex]}${argumentCounter}`
+            functionArray[functionIndex + 1].unshift(argumentCounter)
         
         // Checking if functions with set amount of arguments have the right amount of arguments
         } else {

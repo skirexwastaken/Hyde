@@ -9,9 +9,10 @@ export const execute = {
             // IO
 
             case "print": {
-                let printLine = ""
+                const argumentAmount = this.stack.pop()
 
-                for (let index = 0; index < func["arguments"]; index++){
+                let printLine = ""
+                for (let index = 0; index < argumentAmount; index++){
                     printLine += `${this.stack.pop()} `
                 }
 
@@ -112,9 +113,10 @@ export const execute = {
             }
 
             case "min": {
-                let values = []
+                const argumentAmount = this.stack.pop()
 
-                for (let index = 0; index < func["arguments"]; index++) {
+                let values = []
+                for (let index = 0; index < argumentAmount; index++) {
                     values.push(this.coreTools.isNumber(this.stack.pop()))
 
                 }
@@ -125,9 +127,10 @@ export const execute = {
             }
 
             case "max": {
-                let values = []
+                const argumentAmount = this.stack.pop()
 
-                for (let index = 0; index < func["arguments"]; index++) {
+                let values = []
+                for (let index = 0; index < argumentAmount; index++) {
                     values.push(this.coreTools.isNumber(this.stack.pop()))
 
                 }
@@ -138,9 +141,10 @@ export const execute = {
             }
 
             case "sum": {
-                let totalValue = 0
+                const argumentAmount = this.stack.pop()
 
-                for (let index = 0; index < func["arguments"]; index++) {
+                let totalValue = 0
+                for (let index = 0; index < argumentAmount; index++) {
                     totalValue += this.coreTools.isNumber(this.stack.pop())
 
                 }
@@ -151,14 +155,15 @@ export const execute = {
             }
 
             case "average": {
+                const argumentAmount = this.stack.pop()
+                
                 let totalValue = 0
-
-                for (let index = 0; index < func["arguments"]; index++) {
+                for (let index = 0; index < argumentAmount; index++) {
                     totalValue += this.coreTools.isNumber(this.stack.pop())
 
                 }
 
-                this.stack.push(totalValue / func["arguments"])
+                this.stack.push(totalValue / argumentAmount)
 
                 break
             }
@@ -261,9 +266,10 @@ export const execute = {
             // String functions
 
             case "merge": {
+                const argumentAmount = this.stack.pop()
+                
                 let connectedLine = ""
-
-                for (let index = 0; index < func["arguments"]; index++){
+                for (let index = 0; index < argumentAmount; index++){
                     connectedLine += String(this.stack.pop())
 
                 }
@@ -304,9 +310,10 @@ export const execute = {
             }
 
             case "any": {
-                let operands = []
+                const argumentAmount = this.stack.pop()
 
-                for (let index = 0; index < func["arguments"]; index++) {
+                let operands = []
+                for (let index = 0; index < argumentAmount; index++) {
                     operands.push(this.stack.pop())
 
                 }

@@ -90,23 +90,7 @@ export const parser =  {
 
                     // Variable / Function with a variable amount of arguments
                     } else {
-
-                        // Specific case for functions with variable amount of arguments which is stored after the functionName itself
-                        // For example print3 expects 3 arguments
-                        for (const functionName of NFUNCTIONS){
-                            if (!isNaN(keyword.replace(functionName,""))){
-                                reversedPolishNotationLine[keywordIndex] = {"function":functionName,"arguments":Number(keyword.replace(functionName,""))}
-                                break
-
-                            }
-                        }
-
-                        // Checking if this specific keyword was a function with a variable amount of arguments
-                        if (reversedPolishNotationLine[keywordIndex] instanceof Object) {
-                            continue
-
-                        }
-
+                        
                         // Variable path
 
                         // Variable can't start with a number
