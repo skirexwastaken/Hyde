@@ -83,6 +83,8 @@ export const FUNCTIONS = {
     "capital": 1,
     "unCapital": 1,
 
+    "charAt": 2,
+
     // Data types
     "parseStr": 1,
     "parseNum": 1,

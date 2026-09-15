@@ -378,12 +378,30 @@ export const execute = {
                         break
                     }
 
-                    case "unCapital":{
+                    case "unCapital": {
                         const operand = String(this.stack.pop())
 
                         this.stack.push(`${operand[0].toLowerCase()}${operand.slice(1)}`)
 
                         break
+                    }
+
+                    case "charAt": {
+                        const operand = this.stack.pop()
+                        let index = this.coreTools.isNumber(this.stack.pop())
+
+                        // For example charAt('word', -1) -1 + 4 = 3 -> d
+                        if (index < 0) {
+                            index += operand.length
+                        }
+
+                        if (index < operand.length && index >= 0){
+                            this.stack.push(operand[index])
+
+                        } else {
+                            this.stack.push("")
+
+                        }
                     }
 
                     // Data type functions
