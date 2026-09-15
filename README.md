@@ -8,6 +8,14 @@ The source is written in pure vanilla JavaScript with a philosophy of writing ev
 
 It implements a custom markdown format into which scripts can be embeded together with other custom tags making those markdown files a standalone websites
 
+## Runtime
+
+Bellow is a short explanation of how Hyde processes markdown files
+
+## Architecture
+
+Bello is a scheme of how the individual modules are connected to each other inside of the stack
+
 
 ## Components
 
@@ -40,6 +48,8 @@ Fractal is a custom DLS scripting language inspired by Python, JavaScript and Nu
 The code of Fractal is split into code blocks in which each statement is a function
 
 It's source code is compiled into bytecode which is then interpreted inside of a virtual machine
+
+Inside of Hyde it follows a PHP philosophy of scripts running entirely on the server side
 
 ### Marker
 
