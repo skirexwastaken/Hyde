@@ -8,10 +8,6 @@ The source is written in pure vanilla JavaScript with a philosophy of writing ev
 
 It implements a custom markdown format into which scripts can be embeded together with other custom tags making those markdown files a standalone websites
 
-## Runtime
-
-Bellow is a short explanation of how Hyde processes markdown files
-
 ## Architecture
 
 Bellow is a scheme of how the individual modules are connected to each other inside of the stack
