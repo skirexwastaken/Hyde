@@ -132,7 +132,7 @@ Tool that deletes left over files after user deletes the original markdown file
 
 Different sources from which I gained the knowlege to write this project
 
-[NumScript](https://numsript.danbtw.org)
+[NumScript](https://numscript.danbtw.org)
 
 [Polish Notation](https://en.wikipedia.org/wiki/Polish_notation)
 
