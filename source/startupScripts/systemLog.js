@@ -13,4 +13,4 @@ export const systemLog = setInterval(() => {
     console.log(systemLogMessage)
 
 
-}, process.env.SYSTEM_LOG_DELAY * 1000)
+}, (process.env.SYSTEM_LOG_DELAY ? process.env.SYSTEM_LOG_DELAY : 60) * 1000)
