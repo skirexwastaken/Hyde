@@ -21,8 +21,10 @@ graph LR
 
 A[Hyde]
 B[Garbage Collector]
+C[Hawk]
 
 A --> B
+A <--> C
 
 ```
 
@@ -72,3 +74,10 @@ It also allows defining css, title or icon directly inside of the markdown file
 ### Mytharis
 
 The future database like persistant storage of the stack that is yet to be implemented
+
+
+## Support scripts
+
+### Garbage Collector
+
+Tool that deletes left over files after user deletes the original markdown file
