@@ -54,9 +54,9 @@ G <-->  K
 
 ### Explanation
 
-Hyde Runtime starts an instance of Hyde
+> Hyde Runtime starts an instance of Hyde
 
-Hyde runs the Garbage Collector script and starts systemLog service
+> Hyde runs the Garbage Collector script and starts systemLog service
 
 Hyde settups an instance of Hyde with vairables from the .env file
 
