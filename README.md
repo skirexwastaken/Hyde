@@ -28,6 +28,11 @@ F[workerPool]
 G[Fractal]
 H[Marker]
 I[systemLog]
+J[CoreTools]
+K[MemoryManager]
+L[Hyde Runtime]
+
+L --> A
 
 A --> B
 A <--> C
@@ -42,13 +47,23 @@ D <--> H
 H <--> G
 
 F <--> G
+
+G <--> J
+G <-->  K
+
 ```
 
 ## Components
 
-### Run
+### Hyde Runtime
 
 Run is a custom wrapper script that allows you to run individual parts of the project easily
+
+### Hyde
+
+Hyde starts the individual modules of the stack
+
+It also runs Garbage Collector before execution and start systemLog
 
 ### Hawk
 
@@ -89,7 +104,6 @@ It also allows defining css, title or icon directly inside of the markdown file
 ### Mytharis
 
 The future database like persistant storage of the stack that is yet to be implemented
-
 
 ## Support scripts
 
