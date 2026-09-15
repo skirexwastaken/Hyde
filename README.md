@@ -52,6 +52,8 @@ G <--> J
 G <-->  K
 ```
 
+### Explanation
+
 Hyde Runtime starts an instance of Hyde
 
 Hyde runs the Garbage Collector script and starts systemLog service
