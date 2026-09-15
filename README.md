@@ -54,25 +54,25 @@ G <-->  K
 
 ### Explanation
 
-1. Hyde Runtime starts an instance of Hyde
+0. Hyde Runtime starts an instance of Hyde
 
-2. Hyde runs the Garbage Collector script and starts systemLog service
+1. Hyde runs the Garbage Collector script and starts systemLog service
 
-3. Hyde settups an instance of Hyde with vairables from the .env file
+2. Hyde settups an instance of Hyde with vairables from the .env file
 
-4. Hawk creates an instance of loCache, Mytharis and workerPool
+3. Hawk creates an instance of loCache, Mytharis and workerPool
 
-5. loCache caches files and uses Marker to translate markdown to html
+4. loCache caches files and uses Marker to translate markdown to html
 
-6. Marker translates markdown to html and uses Fractal to compile the embeded Fractal code
+5. Marker translates markdown to html and uses Fractal to compile the embeded Fractal code
 
-7. workerPool uses workers that assemble html responses that contain the result of interpreted Fractal code
+6. workerPool uses workers that assemble html responses that contain the result of interpreted Fractal code
 
-8. Fractal both compiles and interprets Fractal code and imports coreTools together with MemoryManager
+7. Fractal both compiles and interprets Fractal code and imports coreTools together with MemoryManager
 
-9. coreTools is first of the core libraries of Fractal that manages IO among other things
+8. coreTools is first of the core libraries of Fractal that manages IO among other things
 
-10. MemoryManager is the second core library of Fractal that manages virtual memory
+9. MemoryManager is the second core library of Fractal that manages virtual memory
 
 ## Components
 
