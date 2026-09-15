@@ -402,6 +402,9 @@ export const execute = {
                             this.stack.push("")
 
                         }
+
+                        break
+
                     }
 
                     // Data type functions
