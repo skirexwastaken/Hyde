@@ -3,7 +3,7 @@ import http from "http"
 import fs from "node:fs"
 import path from "node:path"
 
-import {markdownDirectory, stylesDirectory, iconDirectory, imageDirectory} from "../../../constants/paths.js"
+import {markdownDirectory, stylesDirectory, iconDirectory, imageDirectory} from "../../constants/paths.js"
 
 const getStats = (file) => fs.statSync(file, { throwIfNoEntry: false }) || false
 
