@@ -7,17 +7,16 @@ export const getFile =  {
     getFile(route, type, stats) {
         switch (type) {
             case "markdown": {
-                if (stats.mtime.getTime() != this.htmlFilesModified[this.htmlRouteMap[route]].getTime()) {
+                if (stats.mtime.getTime() != this.markdownFilesModified[this.markdownRouteMap[route]].getTime()) {
                     const [htmlFile, fractalBytecode] = this.Marker.convert(`${route}.md`)
 
-                    this.htmlFiles[this.htmlRouteMap[route]] = htmlFile
-                    this.fractalBytecodes[this.htmlRouteMap[route]] = fractalBytecode
+                    this.markdownFiles[this.markdownRouteMap[route]] = [htmlFile, fractalBytecode]
                     
                     console.log(`[loCache] ${route}.md has been recached`)
                     
                 }
 
-                return [this.htmlFiles[this.htmlRouteMap[route]], this.fractalBytecodes[this.htmlRouteMap[route]]]
+                return this.markdownFiles[this.markdownRouteMap[route]]
 
             }
 

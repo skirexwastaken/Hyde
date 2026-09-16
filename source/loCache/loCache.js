@@ -12,11 +12,10 @@ export class loCache {
     constructor() {
         this.Marker = new Marker()
 
-        this.htmlCacheCounter = 0
-        this.htmlRouteMap = {}
-        this.htmlFilesModified = []
-        this.htmlFiles = []
-        this.fractalBytecodes = []
+        this.markdownCacheCounter = 0
+        this.markdownRouteMap = {}
+        this.markdownFilesModified = []
+        this.markdownFiles = []
 
         this.cssCacheCounter = 0
         this.cssRouteMap = {}

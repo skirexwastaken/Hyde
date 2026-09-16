@@ -52,11 +52,9 @@ export const cacheMarkdown = {
 
         }
 
-        this.htmlRouteMap[route] = this.htmlCacheCounter++
-        this.htmlFiles.push(htmlFile)
-        this.htmlFilesModified.push(stats.mtime)
-
-        this.fractalBytecodes.push(fractalBytecode)
+        this.markdownRouteMap[route] = this.markdownCacheCounter++
+        this.markdownFiles.push([htmlFile, fractalBytecode])
+        this.markdownFilesModified.push(stats.mtime)
 
         console.log(`[loCache] ${route}.md has been cached`)
 

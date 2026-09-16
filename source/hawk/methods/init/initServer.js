@@ -104,7 +104,7 @@ export const initServer = {
                     } else {
                         const stats = getStats(markdownFilePath)
 
-                        if (route in this.loCache.htmlRouteMap) {
+                        if (route in this.loCache.markdownRouteMap) {
                             const [htmlFile, fractalBytecode] = this.loCache.getFile(route, "markdown", stats)
                             
                             const htmlResponse = await this.workerPool.runTask({htmlFile: htmlFile, fractalBytecode: fractalBytecode})
