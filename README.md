@@ -127,3 +127,21 @@ The future database like persistant storage of the stack that is yet to be imple
 ### Garbage Collector
 
 Tool that deletes left over files after user deletes the original markdown file
+
+## Project Content
+
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ Language              Files        Lines         Code     Comments       Blanks
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ CSS                       8           92           78            0           14
+ HTML                      1           79           79            0            0
+ JavaScript               62         3461         2111          290         1060
+ Markdown                  3          287            0          181          106
+ Shell                     2          212          126            6           80
+ Plain Text                1           14            0           11            3
+ YAML                      1           19           19            0            0
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ Total                    78         4164         2413          488         1263
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+```
