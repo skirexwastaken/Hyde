@@ -195,6 +195,11 @@ export const execute = {
                         break
                     }
 
+                    case "random": {
+                        this.stack.push(Math.random)
+                        
+                    }
+
                     case "true": {
                         this.stack.push(1)
 

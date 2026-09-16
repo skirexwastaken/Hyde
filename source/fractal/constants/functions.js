@@ -40,6 +40,8 @@ export const FUNCTIONS = {
     
     "tan": 1,
 
+    "random": 0,
+
     // Boolean
 
     "true": 0,
