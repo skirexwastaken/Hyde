@@ -1,5 +1,7 @@
 // Hyde Version 26.9.10
 
+import {} from "./source/startupScripts/consoleDebug.js"
+
 import {systemLog} from "./source/startupScripts/systemLog.js"
 import {consoleCleaner} from "./source/startupScripts/consoleCleaner.js"
 
