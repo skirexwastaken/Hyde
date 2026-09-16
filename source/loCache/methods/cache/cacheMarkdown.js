@@ -14,10 +14,7 @@ import {markdownDirectory, htmlDirectory, scriptDirectory} from "../../../consta
         // If there is newer version of this file it will be recached using Marker
 
 export const cacheMarkdown = {
-    cacheMarkdown(route) {
-        const fullPathMarkdown = path.resolve(markdownDirectory, `${route}.md`)
-        const statsMarkdown = fs.statSync(fullPathMarkdown)
-
+    cacheMarkdown(route, stats) {
         const fullPathHtml = path.resolve(htmlDirectory, `${route}.html`)
         const fullPathFractal = path.resolve(scriptDirectory, `${route}.fsc`)
 
@@ -26,7 +23,7 @@ export const cacheMarkdown = {
             const statsHtml = fs.statSync(fullPathHtml)
             const statsFractal = fs.statSync(fullPathFractal)
 
-            filesAreFresh = (statsHtml.mtime.getTime() > statsMarkdown.mtime.getTime() && statsFractal.mtime.getTime() > statsMarkdown.mtime.getTime())
+            filesAreFresh = (statsHtml.mtime.getTime() > stats.mtime.getTime() && statsFractal.mtime.getTime() > stats.mtime.getTime())
 
         }
 
@@ -57,9 +54,11 @@ export const cacheMarkdown = {
 
         this.htmlRouteMap[route] = this.htmlCacheCounter++
         this.htmlFiles.push(htmlFile)
-        this.htmlFilesModified.push(statsMarkdown.mtime)
+        this.htmlFilesModified.push(stats.mtime)
 
         this.fractalBytecodes.push(fractalBytecode)
+
+        console.log(`[loCache] ${route}.md has been cached`)
 
     }
 }

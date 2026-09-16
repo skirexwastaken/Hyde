@@ -5,7 +5,7 @@ import path from "node:path"
 
 import {markdownDirectory, stylesDirectory, iconDirectory, imageDirectory} from "../../../constants/paths.js"
 
-const getStats = (file) => fs.statSync(file, { throwIfNoEntry: false }) || false;
+const getStats = (file) => fs.statSync(file, { throwIfNoEntry: false }) || false
 
 // The core of the entire Hyde project, a webserver written using the http Node module
 export const initServer = {
@@ -49,7 +49,7 @@ export const initServer = {
                             console.log(`[Hawk] Origin ${request.socket.remoteAddress} has requested file named ${filename}`)
 
                         } else if (stats) {
-                            this.loCache.cacheCss(filename);
+                            this.loCache.cacheCss(filename, stats);
 
                             const cssFile = this.loCache.getFile(filename, "css", stats)
 
@@ -116,7 +116,7 @@ export const initServer = {
                             console.log(`[Hawk] Origin ${request.socket.remoteAddress} has requested file named ${route}.md`)
 
                         } else if (stats) {
-                            this.loCache.cacheMarkdown(route)
+                            this.loCache.cacheMarkdown(route, stats)
 
                             const [htmlFile, fractalBytecode] = this.loCache.getFile(route, "markdown", stats)
                             
@@ -167,7 +167,7 @@ export const initServer = {
                             console.log(`[Hawk] Origin ${request.socket.remoteAddress} has requested file named ${filename}`)
 
                         } else if (stats) {
-                            this.loCache.cacheIcon(filename)
+                            this.loCache.cacheIcon(filename, stats)
 
                             const iconFile = this.loCache.getFile(filename, "ico", stats)
 
@@ -216,7 +216,7 @@ export const initServer = {
                             console.log(`[Hawk] Origin ${request.socket.remoteAddress} has requested file named ${filename}`)
 
                         } else if (stats) {
-                            this.loCache.cacheImage(filename)
+                            this.loCache.cacheImage(filename, stats)
 
                             const imageFile = this.loCache.getFile(filename, "image", stats)
 

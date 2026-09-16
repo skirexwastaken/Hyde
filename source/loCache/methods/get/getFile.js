@@ -28,6 +28,8 @@ export const getFile =  {
 
                     this.cssFiles[this.cssRouteMap[route]] = cssFile
 
+                    console.log(`[loCache] ${route} has been recached`)
+
                 }
 
                 return this.cssFiles[this.cssRouteMap[route]]
@@ -41,6 +43,8 @@ export const getFile =  {
 
                     this.iconFiles[this.iconRouteMap[route]] = iconFile
 
+                    console.log(`[loCache] ${route} has been recached`)
+
                 }
 
                 return this.iconFiles[this.iconRouteMap[route]]
@@ -53,6 +57,8 @@ export const getFile =  {
                     const imageFile = fs.readFileSync(fullPath)
     
                     this.imageFiles[this.imageRouteMap[route]] = imageFile
+
+                    console.log(`[loCache] ${route} has been recached`)
 
                 }
 

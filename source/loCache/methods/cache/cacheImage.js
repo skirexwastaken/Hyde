@@ -4,15 +4,15 @@ import path from "node:path";
 import {imageDirectory} from "../../../constants/paths.js"
 
 export const cacheImage = {
-    cacheImage(route) {
+    cacheImage(route, stats) {
         const fullPath = path.resolve(imageDirectory, route)
-        const imageStats = fs.statSync(fullPath)
-
         const imageFile = fs.readFileSync(fullPath)
 
         this.imageRouteMap[route] = this.imageCacheCounter++
         this.imageFiles.push(imageFile)
-        this.imageFilesModified.push(imageStats.mtime)
+        this.imageFilesModified.push(stats.mtime)
+
+        console.log(`[loCache] ${route} has been cached`)
 
     }
 }

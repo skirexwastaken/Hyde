@@ -6,6 +6,7 @@ import {cacheImage} from "./methods/cache/cacheImage.js"
 import {cacheMarkdown} from "./methods/cache/cacheMarkdown.js"
 
 import {getFile} from "./methods/get/getFile.js"
+import {initCache} from "./methods/initCache.js"
 
 export class loCache {
     constructor() {
@@ -33,6 +34,8 @@ export class loCache {
         this.imageFiles = []
         this.imageFilesModified = []
 
+        this.initCache()
+
     }
 }
 
@@ -44,6 +47,7 @@ Object.assign(
     cacheIcon,
     cacheImage,
     
-    getFile
+    getFile,
+    initCache
     
 )
