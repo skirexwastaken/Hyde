@@ -54,7 +54,7 @@ export const initServer = {
 
                             stream.end("<h1>Not Found</h1>")
 
-                            console.log(`[Hawk] [WARNING] Origin ${stream.session.socket.remoteAddress} has tried to traverse directories with the following path ${cssFilePath}`)
+                            console.info(`[Hawk] [WARNING] Origin ${stream.session.socket.remoteAddress} has tried to traverse directories with the following path ${cssFilePath}`)
 
                     } else {
                         const stats = getStats(cssFilePath)
@@ -96,7 +96,7 @@ export const initServer = {
 
                             stream.end("<h1>Not Found</h1>")
 
-                            console.log(`[Hawk] [WARNING] Origin ${stream.session.socket.remoteAddress} has requested invalid file named ${filename}`)
+                            console.info(`[Hawk] [WARNING] Origin ${stream.session.socket.remoteAddress} has requested invalid file named ${filename}`)
 
                         }
                     }
@@ -135,7 +135,7 @@ export const initServer = {
 
                             stream.end("<h1>Not Found</h1>")
 
-                            console.log(`[Hawk] [WARNING] Origin ${stream.session.socket.remoteAddress} has tried to traverse directories with the following path ${markdownFilePath}`)
+                            console.info(`[Hawk] [WARNING] Origin ${stream.session.socket.remoteAddress} has tried to traverse directories with the following path ${markdownFilePath}`)
 
                     } else {
                         const stats = getStats(markdownFilePath)
@@ -181,7 +181,7 @@ export const initServer = {
 
                             stream.end("<h1>Not Found</h1>")
 
-                            console.log(`[Hawk] [WARNING] Origin ${stream.session.socket.remoteAddress} has requested invalid file named ${route}.md`)
+                            console.info(`[Hawk] [WARNING] Origin ${stream.session.socket.remoteAddress} has requested invalid file named ${route}.md`)
 
                         }
                     }
@@ -204,7 +204,7 @@ export const initServer = {
 
                             stream.end("<h1>Not Found</h1>")
 
-                            console.log(`[Hawk] [WARNING] Origin ${stream.session.socket.remoteAddress} has tried to traverse directories with the following path ${iconFilePath}`)
+                            console.info(`[Hawk] [WARNING] Origin ${stream.session.socket.remoteAddress} has tried to traverse directories with the following path ${iconFilePath}`)
 
                     } else {
                         const stats = getStats(iconFilePath)
@@ -246,7 +246,7 @@ export const initServer = {
 
                             stream.end("<h1>Not Found</h1>")
 
-                            console.log(`[Hawk] [WARNING] Origin ${stream.session.socket.remoteAddress} has requested invalid file named ${filename}`)
+                            console.info(`[Hawk] [WARNING] Origin ${stream.session.socket.remoteAddress} has requested invalid file named ${filename}`)
 
                         }
                     }
@@ -269,7 +269,7 @@ export const initServer = {
 
                             stream.end("<h1>Not Found</h1>")
 
-                            console.log(`[Hawk] [WARNING] Origin ${stream.session.socket.remoteAddress} has tried to traverse directories with the following path ${imageFilePath}`)
+                            console.info(`[Hawk] [WARNING] Origin ${stream.session.socket.remoteAddress} has tried to traverse directories with the following path ${imageFilePath}`)
 
                     } else {
                         const stats = getStats(imageFilePath)
@@ -311,7 +311,7 @@ export const initServer = {
 
                             stream.end("<h1>Not Found</h1>")
 
-                            console.log(`[Hawk] [WARNING] Origin ${stream.session.socket.remoteAddress} has requested invalid file named ${filename}`)
+                            console.info(`[Hawk] [WARNING] Origin ${stream.session.socket.remoteAddress} has requested invalid file named ${filename}`)
 
                         }
                     }
@@ -330,13 +330,13 @@ export const initServer = {
 
                     // The files in the array bellow are common targets for bots trying to abuse legacy webserver vulnerabilities
                     if (["php", "env", "json", "git", "db"].includes(extension)) {
-                        console.log(`[Hawk] [WARNING] Origin ${stream.session.socket.remoteAddress} has requested a ${extension} file named ${route}.${extension}`)
-                        console.log("[Hawk] [WARNING] This could potentially be an attempt at trying to abuse common web server vulnerabilities")
-                        console.log("[HAWK] [WARNING] Such as trying to request admin.php or .env file containing passwords")
-                        console.log("[Hawk] [WARNING] Note that those vulnerabilities are not present in Hyde")
+                        console.info(`[Hawk] [WARNING] Origin ${stream.session.socket.remoteAddress} has requested a ${extension} file named ${route}.${extension}`)
+                        console.info("[Hawk] [WARNING] This could potentially be an attempt at trying to abuse common web server vulnerabilities")
+                        console.info("[HAWK] [WARNING] Such as trying to request admin.php or .env file containing passwords")
+                        console.info("[Hawk] [WARNING] Note that those vulnerabilities are not present in Hyde")
 
                     } else {
-                        console.log(`[Hawk] [Warning] Origin ${stream.session.socket.remoteAddress} has requested invalid file named ${route}.${extension}`)
+                        console.info(`[Hawk] [Warning] Origin ${stream.session.socket.remoteAddress} has requested invalid file named ${route}.${extension}`)
 
                     }
                 }
