@@ -1,7 +1,7 @@
 import fs from "node:fs"
 import path from "node:path"
 
-import {stylesDirectoryrectory, iconDirectory, imageDirectory} from "../../../constants/paths.js"
+import {stylesDirectory, iconDirectory, imageDirectory} from "../../../constants/paths.js"
 
 export const getFile =  {
     getFile(route, type, stats) {
