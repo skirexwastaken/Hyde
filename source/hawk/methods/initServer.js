@@ -1,11 +1,8 @@
 import http from "http"
-
-import fs from "node:fs"
 import path from "node:path"
 
 import {markdownDirectory, stylesDirectory, iconDirectory, imageDirectory} from "../../constants/paths.js"
-
-const getStats = (file) => fs.statSync(file, { throwIfNoEntry: false }) || false
+import {getStats} from "../../constants/macros.js"
 
 // The core of the entire Hyde project, a webserver written using the http Node module
 export const initServer = {

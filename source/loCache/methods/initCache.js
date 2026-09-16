@@ -1,10 +1,8 @@
-import fs from "node:fs"
 import path from "node:path"
 
 import {markdownDirectory, stylesDirectory, iconDirectory, imageDirectory} from "../../constants/paths.js"
 import {markdownInit, stylesInit, iconInit, imageInit} from "../constants/initCache.js"
-
-const getStats = (file) => fs.statSync(file, { throwIfNoEntry: false }) || false
+import {getStats} from "../../constants/macros.js"
 
 // This function allows to cache specific files at startup allowing users to access them straight away without the caching delay
 export const initCache = {
