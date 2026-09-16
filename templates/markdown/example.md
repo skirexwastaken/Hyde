@@ -56,7 +56,7 @@ _This Text is also italic_
 
 ~~There is a line going over this text~~
 
-This line is loading a css file css[hacker.css]
+This line is loading a css file css[core/hacker.css]
 
 This line sets the website icon icon[favicon.ico]
 
