@@ -30,6 +30,20 @@ case $1 in
     "hyde"|"h")
         echo "[Hyde Runtime] Launching Hyde in $mode mode"
 
+        if [ ! -f ./certificates/privateKey.pm ]; then
+            echo "[Hyde Runtime] Generating Private Key"
+
+            openssl genrsa -out ./certificates/privateKey.pem 2048
+
+        fi
+
+        if [ ! -f ./certificates/publicCertificate.pem ]; then
+            echo "[Hyde Runtime] Generating Public Certificate"
+
+            openssl req -new -x509 -key ./certificates/privateKey.pem -out ./certificates/publicCertificate.pem -days 365
+
+        fi
+
         if [[ "$mode" == "production" ]]; then
             mkdir -p "${logDirectory}/hyde"
 
@@ -46,6 +60,20 @@ case $1 in
  
     "docker"|"d")
         echo "[Hyde Runtime] Launching Hyde inside of docker in $mode mode"
+
+        if [ ! -f ./certificates/privateKey.pm ]; then
+            echo "[Hyde Runtime] Generating Private Key"
+
+            openssl genrsa -out ./certificates/privateKey.pem 2048
+
+        fi
+
+        if [ ! -f ./certificates/publicCertificate.pem ]; then
+            echo "[Hyde Runtime] Generating Public Certificate"
+
+            openssl req -new -x509 -key ./certificates/privateKey.pem -out ./certificates/publicCertificate.pem -days 365
+
+        fi
 
         if [[ "$mode" == "production" ]]; then
             mkdir -p "${logDirectory}/hydeDocker"

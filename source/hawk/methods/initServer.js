@@ -1,17 +1,34 @@
-import http from "http"
+import http2 from "node:http2"
 import path from "node:path"
+import fs from "node:fs"
 
-import {markdownDirectory, stylesDirectory, iconDirectory, imageDirectory} from "../../constants/paths.js"
+import {markdownDirectory, stylesDirectory, iconDirectory, imageDirectory, certificatesDirectory} from "../../constants/paths.js"
 import {getStats} from "../../constants/macros.js"
-
 // The core of the entire Hyde project, a webserver written using the http Node module
 export const initServer = {
     initServer() {
-        return http.createServer(async (request, result) => {
+        const serverKeyPath = path.resolve(certificatesDirectory, "privateKey.pem")
+        const serverKey = fs.readFileSync(serverKeyPath)
+
+        const serverCertificatePath = path.resolve(certificatesDirectory, "publicCertificate.pem")
+        const serverCertificate = fs.readFileSync(serverCertificatePath)
+
+        const options = {
+            key: serverKey,
+            cert: serverCertificate,
+
+            requestCert: true,
+            rejectUnauthorized: false
+
+        }
+
+        const server = http2.createSecureServer(options)
+
+        server.on('stream', async (stream, headers) => {
 
             // Removes the / at the start
-            const extension = path.extname(request.url).slice(1)
-            let route = request.url.slice(1)
+            const extension = path.extname(headers[':path']).slice(1)
+            let route = headers[':path'].slice(1)
 
             if (extension != "") {
                 route = route.slice(0, -(extension.length + 1))
@@ -27,11 +44,15 @@ export const initServer = {
 
                     // Anti directory traversal check
                     if (!(cssFilePath).startsWith(stylesDirectory)) {
-                            result.statusCode = 404
-                            result.setHeader('Content-Type', 'text/css')
-                            result.end("")
+                            stream.respond({
+                                ":status": 404,
+                                "content-type": "text/html"
 
-                            console.log(`[Hawk] [WARNING] Origin ${request.socket.remoteAddress} has tried to traverse directories with the following path ${cssFilePath}`)
+                            })
+
+                            stream.end("<h1>Not Found</h1>")
+
+                            console.log(`[Hawk] [WARNING] Origin ${stream.session.socket.remoteAddress} has tried to traverse directories with the following path ${cssFilePath}`)
 
                     } else {
                         const stats = getStats(cssFilePath)
@@ -39,29 +60,41 @@ export const initServer = {
                         if (filename in this.loCache.cssRouteMap){
                             const cssFile = this.loCache.getFile(filename, "css", stats)
 
-                            result.statusCode = 200
-                            result.setHeader('Content-Type', 'text/css')
-                            result.end(cssFile)
+                            stream.respond({
+                                ":status": 200,
+                                "content-type": "text/css"
 
-                            console.log(`[Hawk] Origin ${request.socket.remoteAddress} has requested file named ${filename}`)
+                            })
+
+                            stream.end(cssFile)
+
+                            console.log(`[Hawk] Origin ${stream.session.socket.remoteAddress} has requested file named ${filename}`)
 
                         } else if (stats) {
                             this.loCache.cacheCss(filename, stats);
 
                             const cssFile = this.loCache.getFile(filename, "css", stats)
 
-                            result.statusCode = 200
-                            result.setHeader('Content-Type', 'text/css')
-                            result.end(cssFile)
+                            stream.respond({
+                                ":status": 200,
+                                "content-type": "text/css"
 
-                            console.log(`[Hawk] Origin ${request.socket.remoteAddress} has requested file named ${filename}`)
+                            })
+
+                            stream.end(cssFile)
+
+                            console.log(`[Hawk] Origin ${stream.session.socket.remoteAddress} has requested file named ${filename}`)
                         
                         } else {
-                            result.statusCode = 404
-                            result.setHeader('Content-Type', 'text/css')
-                            result.end("")
+                            stream.respond({
+                                ":status": 404,
+                                "content-type": "text/html"
 
-                            console.log(`[Hawk] [WARNING] Origin ${request.socket.remoteAddress} has requested invalid file named ${filename}`)
+                            })
+
+                            stream.end("<h1>Not Found</h1>")
+
+                            console.log(`[Hawk] [WARNING] Origin ${stream.session.socket.remoteAddress} has requested invalid file named ${filename}`)
 
                         }
                     }
@@ -92,11 +125,15 @@ export const initServer = {
 
                     // Anti directory traversal check
                     if (!(markdownFilePath.startsWith(markdownDirectory))) {
-                            result.statusCode = 404
-                            result.setHeader('Content-Type', 'text/html')
-                            result.end("")
+                            stream.respond({
+                                ":status": 404,
+                                "content-type": "text/html"
 
-                            console.log(`[Hawk] [WARNING] Origin ${request.socket.remoteAddress} has tried to traverse directories with the following path ${markdownFilePath}`)
+                            })
+
+                            stream.end("<h1>Not Found</h1>")
+
+                            console.log(`[Hawk] [WARNING] Origin ${stream.session.socket.remoteAddress} has tried to traverse directories with the following path ${markdownFilePath}`)
 
                     } else {
                         const stats = getStats(markdownFilePath)
@@ -106,11 +143,15 @@ export const initServer = {
                             
                             const htmlResponse = await this.workerPool.runTask({htmlFile: htmlFile, fractalBytecode: fractalBytecode})
 
-                            result.statusCode = 200
-                            result.setHeader('Content-Type', 'text/html')
-                            result.end(htmlResponse)
+                            stream.respond({
+                                ":status": 200,
+                                "content-type": "text/html"
 
-                            console.log(`[Hawk] Origin ${request.socket.remoteAddress} has requested file named ${route}.md`)
+                            })
+
+                            stream.end(htmlResponse)
+
+                            console.log(`[Hawk] Origin ${stream.session.socket.remoteAddress} has requested file named ${route}.md`)
 
                         } else if (stats) {
                             this.loCache.cacheMarkdown(route, stats)
@@ -119,18 +160,26 @@ export const initServer = {
                             
                             const htmlResponse = await this.workerPool.runTask({htmlFile: htmlFile, fractalBytecode: fractalBytecode})
 
-                            result.statusCode = 200
-                            result.setHeader('Content-Type', 'text/html')
-                            result.end(htmlResponse)
+                            stream.respond({
+                                ":status": 200,
+                                "content-type": "text/html"
 
-                            console.log(`[Hawk] Origin ${request.socket.remoteAddress} has requested file named ${route}.md`)
+                            })
+
+                            stream.end(htmlResponse)
+
+                            console.log(`[Hawk] Origin ${stream.session.socket.remoteAddress} has requested file named ${route}.md`)
 
                         } else {
-                            result.statusCode = 404
-                            result.setHeader('Content-Type', 'text/html')
-                            result.end("<h1>404 Not Found</h1>")
+                            stream.respond({
+                                ":status": 404,
+                                "content-type": "text/html"
 
-                            console.log(`[Hawk] [WARNING] Origin ${request.socket.remoteAddress} has requested invalid file named ${route}.md`)
+                            })
+
+                            stream.end("<h1>Not Found</h1>")
+
+                            console.log(`[Hawk] [WARNING] Origin ${stream.session.socket.remoteAddress} has requested invalid file named ${route}.md`)
 
                         }
                     }
@@ -145,11 +194,15 @@ export const initServer = {
 
                     // Anti directory traversal check
                     if (!(iconFilePath.startsWith(iconDirectory))) {
-                            result.statusCode = 404
-                            result.setHeader('Content-Type', 'image/x-icon')
-                            result.end("")
+                            stream.respond({
+                                ":status": 404,
+                                "content-type": "text/html"
 
-                            console.log(`[Hawk] [WARNING] Origin ${request.socket.remoteAddress} has tried to traverse directories with the following path ${iconFilePath}`)
+                            })
+
+                            stream.end("<h1>Not Found</h1>")
+
+                            console.log(`[Hawk] [WARNING] Origin ${stream.session.socket.remoteAddress} has tried to traverse directories with the following path ${iconFilePath}`)
 
                     } else {
                         const stats = getStats(iconFilePath)
@@ -157,29 +210,41 @@ export const initServer = {
                         if (filename in this.loCache.iconRouteMap) {
                             const iconFile = this.loCache.getFile(filename, "ico", stats)
 
-                            result.statusCode = 200
-                            result.setHeader('Content-Type', 'image/x-icon')
-                            result.end(iconFile)
+                            stream.respond({
+                                ":status": 200,
+                                "content-type": "image/x-icon"
 
-                            console.log(`[Hawk] Origin ${request.socket.remoteAddress} has requested file named ${filename}`)
+                            })
+
+                            stream.end(iconFile)
+
+                            console.log(`[Hawk] Origin ${stream.session.socket.remoteAddress} has requested file named ${filename}`)
 
                         } else if (stats) {
                             this.loCache.cacheIcon(filename, stats)
 
                             const iconFile = this.loCache.getFile(filename, "ico", stats)
 
-                            result.statusCode = 200
-                            result.setHeader('Content-Type', 'image/x-icon')
-                            result.end(iconFile)
+                            stream.respond({
+                                ":status": 200,
+                                "content-type": "image/x-icon"
 
-                            console.log(`[Hawk] Origin ${request.socket.remoteAddress} has requested file named ${filename}`)
+                            })
+
+                            stream.end(iconFile)
+
+                            console.log(`[Hawk] Origin ${stream.session.socket.remoteAddress} has requested file named ${filename}`)
                         
                         } else {
-                            result.statusCode = 404
-                            result.setHeader('Content-Type', 'image/x-icon')
-                            result.end("")
+                            stream.respond({
+                                ":status": 404,
+                                "content-type": "text/html"
 
-                            console.log(`[Hawk] [WARNING] Origin ${request.socket.remoteAddress} has requested invalid file named ${filename}`)
+                            })
+
+                            stream.end("<h1>Not Found</h1>")
+
+                            console.log(`[Hawk] [WARNING] Origin ${stream.session.socket.remoteAddress} has requested invalid file named ${filename}`)
 
                         }
                     }
@@ -194,11 +259,15 @@ export const initServer = {
 
                     // Anti directory traversal check
                     if (!(imageFilePath.startsWith(imageDirectory))) {
-                            result.statusCode = 404
-                            result.setHeader('Content-Type', `image/${extension}`)
-                            result.end("")
+                            stream.respond({
+                                ":status": 404,
+                                "content-type": "text/html"
 
-                            console.log(`[Hawk] [WARNING] Origin ${request.socket.remoteAddress} has tried to traverse directories with the following path ${imageFilePath}`)
+                            })
+
+                            stream.end("<h1>Not Found</h1>")
+
+                            console.log(`[Hawk] [WARNING] Origin ${stream.session.socket.remoteAddress} has tried to traverse directories with the following path ${imageFilePath}`)
 
                     } else {
                         const stats = getStats(imageFilePath)
@@ -206,29 +275,41 @@ export const initServer = {
                         if (filename in this.loCache.imageRouteMap) {
                             const imageFile = this.loCache.getFile(filename, "image", stats)
 
-                            result.statusCode = 200
-                            result.setHeader('Content-Type', `image/${extension}`)
-                            result.end(imageFile)
+                            stream.respond({
+                                ":status": 200,
+                                "content-type": `image/${extension}`
 
-                            console.log(`[Hawk] Origin ${request.socket.remoteAddress} has requested file named ${filename}`)
+                            })
+
+                            stream.end(imageFile)
+
+                            console.log(`[Hawk] Origin ${stream.session.socket.remoteAddress} has requested file named ${filename}`)
 
                         } else if (stats) {
                             this.loCache.cacheImage(filename, stats)
 
                             const imageFile = this.loCache.getFile(filename, "image", stats)
 
-                            result.statusCode = 200
-                            result.setHeader('Content-Type', `image/${extension}`)
-                            result.end(imageFile)
+                            stream.respond({
+                                ":status": 200,
+                                "content-type": `image/${extension}`
 
-                            console.log(`[Hawk] Origin ${request.socket.remoteAddress} has requested file named ${filename}`)
+                            })
+
+                            stream.end(imageFile)
+
+                            console.log(`[Hawk] Origin ${stream.session.socket.remoteAddress} has requested file named ${filename}`)
                         
                         } else {
-                            result.statusCode = 404
-                            result.setHeader('Content-Type', `image/${extension}`)
-                            result.end("")
+                            stream.respond({
+                                ":status": 404,
+                                "content-type": "text/html"
 
-                            console.log(`[Hawk] [WARNING] Origin ${request.socket.remoteAddress} has requested invalid file named ${filename}`)
+                            })
+
+                            stream.end("<h1>Not Found</h1>")
+
+                            console.log(`[Hawk] [WARNING] Origin ${stream.session.socket.remoteAddress} has requested invalid file named ${filename}`)
 
                         }
                     }
@@ -238,23 +319,29 @@ export const initServer = {
 
                 // Unsupported Files
                 default: {
-                    result.statusCode = 404
-                    result.setHeader('Content-Type', 'text/html')
-                    result.end("<h1>404 Not Found</h1>")
+                    stream.respond({
+                        ":status": 404,
+                        "content-type": "text/html"
+                    })
+
+                    stream.end("<h1>Not Found</h1>")
 
                     // The files in the array bellow are common targets for bots trying to abuse legacy webserver vulnerabilities
                     if (["php", "env", "json", "git", "db"].includes(extension)) {
-                        console.log(`[Hawk] [WARNING] Origin ${request.socket.remoteAddress} has requested a ${extension} file named ${route}.${extension}`)
+                        console.log(`[Hawk] [WARNING] Origin ${stream.session.socket.remoteAddress} has requested a ${extension} file named ${route}.${extension}`)
                         console.log("[Hawk] [WARNING] This could potentially be an attempt at trying to abuse common web server vulnerabilities")
                         console.log("[HAWK] [WARNING] Such as trying to request admin.php or .env file containing passwords")
                         console.log("[Hawk] [WARNING] Note that those vulnerabilities are not present in Hyde")
 
                     } else {
-                        console.log(`[Hawk] [Warning] Origin ${request.socket.remoteAddress} has requested invalid file named ${route}.${extension}`)
+                        console.log(`[Hawk] [Warning] Origin ${stream.session.socket.remoteAddress} has requested invalid file named ${route}.${extension}`)
 
                     }
                 }
             }
         })
+
+        return server
+
     }
 }
