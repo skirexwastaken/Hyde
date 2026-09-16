@@ -18,7 +18,9 @@ export const initServer = {
             cert: serverCertificate,
 
             requestCert: true,
-            rejectUnauthorized: false
+            rejectUnauthorized: false,
+
+            allowHTTP1: true
 
         }
 
