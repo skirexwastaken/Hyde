@@ -1,7 +1,7 @@
 export const processQueue = {
     processQueue() {
         if (this.queue.length == 0 || this.workers.length == 0){
-        return
+            return
         
         }
 
