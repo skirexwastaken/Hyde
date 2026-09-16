@@ -128,7 +128,7 @@ The future database like persistant storage of the stack that is yet to be imple
 
 Tool that deletes left over files after user deletes the original markdown file
 
-## Project Content
+## Repository Content
 
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
