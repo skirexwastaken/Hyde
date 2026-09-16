@@ -7,7 +7,7 @@ import {getStats} from "../../constants/macros.js"
 // The core of the entire Hyde project, a webserver written using the http Node module
 export const initServer = {
     initServer() {
-        this.server = http.createServer(async (request, result) => {
+        return http.createServer(async (request, result) => {
 
             // Removes the / at the start
             const extension = path.extname(request.url).slice(1)
