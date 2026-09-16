@@ -1,6 +1,7 @@
 // Hyde Version 26.9.10
 
 import {systemLog} from "./source/startupScripts/systemLog.js"
+import {consoleCleaner} from "./source/startupScripts/consoleCleaner.js"
 import {garbageCollector} from "./source/startupScripts/garbageCollector.js"
 import {Hawk} from "./source/hawk/hawk.js"
 
