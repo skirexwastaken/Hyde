@@ -30,7 +30,7 @@ case $1 in
     "hyde"|"h")
         echo "[Hyde Runtime] Launching Hyde in $mode mode"
 
-        if [ ! -f ./certificates/privateKey.pm ]; then
+        if [ ! -f ./certificates/privateKey.pem ]; then
             echo "[Hyde Runtime] Generating Private Key"
 
             openssl genrsa -out ./certificates/privateKey.pem 2048
@@ -61,7 +61,7 @@ case $1 in
     "docker"|"d")
         echo "[Hyde Runtime] Launching Hyde inside of docker in $mode mode"
 
-        if [ ! -f ./certificates/privateKey.pm ]; then
+        if [ ! -f ./certificates/privateKey.pem ]; then
             echo "[Hyde Runtime] Generating Private Key"
 
             openssl genrsa -out ./certificates/privateKey.pem 2048
