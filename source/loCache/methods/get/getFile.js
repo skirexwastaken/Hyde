@@ -8,11 +8,13 @@ export const getFile =  {
         switch (type) {
             case "markdown": {
                 if (stats.mtime.getTime() != this.markdownFilesModified[this.markdownRouteMap[route]].getTime()) {
-                    const [htmlFile, fractalBytecode] = this.Marker.convert(`${route}.md`)
+                    const markdownProcessed = this.Marker.convert(`${route}.md`)
 
-                    this.markdownFiles[this.markdownRouteMap[route]] = [htmlFile, fractalBytecode]
+                    this.markdownFiles[this.markdownRouteMap[route]] = markdownProcessed
                     
                     console.log(`[loCache] ${route}.md has been recached`)
+
+                    return markdownProcessed
                     
                 }
 
@@ -22,12 +24,14 @@ export const getFile =  {
 
             case "css": {
                 if (stats.mtime.getTime() != this.cssFilesModified[this.cssRouteMap[route]].getTime()) {
-                     const fullPath = path.resolve(stylesDirectory, route)
+                    const fullPath = path.resolve(stylesDirectory, route)
                     const cssFile = fs.readFileSync(fullPath, "utf-8")
 
                     this.cssFiles[this.cssRouteMap[route]] = cssFile
 
                     console.log(`[loCache] ${route} has been recached`)
+
+                    return cssFile
 
                 }
 
@@ -44,6 +48,8 @@ export const getFile =  {
 
                     console.log(`[loCache] ${route} has been recached`)
 
+                    return iconFile
+
                 }
 
                 return this.iconFiles[this.iconRouteMap[route]]
@@ -58,6 +64,8 @@ export const getFile =  {
                     this.imageFiles[this.imageRouteMap[route]] = imageFile
 
                     console.log(`[loCache] ${route} has been recached`)
+
+                    return imageFile
 
                 }
 
