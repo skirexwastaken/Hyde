@@ -1,3 +1,6 @@
+import {instructionLimitEnabled, instructionLimit} from "../../constants/instructionLimit.js"
+
+
 // Interpreted goes thru the executionStack and executes all functions from it
 // Fractal interpreter uses executionStack, which acts as a pointer to the currently executed code block and its specific function
 // The interpreter uses standard LIFO stack to hold values
@@ -12,6 +15,12 @@ export const interpreter = {
 
         // Variable that contains all code blocks which are indexable by getting the index from codeBlockMap
         let codeBlocks = []
+
+        // Instruction limit
+        // You can set an option instruction limit to while loops freezing worker
+        // While enabling is recommended you can customize how many instructions should run before a script hits it
+
+        let instructionCounter = 0
 
         // Execution stack is a array of 2D arrays
         // Each 2D array contains:
@@ -42,6 +51,15 @@ export const interpreter = {
             const codeBlockInstructionIndex = this.executionStack[this.executionStack.length - 1][1]++
 
             this.execute(codeBlocks[codeBlockIndex][codeBlockInstructionIndex])
+
+            instructionCounter++
+
+            if (instructionLimitEnabled == true) {
+                if (instructionCounter == instructionLimit) {
+                    break
+
+                }
+            }
         }
 
         // Generating output arguments, which are the values of the inputArguments at the end of the script
