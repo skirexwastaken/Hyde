@@ -1,2 +1,2 @@
-export const instructionLimitEnabled = true
-export const instructionLimit = 10_000
+export const instructionLimitEnabled = process.env.INSTRUCTION_LIMIT_ENABLED == "0" ? 0 : 1
+export const instructionLimit = process.env.INSTRUCTION_LIMIT ? Number(process.env.INSTRUCTION_LIMIT) : 10_000
