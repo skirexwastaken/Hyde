@@ -1,3 +1,5 @@
+import {} from "../../startupScripts/consoleDebug.js"
+
 import {parentPort, workerData} from 'worker_threads'
 
 import {Fractal} from "../../fractal/fractal.js"
