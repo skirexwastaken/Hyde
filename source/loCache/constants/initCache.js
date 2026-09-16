@@ -4,9 +4,9 @@ export const markdownInit = [
 ]
 
 export const stylesInit = [
-    "hacker.css",
-    "darker.css",
-    "light.css"
+    "core/hacker.css",
+    "core/dark.css",
+    "core/light.css"
 
 ]
 
