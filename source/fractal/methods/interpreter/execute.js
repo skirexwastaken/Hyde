@@ -25,94 +25,113 @@ export const execute = {
                         this.stack.push(printLine)
 
                         break
+
                     }
                     
-                    case "clear":
+                    case "clear":{
                         this.coreTools.clearShell()
 
                         break
+                    
+                    }
 
                     // Number functions
 
                     case "add": {
-                        const operandAlpha = this.coreTools.isNumber(this.stack.pop())
-                        const operandBeta = this.coreTools.isNumber(this.stack.pop())
+                        const firstNumber = this.coreTools.isNumber(this.stack.pop())
+                        const secondNumber = this.coreTools.isNumber(this.stack.pop())
 
-                        this.stack.push(operandAlpha + operandBeta)
+                        this.stack.push(firstNumber + secondNumber)
 
                         break
+
                     }
 
                     case "sub": {
-                        const operandAlpha = this.coreTools.isNumber(this.stack.pop())
-                        const operandBeta = this.coreTools.isNumber(this.stack.pop())
+                        const firstNumber = this.coreTools.isNumber(this.stack.pop())
+                        const secondNumber = this.coreTools.isNumber(this.stack.pop())
 
-                        this.stack.push(operandAlpha - operandBeta)
+                        this.stack.push(firstNumber - secondNumber)
 
                         break
+
                     }
 
                     case "mul": {
-                        const operandAlpha = this.coreTools.isNumber(this.stack.pop())
-                        const operandBeta = this.coreTools.isNumber(this.stack.pop())
+                        const firstNumber = this.coreTools.isNumber(this.stack.pop())
+                        const secondNumber = this.coreTools.isNumber(this.stack.pop())
 
-                        this.stack.push(operandAlpha * operandBeta)
+                        this.stack.push(firstNumber * secondNumber)
 
                         break
+
                     }
 
                     case "div": {
-                        const operandAlpha = this.coreTools.isNumber(this.stack.pop())
-                        const operandBeta = this.coreTools.isNumber(this.stack.pop())
+                        const firstNumber = this.coreTools.isNumber(this.stack.pop())
+                        const secondNumber = this.coreTools.isNumber(this.stack.pop())
 
-                        this.stack.push(operandAlpha / operandBeta)
+                        this.stack.push(firstNumber / secondNumber)
 
                         break
+
                     }
 
                     case "inc": {
                         this.stack.push(this.coreTools.isNumber(this.stack.pop()) + 1)
 
                         break
+
                     }
 
                     case "dec": {
                         this.stack.push(this.coreTools.isNumber(this.stack.pop()) - 1)
 
                         break
+
                     }
                     
                     case "pow": {
-                        const operandAlpha = this.coreTools.isNumber(this.stack.pop())
-                        const operandBeta = this.coreTools.isNumber(this.stack.pop())
+                        const base = this.coreTools.isNumber(this.stack.pop())
+                        const coefficient = this.coreTools.isNumber(this.stack.pop())
 
-                        this.stack.push(Math.pow(operandAlpha, operandBeta))
+                        this.stack.push(Math.pow(base, coefficient))
 
                         break
+
                     }
 
                     case "sqrt": {
-                        const operand = this.coreTools.isNumber(this.stack.pop())
+                        const number = this.coreTools.isNumber(this.stack.pop())
 
-                        this.stack.push(Math.sqrt(operand))
+                        if (number >= 0) {
+                            this.stack.push(Math.sqrt(number))
+
+                        } else {
+                            this.stack.push(0)
+
+                        }
 
                         break
+
                     }
 
                     case "abs": {
-                        const operand = this.coreTools.isNumber(this.stack.pop())
+                        const number = this.coreTools.isNumber(this.stack.pop())
 
-                        this.stack.push(Math.abs(operand))
+                        this.stack.push(Math.abs(number))
 
                         break
+
                     }
 
                     case "eval": {
-                        const operand = String(this.stack.pop())
+                        const equation = String(this.stack.pop())
 
-                        this.stack.push(this.coreTools.fractalEval(operand))
+                        this.stack.push(this.coreTools.fractalEval(equation))
                         
                         break
+
                     }
 
                     case "min": {
@@ -127,6 +146,7 @@ export const execute = {
                         this.stack.push(Math.min.apply(null, values))
 
                         break
+
                     }
 
                     case "max": {
@@ -141,6 +161,7 @@ export const execute = {
                         this.stack.push(Math.max.apply(null, values))
 
                         break
+
                     }
 
                     case "sum": {
@@ -155,6 +176,7 @@ export const execute = {
                         this.stack.push(totalValue)
 
                         break
+
                     }
 
                     case "average": {
@@ -169,106 +191,120 @@ export const execute = {
                         this.stack.push(totalValue / argumentAmount)
 
                         break
+
                     }
 
                     case "sin": {
-                        const operand = this.stack.pop()
+                        const number = this.stack.pop()
 
-                        this.stack.push(Math.sin(operand))
+                        this.stack.push(Math.sin(number))
 
                         break
+
                     }
 
                     case "cos": {
-                        const operand = this.stack.pop()
+                        const number = this.stack.pop()
 
-                        this.stack.push(Math.cos(operand))
+                        this.stack.push(Math.cos(number))
 
                         break
+
                     }
 
                     case "tan": {
-                        const operand = this.stack.pop()
+                        const number = this.stack.pop()
 
-                        this.stack.push(Math.tan(operand))
+                        this.stack.push(Math.tan(number))
 
                         break
+
                     }
 
                     case "random": {
                         this.stack.push(Math.random)
-                        
+
+                        break
+
                     }
 
                     case "true": {
                         this.stack.push(1)
 
                         break
+
                     }
 
                     case "false": {
                         this.stack.push(0)
 
                         break
+
                     }
 
                     case "none": {
                         this.stack.push("")
 
                         break
+
                     }
 
                     case "eq": {
-                        const operandAlpha = this.coreTools.isNumber(this.stack.pop())
-                        const operandBeta = this.coreTools.isNumber(this.stack.pop())
+                        const firstNumber = this.coreTools.isNumber(this.stack.pop())
+                        const secondNumber = this.coreTools.isNumber(this.stack.pop())
 
-                        this.stack.push(operandAlpha == operandBeta ? 1 : 0)
+                        this.stack.push(firstNumber == secondNumber ? 1 : 0)
 
                         break
+
                     }
 
                     case "gt": {
-                        const operandAlpha = this.coreTools.isNumber(this.stack.pop())
-                        const operandBeta = this.coreTools.isNumber(this.stack.pop())
+                        const firstNumber = this.coreTools.isNumber(this.stack.pop())
+                        const secondNumber = this.coreTools.isNumber(this.stack.pop())
 
-                        this.stack.push(operandAlpha > operandBeta ? 1 : 0)
+                        this.stack.push(firstNumber > secondNumber ? 1 : 0)
 
                         break
+
                     }
 
                     case "lt": {
-                        const operandAlpha = this.coreTools.isNumber(this.stack.pop())
-                        const operandBeta = this.coreTools.isNumber(this.stack.pop())
+                        const firstNumber = this.coreTools.isNumber(this.stack.pop())
+                        const secondNumber = this.coreTools.isNumber(this.stack.pop())
 
-                        this.stack.push(operandAlpha < operandBeta ? 1 : 0)
+                        this.stack.push(firstNumber < secondNumber ? 1 : 0)
 
                         break
+
                     }
 
                     case "and": {
-                        const operandAlpha = this.coreTools.isNumber(this.stack.pop())
-                        const operandBeta = this.coreTools.isNumber(this.stack.pop())
+                        const firstNumber = this.coreTools.isNumber(this.stack.pop())
+                        const secondNumber = this.coreTools.isNumber(this.stack.pop())
 
-                        this.stack.push(operandAlpha > 0 && operandBeta > 0 ? 1 : 0)
+                        this.stack.push(firstNumber > 0 && secondNumber > 0 ? 1 : 0)
 
                         break
                     }
 
                     case "or": {
-                        const operandAlpha = this.coreTools.isNumber(this.stack.pop())
-                        const operandBeta = this.coreTools.isNumber(this.stack.pop())
+                        const firstNumber = this.coreTools.isNumber(this.stack.pop())
+                        const secondNumber = this.coreTools.isNumber(this.stack.pop())
 
-                        this.stack.push(operandAlpha > 0 || operandBeta > 0 ? 1 : 0)
+                        this.stack.push(firstNumber > 0 || secondNumber > 0 ? 1 : 0)
 
                         break
+
                     }
 
                     case "not": {
-                        const operand = this.coreTools.isNumber(this.stack.pop())
+                        const number = this.coreTools.isNumber(this.stack.pop())
 
-                        this.stack.push(operand > 0 ? 0 : 1)
+                        this.stack.push(number > 0 ? 0 : 1)
                         
                         break
+
                     }
 
                     // String functions
@@ -287,6 +323,7 @@ export const execute = {
                         this.stack.push(connectedLine)
 
                         break
+
                     }
 
                     case "reverse": {
@@ -297,24 +334,27 @@ export const execute = {
                         )
 
                         break
+
                     }
 
                     case "contains": {
-                        const operandAlpha = String(this.stack.pop())
-                        const operandBeta = String(this.stack.pop())
+                        const string = String(this.stack.pop())
+                        const argument = String(this.stack.pop())
 
-                        this.stack.push(Number(operandAlpha.includes(operandBeta)))
+                        this.stack.push(Number(string.includes(argument)))
 
                         break
+
                     }
 
                     case "remove": {
-                        const operandAlpha = String(this.stack.pop())
-                        const operandBeta = String(this.stack.pop())
+                        const string = String(this.stack.pop())
+                        const argument = String(this.stack.pop())
 
-                        this.stack.push(operandAlpha.replaceAll(operandBeta, ""))
+                        this.stack.push(string.replaceAll(argument, ""))
 
                         break
+
                     }
 
                     case "any": {
@@ -331,77 +371,85 @@ export const execute = {
                         this.stack.push(randomOperand)
 
                         break
+
                     }
 
                     case "startsWith": {
-                        const operandAlpha = String(this.stack.pop())
-                        const operandBeta = String(this.stack.pop())
+                        const string = String(this.stack.pop())
+                        const argument = String(this.stack.pop())
 
-                        this.stack.push(operandAlpha.startsWith(operandBeta) ? 1 : 0)
+                        this.stack.push(string.startsWith(argument) ? 1 : 0)
 
                         break
+
                     }
 
                     case "endsWith": {
-                        const operandAlpha = String(this.stack.pop())
-                        const operandBeta = String(this.stack.pop())
+                        const string = String(this.stack.pop())
+                        const argument = String(this.stack.pop())
 
-                        this.stack.push(operandAlpha.endsWith(operandBeta) ? 1 : 0)
+                        this.stack.push(string.endsWith(argument) ? 1 : 0)
 
                         break
+
                     }
 
                     case "len": {
-                        const operand = String(this.stack.pop())
+                        const string = String(this.stack.pop())
 
-                        this.stack.push(operand.length)
+                        this.stack.push(string.length)
 
                         break
+
                     }
 
                     case "upper": {
-                        const operand = String(this.stack.pop())
+                        const string = String(this.stack.pop())
 
-                        this.stack.push(operand.toUpperCase())
+                        this.stack.push(string.toUpperCase())
 
                         break
+
                     }
 
                     case "lower": {
-                        const operand = String(this.stack.pop())
+                        const string = String(this.stack.pop())
 
-                        this.stack.push(operand.toLowerCase())
+                        this.stack.push(string.toLowerCase())
 
                         break 
+
                     }
 
                     case "capital": {
-                        const operand = String(this.stack.pop())
+                        const string = String(this.stack.pop())
 
-                        this.stack.push(`${operand[0].toUpperCase()}${operand.slice(1)}`)
+                        this.stack.push(`${string[0].toUpperCase()}${string.slice(1)}`)
 
                         break
+
                     }
 
                     case "unCapital": {
-                        const operand = String(this.stack.pop())
+                        const string = String(this.stack.pop())
 
-                        this.stack.push(`${operand[0].toLowerCase()}${operand.slice(1)}`)
+                        this.stack.push(`${string[0].toLowerCase()}${string.slice(1)}`)
 
                         break
+
                     }
 
                     case "charAt": {
-                        const operand = this.stack.pop()
+                        const string = this.stack.pop()
                         let index = this.coreTools.isNumber(this.stack.pop())
 
                         // For example charAt('word', -1) -1 + 4 = 3 -> d
                         if (index < 0) {
-                            index += operand.length
+                            index += string.length
                         }
 
-                        if (index < operand.length && index >= 0){
-                            this.stack.push(operand[index])
+                        if (index < string.length && index >= 0){
+                            this.stack.push(string[index])
 
                         } else {
                             this.stack.push("")
@@ -413,38 +461,38 @@ export const execute = {
                     }
 
                     case "extendEnd": {
-                        const operandAlpha = this.stack.pop()
-                        const operandBeta = this.stack.pop()
+                        const string = this.stack.pop()
+                        const argument = this.stack.pop()
 
-                        this.stack.push(`${operandAlpha}${operandBeta}`)
+                        this.stack.push(`${string}${argument}`)
 
                         break
 
                     }
 
                     case "dropEnd": {
-                        const operand = this.stack.pop()
+                        const string = this.stack.pop()
 
-                        this.stack.push(operand.slice(0, -1))
+                        this.stack.push(string.slice(0, -1))
 
                         break
 
                     }
 
                     case "extendStart": {
-                        const operandAlpha = this.stack.pop()
-                        const operandBeta = this.stack.pop()
+                        const string = this.stack.pop()
+                        const argument = this.stack.pop()
 
-                        this.stack.push(`${operandBeta}${operandAlpha}`)
+                        this.stack.push(`${argument}${string}`)
 
                         break
 
                     }
 
                     case "dropStart": {
-                        const operand = this.stack.pop()
+                        const string = this.stack.pop()
 
-                        this.stack.push(operand.slice(1))
+                        this.stack.push(string.slice(1))
 
                         break
 
@@ -456,82 +504,93 @@ export const execute = {
                         this.stack.push(String(this.stack.pop()))
 
                         break
+
                     }
 
                     case "parseNum": {
                         this.stack.push(this.coreTools.isNumber(this.stack.pop()))
 
                         break
+
                     }
 
                     case "isStr": {
                         this.stack.push(isNaN(this.stack.pop()) ? 1 : 0)
 
                         break
+
                     }
 
                     case "isNum": {
                         this.stack.push(isNaN(this.stack.pop()) ? 0 : 1)
 
                         break
+
                     }
                     
                     // Date module
 
                     case "datetime": {
-                        const date = new Date()
+                        const currentDate = new Date()
 
-                        this.stack.push(`${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`)
+                        this.stack.push(`${currentDate.getFullYear()}-${currentDate.getMonth()}-${currentDate.getDate()}`)
 
                         break
+
                     }
 
                     case "getYear": {
-                        const date = new Date()
+                        const currentDate = new Date()
 
-                        this.stack.push(date.getFullYear())
+                        this.stack.push(currentDate.getFullYear())
 
                         break
+
                     }
 
                     case "getMonth": {
-                        const date = new Date()
+                        const dacurrentDatete = new Date()
 
-                        this.stack.push(date.getMonth())
+                        this.stack.push(currentDate.getMonth())
 
                         break
+
                     }
 
                     case "getDay": {
-                        const date = new Date()
+                        const currentDate = new Date()
 
-                        this.stack.push(date.getDate())
+                        this.stack.push(currentDate.getDate())
 
                         break
+
                     }
 
                     case "getHour": {
-                        const date = new Date()
+                        const currentDate = new Date()
 
-                        this.stack.push(date.getHours())
+                        this.stack.push(currentDate.getHours())
 
                         break
+
                     }
 
                     case "getMinute": {
-                        const date = new Date()
+                        const currentDate = new Date()
 
-                        this.stack.push(date.getMinutes())
+                        this.stack.push(currentDate.getMinutes())
 
                         break
+
                     }
 
                     case "getSecond": {
-                        const date = new Date()
+                        const currentDate = new Date()
 
-                        this.stack.push(date.getSeconds())
+                        this.stack.push(currentDate.getSeconds())
 
                         break
+
                     }
                         
                     // Control flow
@@ -543,15 +602,14 @@ export const execute = {
 
                         return codeBlock
 
-                        break
                     }
 
                     case "if":{
                         const codeBlockIf = this.codeBlockMap[this.stack.pop()]
                         const codeBlockElse = this.codeBlockMap[this.stack.pop()]
-                        const operand = this.coreTools.isNumber(this.stack.pop())
+                        const condition = this.coreTools.isNumber(this.stack.pop())
 
-                        if (operand > 0) {
+                        if (condition > 0) {
                             this.executionStack.push([codeBlockIf,0])
 
                         } else {
@@ -560,6 +618,7 @@ export const execute = {
                         }
 
                         break
+
                     }
 
                     // Variables
@@ -573,7 +632,10 @@ export const execute = {
                         this.stack.push(value)
 
                         break
+
                     }
+
+                    // Exit
 
                     case "exit": {
                         let exitLine = String(this.stack.pop())
@@ -587,6 +649,7 @@ export const execute = {
                         }
 
                         break
+
                     }
 
                     // Functions that the user can't write
@@ -597,12 +660,14 @@ export const execute = {
                         this.stack.pop()
 
                         break
+
                     }
 
                     case "end": {
                         this.executionStack.pop()
 
                         break
+
                     }
                 }
 
