@@ -105,30 +105,26 @@ export const initServer = {
                         const stats = getStats(markdownFilePath)
 
                         if (route in this.loCache.htmlRouteMap) {
-                            let [htmlFile, fractalBytecode] = this.loCache.getFile(route, "markdown", stats)
-
-                            htmlFile = htmlFile.split("\n")
+                            const [htmlFile, fractalBytecode] = this.loCache.getFile(route, "markdown", stats)
                             
-                            htmlFile = await this.workerPool.runTask({htmlFile: htmlFile, fractalBytecode: fractalBytecode})
+                            const htmlResponse = await this.workerPool.runTask({htmlFile: htmlFile, fractalBytecode: fractalBytecode})
 
                             result.statusCode = 200
                             result.setHeader('Content-Type', 'text/html')
-                            result.end(htmlFile)
+                            result.end(htmlResponse)
 
                             console.log(`[Hawk] Origin ${request.socket.remoteAddress} has requested file named ${route}.md`)
 
                         } else if (stats) {
                             this.loCache.cacheMarkdown(route)
 
-                            let [htmlFile, fractalBytecode] = this.loCache.getFile(route, "markdown", stats)
-
-                            htmlFile = htmlFile.split("\n")
+                            const [htmlFile, fractalBytecode] = this.loCache.getFile(route, "markdown", stats)
                             
-                            htmlFile = await this.workerPool.runTask({htmlFile: htmlFile, fractalBytecode: fractalBytecode})
+                            const htmlResponse = await this.workerPool.runTask({htmlFile: htmlFile, fractalBytecode: fractalBytecode})
 
                             result.statusCode = 200
                             result.setHeader('Content-Type', 'text/html')
-                            result.end(htmlFile)
+                            result.end(htmlResponse)
 
                             console.log(`[Hawk] Origin ${request.socket.remoteAddress} has requested file named ${route}.md`)
 
