@@ -407,6 +407,44 @@ export const execute = {
 
                     }
 
+                    case "extendEnd": {
+                        const operandAlpha = this.stack.pop()
+                        const operandBeta = this.stack.pop()
+
+                        this.stack.push(`${operandAlpha}${operandBeta}`)
+
+                        break
+
+                    }
+
+                    case "dropEnd": {
+                        const operand = this.stack.pop()
+
+                        this.stack.push(operand.slice(0, -1))
+
+                        break
+
+                    }
+
+                    case "extendStart": {
+                        const operandAlpha = this.stack.pop()
+                        const operandBeta = this.stack.pop()
+
+                        this.stack.push(`${operandBeta}${operandAlpha}`)
+
+                        break
+
+                    }
+
+                    case "dropStart": {
+                        const operand = this.stack.pop()
+
+                        this.stack.push(operand.slice(1))
+
+                        break
+
+                    }
+
                     // Data type functions
 
                     case "parseStr": {

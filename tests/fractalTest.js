@@ -66,7 +66,11 @@ const testCases = [
     "main [print(cos(1))]",
     "main [print(tan(1))]",
     "main [print('test', 'test', 'test')]",
-    "main [print(charAt('word', 0), charAt('word', -1), charAt('word', 5), charAt('word', -5))]"
+    "main [print(charAt('word', 0), charAt('word', -1), charAt('word', 5), charAt('word', -5))]",
+    "main [print(dropEnd('example'))]",
+    "main [print(dropStart('example'))]",
+    "main [print(extendEnd('word', '1'))]",
+    "main [print(extendStart('word', '2'))]"
 ]
 
 // Expected output buffers of the individual tests
@@ -131,7 +135,11 @@ const expectedOutputBuffers = [
     ["0.5403023058681398"],
     ["1.5574077246549023"],
     ["test test test"],
-    ["w d"]
+    ["w d"],
+    ["exampl"],
+    ["xample"],
+    ["word1"],
+    ["2word"]
 ]
 
 const totalTests = testCases.length

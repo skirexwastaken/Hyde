@@ -85,6 +85,12 @@ export const FUNCTIONS = {
 
     "charAt": 2,
 
+    "extendEnd": 2,
+    "dropEnd": 1,
+
+    "extendStart": 2,
+    "dropStart": 1,
+
     // Data types
     "parseStr": 1,
     "parseNum": 1,
