@@ -60,11 +60,9 @@ function assembleResponse(htmlFile, fractalBytecode) {
 }
 
 parentPort.on('message', (data) => {
-    let {htmlFile, fractalBytecode} = data
+    const {htmlFile, fractalBytecode} = data
 
-    htmlFile = htmlFile.split("\n")
+    const htmlResponse = assembleResponse(htmlFile.split("\n"), fractalBytecode)
 
-    htmlFile = assembleResponse(htmlFile, fractalBytecode)
-
-    parentPort.postMessage(htmlFile)
+    parentPort.postMessage(htmlResponse)
 })
