@@ -369,5 +369,36 @@
       }
     ],
     {}
+  ],
+  [
+    [
+      {
+        "main": [
+          [
+            "number",
+            0
+          ],
+          [
+            "function",
+            "print"
+          ],
+          [
+            "function",
+            "pop"
+          ],
+          [
+            "function",
+            "end"
+          ]
+        ]
+      },
+      {
+        "variableCount": 2
+      }
+    ],
+    {
+      "username": "",
+      "country": ""
+    }
   ]
 ]

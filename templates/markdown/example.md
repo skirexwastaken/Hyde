@@ -143,3 +143,23 @@ important(You should seriously finish the readme)
 warning(Readme is not yet fully finished)
 
 caution(No one knows when the readme will be finished)
+
+# Example of post request
+
+<@==
+input[Username](username)
+input[Country](country)
+
+submit(Submit)
+
+===>
+
+<!== 
+main [
+    let(username, if(parseStr(username), "None", not(eq(username, '')))),
+    let(country, if(parseStr(country), "None", not(eq(country, '')))),  
+
+    print('Your username is ${username}'),
+    print('You are from ${country}')
+]
+===>
