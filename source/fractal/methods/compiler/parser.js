@@ -81,7 +81,7 @@ export const parser =  {
                         }
 
                     // Number
-                    } else if (!isNaN(keyword) && keyword != ""){
+                    } else if (!isNaN(keyword) && keyword.length != 0){
                         reversedPolishNotationLine[keywordIndex] = ["number", keyword]
                     
                     // String
@@ -110,7 +110,6 @@ export const parser =  {
                         
                         // Proper variable
                         } else {
-
                             // Variable needs to be declared before being used
                             if (!(keyword in this.MemoryManager.memoryMap)) {
                                 throw new Error(`Syntax Error: Variable [${keyword}] is undeclared`)

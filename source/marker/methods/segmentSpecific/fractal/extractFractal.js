@@ -44,7 +44,7 @@ export const extractFractal = {
             }
         })
 
-        const fractalBytecode = this.compileFractalCode(fractalCode)
+        const fractalBytecode = this.compileFractalCode(fractalCode, filename)
 
         const fractalBytecodeFilename = filename.replace(".md",".fsc")
         const fractalBytecodePath = path.resolve(scriptDirectory, fractalBytecodeFilename)

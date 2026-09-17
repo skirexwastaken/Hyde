@@ -6,6 +6,22 @@ export const processMarkdown = {
         // Regex is looking of <!-- ... -->
         markdownContent = markdownContent.replace(/<!--[\s\S]*?-->/g,"")
 
+        // Forms interpreter
+        markdownContent = markdownContent.replace(/<@==([\S\s]*?)===>/g, (match, content) => {
+            content = content.replace(/input\[([\S\s]*?)\]\((\S.*?)\)/g, (match, message, variableName) => {
+                 return `<p>${message}<input type="text" name="${variableName}"></p>`
+
+            })
+
+            content = content.replace(/submit\(([\S\s]*?)\)/g, (match, message) => {
+                return `<button type="submit">${message}</button>`
+
+            })
+
+            return `<form action="submit">${content}</form>`
+
+        })
+
         // Extracting Fractal code from the Markdown file
         let fractalCode
         [markdownContent, fractalCode] = this.extractFractal(markdownContent, filename)

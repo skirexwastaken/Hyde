@@ -1,7 +1,7 @@
 import {Fractal} from "../../../../fractal/fractal.js"
 
 export const compileFractalCode = {
-    compileFractalCode(fractalCode) {
+    compileFractalCode(fractalCode, route) {
         let compiledBytecode = []
         for (const line of fractalCode) {
             const [bytecode, inputArguments] = line
@@ -14,7 +14,7 @@ export const compileFractalCode = {
             } catch (error) {
                 compiledBytecode.push([fractalInstance.compile("main [print()]"), inputArguments])
 
-                console.log(`[Fractal] ${error.message} in file ${route}.fs`)
+                console.log(`[Fractal] ${error.message} in file ${route.replace(".md","")}.fs`)
             }
         }
 
