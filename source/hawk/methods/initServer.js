@@ -475,6 +475,18 @@ export const initServer = {
                         }
                     })
                 }
+
+            } else {
+                stream.respond({
+                    ":status": 404,
+                    "content-type": "text/html"
+
+                })
+
+                stream.end("<h1>Not Found</h1>")
+
+                console.info(`[Hawk] [WARNING] Origin ${stream.session.socket.remoteAddress} has used an invalid method ${method}`)
+
             }
         })
 
