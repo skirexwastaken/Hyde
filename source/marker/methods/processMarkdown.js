@@ -3,6 +3,7 @@ export const processMarkdown = {
     processMarkdown(markdownContent, filename){
 
         // Removing comments
+        // Regex is looking of <!-- ... -->
         markdownContent = markdownContent.replace(/<!--[\s\S]*?-->/g,"")
 
         // Extracting Fractal code from the Markdown file
