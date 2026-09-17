@@ -86,7 +86,35 @@ export const generateHtml = {
                     
                 })
 
+                // Note - Marker Specific
+                line = line.replace(/note\(([\s\S]*?)\)/g, (match, text) => {                    
+                    return `<note>NOTE: ${text}</note>`
 
+                })
+
+                // Tip - Marker Specific
+                line = line.replace(/tip\(([\s\S]*?)\)/g, (match, text) => {                    
+                    return `<tip>TIP: ${text}</tip>`
+
+                })
+
+                // Important - Marker Specific
+                line = line.replace(/important\(([\s\S]*?)\)/g, (match, text) => {                    
+                    return `<important>IMPORTANT: ${text}</important>`
+
+                })
+
+                // Warning - Marker Specific
+                line = line.replace(/warning\(([\s\S]*?)\)/g, (match, text) => {                    
+                    return `<warning>WARNING: ${text}</warning>`
+
+                })
+
+                // Caution - Marker Specific
+                line = line.replace(/caution\(([\s\S]*?)\)/g, (match, text) => {                    
+                    return `<caution>CAUTION: ${text}</caution>`
+
+                })
 
                 // Title H1 <-> H6
                 // Note: Styles are also not applied to titles

@@ -131,3 +131,15 @@ main [
     print('Current time: ${h}:${m}:${s}')
 ]
 ===>
+
+# Examples of specific tags
+
+note(Finish writing readme)
+
+tip(Readme will be pretty helpful once it's done)
+
+important(You should seriously finish the readme)
+
+warning(Readme is not yet fully finished)
+
+caution(No one knows when the readme will be finished)
