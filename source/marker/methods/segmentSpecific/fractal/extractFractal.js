@@ -49,7 +49,7 @@ export const extractFractal = {
         const fractalBytecodeFilename = filename.replace(".md",".fsc")
         const fractalBytecodePath = path.resolve(scriptDirectory, fractalBytecodeFilename)
 
-        fs.writeFileSync(fractalBytecodePath, JSON.stringify(fractalBytecode, null, 2), "utf-8")
+        fs.writeFileSync(fractalBytecodePath, JSON.stringify(fractalBytecode, null, process.env.BYTECODE_INDENTATION == "1" ? 2 : 0), "utf-8")
 
         return [rawMarkdown, fractalBytecode]
     }
