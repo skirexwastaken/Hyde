@@ -85,9 +85,7 @@ export const parser =  {
                         reversedPolishNotationLine[keywordIndex] = ["number", keyword]
                     
                     // String
-                    } else if (keyword[0] == "'" || keyword.length == 0){
-                        console.log(keyword)
-
+                    } else if (keyword[0] == "'"){
                         reversedPolishNotationLine[keywordIndex] = ["string", keyword.slice(1, -1)]
 
                     // Variable / Function with a variable amount of arguments
