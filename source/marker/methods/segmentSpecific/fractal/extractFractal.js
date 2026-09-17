@@ -11,11 +11,11 @@ export const extractFractal = {
         let fractalCode = []
         let inputArguments = {}
 
-        rawMarkdown = rawMarkdown.replace(/<!==([\s\S]*?)===>|\$\{(\S*?)\}/g, (match, codeBlock, variableName) => {
+        rawMarkdown = rawMarkdown.replace(/<!==([\s\S]*?)===>|\$\{(\S*?)\}|<input type="text" name="(\S*?)">/g, (match, codeBlock, variableName, variableInput) => {
             let codeLine = ""
             let definingString  = false
 
-            if (match.startsWith("<")) {
+            if (match.startsWith("<!==")) {
                 for (const symbol of codeBlock) {
                     if ((symbol != " " || definingString ) && (symbol != "\n" || definingString )) {
                         codeLine += symbol
@@ -38,9 +38,16 @@ export const extractFractal = {
                 return "<!==#===>"
 
             } else {
-                inputArguments[variableName] = ""
+                if (variableName) {
+                    inputArguments[variableName] = ""
+
+                } else {
+                    inputArguments[variableInput] = ""
+
+                }
 
                 return match
+
             }
         })
 

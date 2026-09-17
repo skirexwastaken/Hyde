@@ -8,7 +8,7 @@ export const processMarkdown = {
 
         // Forms interpreter
         markdownContent = markdownContent.replace(/<@==([\S\s]*?)===>/g, (match, content) => {
-            content = content.replace(/input\[([\S\s]*?)\]\((\S.*?)\)/g, (match, message, variableName) => {
+            content = content.replace(/input\[([\S\s]*?)\]\((\S*?)\)/g, (match, message, variableName) => {
                  return `<p>${message}<input type="text" name="${variableName}"></p>`
 
             })
