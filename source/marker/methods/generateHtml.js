@@ -44,6 +44,7 @@ export const generateHtml = {
                     cssFile = filename
 
                     return ""
+                    
                 })
 
                 // Favicon file - Marker Specific
