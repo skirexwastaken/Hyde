@@ -48,3 +48,7 @@ code {
   tab-size: 4;
   margin: 10px 0;
 }
+
+.structuralCharacter {
+    color: var(--secondaryTextColour);
+}

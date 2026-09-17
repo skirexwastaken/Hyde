@@ -38,7 +38,7 @@ export const processJsonWeb = {
                     // Applying color to structural characters
                     let fullLine = `${spaces}${line.trim()}`
                     for (const symbol of structuralCharacters){
-                        fullLine = fullLine.replaceAll(symbol, `<span style='color: #2b8a3e'>${symbol}</span>`)
+                        fullLine = fullLine.replaceAll(symbol, `<span class="structuralCharacter" >${symbol}</span>`)
 
                     }
 
