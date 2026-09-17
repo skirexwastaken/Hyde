@@ -1,5 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=IBM+Plex+Mono:wght@400;700&family=Inconsolata:wght@400;700&family=JetBrains+Mono:wght@400;700&family=Share+Tech+Mono&family=Space+Mono:wght@400;700&family=VT323&display=swap');
 
+:root {
+    --noteColour: #0066ff;
+    --tipColour: #2e8b57;
+    --importantColour: #702963;
+    --warningColour: #ffd700;
+    --cautionColour: #dc143c;
+    
+}
+
 body {
     background-color: var(--backgroundColour);
     width: 100%;
@@ -10,6 +19,7 @@ body {
     margin: 0;
     padding: 40px 20px;
     box-sizing: border-box;
+
 }
 
 .markdownContainer {
@@ -17,38 +27,100 @@ body {
     max-width: 140ch;
     box-sizing: border-box;
     text-align: left;
+
 }
 
 h1, h2, h3, h4, h5, h6 {
     color: var(--textColour);
     font-family: 'JetBrains Mono', monospace !important;
+
 }
 
 p {
     color: var(--textColour);
     font-family: 'JetBrains Mono', monospace !important;
+
 }
 
 a {
     color: var(--textColour);
     font-family: 'JetBrains Mono', monospace !important;
+
 }
 
 br {
     display: block;
     font-family: 'JetBrains Mono', monospace !important;
+
 }
 
 code {
-  display: inline-block;
-  font-family: 'JetBrains Mono', monospace !important;
-  color: var(--textColour) !important;
-  border: 2px solid var(--textColour);
-  padding: 12px 16px;
-  tab-size: 4;
-  margin: 10px 0;
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace !important;
+    color: var(--textColour) !important;
+    border: 2px solid var(--textColour);
+    padding: 12px 16px;
+    tab-size: 4;
+    margin: 10px 0;
+
 }
 
 .structuralCharacter {
     color: var(--secondaryTextColour);
+}
+
+note {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace !important;
+    color: var(--noteColour) !important;
+    border: 2px solid var(--noteColour);
+    padding: 12px 16px;
+    tab-size: 4;
+    margin: 10px 0;
+
+}
+
+tip {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace !important;
+    color: var(--tipColour) !important;
+    border: 2px solid var(--tipColour);
+    padding: 12px 16px;
+    tab-size: 4;
+    margin: 10px 0;
+
+}
+
+important {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace !important;
+    color: var(--importantColour) !important;
+    border: 2px solid var(--importantColour);
+    padding: 12px 16px;
+    tab-size: 4;
+    margin: 10px 0;
+
+}
+
+warning {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace !important;
+    color: var(--warningColour) !important;
+    border: 2px solid var(--warningColour);
+    padding: 12px 16px;
+    tab-size: 4;
+    margin: 10px 0;
+
+}
+
+
+caution {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace !important;
+    color: var(--cautionColour) !important;
+    border: 2px solid var(--cautionColour);
+    padding: 12px 16px;
+    tab-size: 4;
+    margin: 10px 0;
+
 }
