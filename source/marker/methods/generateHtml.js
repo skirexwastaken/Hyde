@@ -39,6 +39,7 @@ export const generateHtml = {
             } else {
 
                 // CSS File - Marker Specific
+                // Regex is looking for css(...)
                 line = line.replace(/css\[(\S*?)\]/g, (match, filename) => {
                     cssFile = filename
 
@@ -46,6 +47,7 @@ export const generateHtml = {
                 })
 
                 // Favicon file - Marker Specific
+                // Regex is looking for icon(...)
                 line = line.replace(/icon\[(\S*?)\]/g, (match, filename) => {
                     iconFile = filename
 
@@ -54,6 +56,7 @@ export const generateHtml = {
                 })
 
                 // Html Title - Marker Specifc
+                // Regex is looking for title(...)
                 line = line.replace(/title\[(\S*?)\]/g, (match, title) => {
                     htmlTitle = title
 
@@ -62,12 +65,14 @@ export const generateHtml = {
                 })
 
                 // Image - Marker Specific
+                // Regex is looking for image[...](...)
                 line = line.replace(/image\[([\S\s]*?)\]\((\S*?)\)/g, (match, altText, source) => {                    
                     return `<img src='${source}' alt='${altText}'>`
 
                 })
 
                 // Image - Markdown
+                // Regex is looking for ![...](...)
                 line = line.replace(/\!\[([\S\s]*?)\]\((\S*?)\)/g, (match, altText, source) => {                    
                     return `<img src='${source}' alt='${altText}'>`
 
@@ -75,42 +80,49 @@ export const generateHtml = {
 
 
                 // Website link - Marker Specific
+                // Regex is looking for link[...](...)
                 line = line.replace(/link\[(.*)\]\((\S.*)\)/g, (match, name, route) => {
                     return `<a href="${route}">${name}</a>`
                     
                 })
 
                 // Website - Markdown
+                // Regex is looking for [...](...)
                 line = line.replace(/\[(.*)\]\((\S.*)\)/g, (match, name, route) => {
                     return `<a href="${route}">${name}</a>`
                     
                 })
 
                 // Note - Marker Specific
+                // Regex is looking for note(...)
                 line = line.replace(/note\(([\s\S]*?)\)/g, (match, text) => {                    
                     return `<note>NOTE: ${text}</note>`
 
                 })
 
                 // Tip - Marker Specific
+                // Regex is looking for tip(...)
                 line = line.replace(/tip\(([\s\S]*?)\)/g, (match, text) => {                    
                     return `<tip>TIP: ${text}</tip>`
 
                 })
 
                 // Important - Marker Specific
+                // Regex is looking for important(...)
                 line = line.replace(/important\(([\s\S]*?)\)/g, (match, text) => {                    
                     return `<important>IMPORTANT: ${text}</important>`
 
                 })
 
                 // Warning - Marker Specific
+                // Regex is looking for warning(...)
                 line = line.replace(/warning\(([\s\S]*?)\)/g, (match, text) => {                    
                     return `<warning>WARNING: ${text}</warning>`
 
                 })
 
                 // Caution - Marker Specific
+                // Regex is looking for caution(...)
                 line = line.replace(/caution\(([\s\S]*?)\)/g, (match, text) => {                    
                     return `<caution>CAUTION: ${text}</caution>`
 
@@ -123,6 +135,7 @@ export const generateHtml = {
                         case "#":
 
                             // Valid title needs to have 1 <-> 6 # followed by whitespace
+                            // Regex is looking for # ...
                             line = line.replace(/^(#*)\s*(.*)/, (match, subString1, subString2) => {
                                 if (subString1.length < 7){
                                     return `<h${subString1.length}>${subString2}</h${subString1.length}>`
