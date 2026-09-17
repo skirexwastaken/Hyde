@@ -358,50 +358,123 @@ export const initServer = {
 
                     stream.end("<h1>Not Found</h1>")
 
-                    return
+                } else {
 
-                }
-
-                route = new URL(pageOrigin).pathname.slice(1)
-
-                const markdownFilePath = path.resolve(markdownDirectory, `${route}.md`)
-
-                const stats = getStats(markdownFilePath)
-
-                let streamData = ""
-                stream.on("data", (chunk) => {
-                    streamData += chunk
-
-                })
-
-                stream.on("end", async () => {
-                    const postArguments = querystring.parse(streamData)
-
-                    let [htmlFile, fractalBytecode] = this.loCache.getFile(route, "markdown", stats)
-
-                    for (const fractalBytecodeIndex in fractalBytecode) {
-                        for (const variableName in fractalBytecode[fractalBytecodeIndex][1]) {
-                            if (variableName in postArguments) {
-                                fractalBytecode[fractalBytecodeIndex][1][variableName] = postArguments[variableName]
-
-                            }
-                        }
-
-                    }
-                    
-                    const htmlResponse = await this.workerPool.runTask({htmlFile: htmlFile, fractalBytecode: fractalBytecode})
-
-                    stream.respond({
-                        ":status": 200,
-                        "content-type": "text/html"
+                    let streamData = ""
+                    stream.on("data", (chunk) => {
+                        streamData += chunk
 
                     })
 
-                    stream.end(htmlResponse)
+                    stream.on("end", async () => {
 
-                    console.log(`[Hawk] Origin ${stream.session.socket.remoteAddress} has requested file named ${route}.md`)
+                        // The route / results to index.html
+                        if (route == "") {
+                            route = "index"
 
-                })
+                        }
+
+                        if (extension == undefined) {
+                            extension = "html"
+
+                        }
+
+                        // When requesting a HTML file, the file is firstly loaded together with Fractal code associated with it
+                        // Then the Fractal code is executed, code blocks inside of the HTML file are replaced with print output of the code that's located there
+                        // Finally, variables embeded inside of text are resolved
+
+                        route = new URL(pageOrigin).pathname.slice(1)
+
+                        const markdownFilePath = path.resolve(markdownDirectory, `${route}.md`)
+
+                        const stats = getStats(markdownFilePath)
+
+                        // Anti directory traversal check
+                        if (!(markdownFilePath.startsWith(markdownDirectory))) {
+                                stream.respond({
+                                    ":status": 404,
+                                    "content-type": "text/html"
+
+                                })
+
+                                stream.end("<h1>Not Found</h1>")
+
+                                console.info(`[Hawk] [WARNING] Origin ${stream.session.socket.remoteAddress} has tried to traverse directories with the following path ${markdownFilePath}`)
+
+                        } else {
+                            const stats = getStats(markdownFilePath)
+
+                            if (route in this.loCache.markdownRouteMap) {
+                                const postArguments = querystring.parse(streamData)
+
+                                let [htmlFile, fractalBytecode] = this.loCache.getFile(route, "markdown", stats)
+
+                                for (const fractalBytecodeIndex in fractalBytecode) {
+                                    for (const variableName in fractalBytecode[fractalBytecodeIndex][1]) {
+                                        if (variableName in postArguments) {
+                                            fractalBytecode[fractalBytecodeIndex][1][variableName] = postArguments[variableName]
+
+                                        }
+                                    }
+
+                                }
+                                
+                                const htmlResponse = await this.workerPool.runTask({htmlFile: htmlFile, fractalBytecode: fractalBytecode})
+
+                                stream.respond({
+                                    ":status": 200,
+                                    "content-type": "text/html"
+
+                                })
+
+                                stream.end(htmlResponse)
+
+                                console.log(`[Hawk] Origin ${stream.session.socket.remoteAddress} has requested file named ${route}.md`)
+
+                            } else if (stats) {
+                                this.loCache.cacheMarkdown(route, stats)
+
+                                const postArguments = querystring.parse(streamData)
+
+                                let [htmlFile, fractalBytecode] = this.loCache.getFile(route, "markdown", stats)
+
+                                for (const fractalBytecodeIndex in fractalBytecode) {
+                                    for (const variableName in fractalBytecode[fractalBytecodeIndex][1]) {
+                                        if (variableName in postArguments) {
+                                            fractalBytecode[fractalBytecodeIndex][1][variableName] = postArguments[variableName]
+
+                                        }
+                                    }
+
+                                }
+                                
+                                const htmlResponse = await this.workerPool.runTask({htmlFile: htmlFile, fractalBytecode: fractalBytecode})
+
+                                stream.respond({
+                                    ":status": 200,
+                                    "content-type": "text/html"
+
+                                })
+
+                                stream.end(htmlResponse)
+
+                                console.log(`[Hawk] Origin ${stream.session.socket.remoteAddress} has requested file named ${route}.md`)
+
+                            } else {
+                                stream.respond({
+                                    ":status": 404,
+                                    "content-type": "text/html"
+
+                                })
+
+                                stream.end("<h1>Not Found</h1>")
+
+                                console.info(`[Hawk] [WARNING] Origin ${stream.session.socket.remoteAddress} has requested invalid file named ${route}.md`)
+
+                            }
+                        }
+                    })
+                }
             }
         })
 
