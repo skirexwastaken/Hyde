@@ -30,13 +30,8 @@ export const initServer = {
 
         server.on('stream', async (stream, headers) => {
 
-            let extension, route, postArguments
+            let postArguments
             if (headers[":method"] == "POST") {
-                const pageOrigin = headers["referer"]
-
-                extension = "html"
-                route = new URL(pageOrigin).pathname.slice(1)
-
                 postArguments = await new Promise((resolve) => {
                     let streamData = ""
 
@@ -47,20 +42,18 @@ export const initServer = {
 
                     stream.on("end", () => {
                         resolve(querystring.parse(streamData))
-                        
+
                     })
                 })
+            }
 
-            } else {
+            // Removes the / at the start
+            const extension = path.extname(headers[':path']).slice(1)
+            let route = headers[':path'].slice(1)
 
-                // Removes the / at the start
-                extension = path.extname(headers[':path']).slice(1)
-                route = headers[':path'].slice(1)
+            if (extension != "") {
+                route = route.slice(0, -(extension.length + 1))
 
-                if (extension != "") {
-                    route = route.slice(0, -(extension.length + 1))
-
-                }
             }
 
             switch (extension) {
