@@ -160,7 +160,10 @@ export const generateHtml = {
 
                     }
 
-                    line = `<p>${line}</p>`
+                    if (line[0] != "<") {
+                        line = `<p>${line}</p>`
+
+                    }
 
                     // Code block
                     line = this.processWrapper(line, "```", /(\`\`\`)/, "code")

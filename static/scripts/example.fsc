@@ -375,8 +375,98 @@
       {
         "main": [
           [
-            "number",
+            "string",
+            ""
+          ],
+          [
+            "variable",
             0
+          ],
+          [
+            "function",
+            "eq"
+          ],
+          [
+            "function",
+            "not"
+          ],
+          [
+            "string",
+            "elseCodeBlock1"
+          ],
+          [
+            "string",
+            "ifCodeBlock0"
+          ],
+          [
+            "function",
+            "if"
+          ],
+          [
+            "function",
+            "pop"
+          ],
+          [
+            "string",
+            ""
+          ],
+          [
+            "variable",
+            1
+          ],
+          [
+            "function",
+            "eq"
+          ],
+          [
+            "function",
+            "not"
+          ],
+          [
+            "string",
+            "elseCodeBlock3"
+          ],
+          [
+            "string",
+            "ifCodeBlock2"
+          ],
+          [
+            "function",
+            "if"
+          ],
+          [
+            "function",
+            "pop"
+          ],
+          [
+            "function",
+            "end"
+          ]
+        ],
+        "ifCodeBlock0": [
+          [
+            "string",
+            ""
+          ],
+          [
+            "variable",
+            0
+          ],
+          [
+            "string",
+            "Your username is "
+          ],
+          [
+            "number",
+            3
+          ],
+          [
+            "function",
+            "merge"
+          ],
+          [
+            "number",
+            1
           ],
           [
             "function",
@@ -384,7 +474,73 @@
           ],
           [
             "function",
-            "pop"
+            "end"
+          ]
+        ],
+        "elseCodeBlock1": [
+          [
+            "string",
+            "No username was submited"
+          ],
+          [
+            "number",
+            1
+          ],
+          [
+            "function",
+            "print"
+          ],
+          [
+            "function",
+            "end"
+          ]
+        ],
+        "ifCodeBlock2": [
+          [
+            "string",
+            ""
+          ],
+          [
+            "variable",
+            1
+          ],
+          [
+            "string",
+            "You are from "
+          ],
+          [
+            "number",
+            3
+          ],
+          [
+            "function",
+            "merge"
+          ],
+          [
+            "number",
+            1
+          ],
+          [
+            "function",
+            "print"
+          ],
+          [
+            "function",
+            "end"
+          ]
+        ],
+        "elseCodeBlock3": [
+          [
+            "string",
+            "No country was submited"
+          ],
+          [
+            "number",
+            1
+          ],
+          [
+            "function",
+            "print"
           ],
           [
             "function",

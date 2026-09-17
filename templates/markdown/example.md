@@ -156,10 +156,17 @@ submit(Submit)
 
 <!==
 main [
-    let(username, if(parseStr(username), "None", not(eq(username, '')))),
-    let(country, if(parseStr(country), "None", not(eq(country, '')))),  
+    if (
+        print('Your username is ${username}'),
+        print('No username was submited'),
+        not(eq(username, ''))
+    ),
 
-    print('Your username is ${username}'),
-    print('You are from ${country}')
+    if (
+        print('You are from ${country}')
+        print('No country was submited'),
+        not(eq(country, ''))
+    )
+
 ]
 ===>

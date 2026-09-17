@@ -18,7 +18,7 @@ export const processMarkdown = {
 
             })
 
-            return `<form action="submit" method="post">${content}</form>`
+            return `<form method="post">${content}</form>`
 
         })
 
