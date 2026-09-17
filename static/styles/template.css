@@ -70,7 +70,8 @@ code {
 }
 
 note {
-    display: inline-block;
+    display: block;
+    width: fit-content;
     font-family: 'JetBrains Mono', monospace !important;
     color: var(--noteColour) !important;
     border: 2px solid var(--noteColour);
@@ -81,7 +82,8 @@ note {
 }
 
 tip {
-    display: inline-block;
+    display: block;
+    width: fit-content;
     font-family: 'JetBrains Mono', monospace !important;
     color: var(--tipColour) !important;
     border: 2px solid var(--tipColour);
@@ -92,7 +94,8 @@ tip {
 }
 
 important {
-    display: inline-block;
+    display: block;
+    width: fit-content;
     font-family: 'JetBrains Mono', monospace !important;
     color: var(--importantColour) !important;
     border: 2px solid var(--importantColour);
@@ -103,7 +106,8 @@ important {
 }
 
 warning {
-    display: inline-block;
+    display: block;
+    width: fit-content;
     font-family: 'JetBrains Mono', monospace !important;
     color: var(--warningColour) !important;
     border: 2px solid var(--warningColour);
@@ -115,7 +119,8 @@ warning {
 
 
 caution {
-    display: inline-block;
+    display: block;
+    width: fit-content;
     font-family: 'JetBrains Mono', monospace !important;
     color: var(--cautionColour) !important;
     border: 2px solid var(--cautionColour);
