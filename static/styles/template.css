@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=IBM+Plex+Mono:wght@400;700&family=Inconsolata:wght@400;700&family=JetBrains+Mono:wght@400;700&family=Share+Tech+Mono&family=Space+Mono:wght@400;700&family=VT323&display=swap');
 
 :root {
-    --noteColour: #0066ff;
-    --tipColour: #2e8b57;
-    --importantColour: #702963;
-    --warningColour: #ffd700;
-    --cautionColour: #dc143c;
+    --noteColour: #6997DB;
+    --tipColour: #69DB7C;
+    --importantColour: #A269DB;
+    --warningColour: #DBD069;
+    --cautionColour: #DB6969;
     
 }
 
