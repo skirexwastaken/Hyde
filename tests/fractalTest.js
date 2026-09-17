@@ -72,6 +72,7 @@ const testCases = [
     "main [print(extendEnd('word', '1'))]",
     "main [print(extendStart('word', '2'))]",
     "main [print(sqrt(-16))]",
+    "main [print('')]"
 ]
 
 // Expected output buffers of the individual tests
@@ -141,7 +142,8 @@ const expectedOutputBuffers = [
     ["xample"],
     ["word1"],
     ["2word"],
-    ["0"]
+    ["0"],
+    [""]
 ]
 
 const totalTests = testCases.length
