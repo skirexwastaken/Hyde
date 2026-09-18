@@ -54,7 +54,7 @@ br {
 
 }
 
-code {
+code, form {
     display: inline-block;
     font-family: 'JetBrains Mono', monospace !important;
     color: var(--textColour) !important;
@@ -63,6 +63,26 @@ code {
     tab-size: 4;
     margin: 10px 0;
 
+}
+
+button {
+    background-color: var(--backgroundColour);
+    border-color: var(--textColour);
+    color: var(--textColour);
+    font-family: 'JetBrains Mono', monospace !important;
+    
+}
+
+input {
+    background-color: var(--backgroundColour);
+    border-color: var(--textColour);
+    color: var(--textColour);
+    font-family: 'JetBrains Mono', monospace !important;
+
+}
+
+input:focus {
+    outline: none;
 }
 
 .structuralCharacter {
