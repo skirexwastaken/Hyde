@@ -370,6 +370,7 @@ export const initServer = {
                             stream.respond({
                                 ":status": 404,
                                 "content-type": "text/html"
+                                
                             })
 
                             stream.end("<h1>Not Found</h1>")
