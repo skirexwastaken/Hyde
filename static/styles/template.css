@@ -81,8 +81,10 @@ input {
 
 }
 
-input:focus {
+input:focus, button:focus {
     outline: none;
+    box-shadow: none;
+    outline: 2px solid var(--textColour);
 }
 
 .structuralCharacter {
