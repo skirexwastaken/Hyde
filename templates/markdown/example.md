@@ -147,6 +147,11 @@ caution(No one knows when the readme will be finished)
 # Example of post request
 
 <@==
+
+${username}
+
+${country}
+
 input[Username](username)
 input[Country](country)
 
@@ -157,14 +162,14 @@ submit(Submit)
 <!==
 main [
     if (
-        print('Your username is ${username}'),
-        print('No username was submited'),
+        let(username, 'Your username is ${username}'),
+        let(username, 'No username was submited'),
         not(eq(username, ''))
     ),
 
     if (
-        print('You are from ${country}')
-        print('No country was submited'),
+        let(country, 'You are from ${country}')
+        let(country, 'No country was submited'),
         not(eq(country, ''))
     )
 

@@ -466,11 +466,11 @@
           ],
           [
             "number",
-            1
+            0
           ],
           [
             "function",
-            "print"
+            "let"
           ],
           [
             "function",
@@ -484,11 +484,11 @@
           ],
           [
             "number",
-            1
+            0
           ],
           [
             "function",
-            "print"
+            "let"
           ],
           [
             "function",
@@ -522,7 +522,7 @@
           ],
           [
             "function",
-            "print"
+            "let"
           ],
           [
             "function",
@@ -540,7 +540,7 @@
           ],
           [
             "function",
-            "print"
+            "let"
           ],
           [
             "function",
