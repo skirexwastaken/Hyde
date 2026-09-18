@@ -155,7 +155,7 @@ ${country}
 input[Username](username)
 input[Country](country)
 
-submit(Submit)
+submit[Submit]
 
 ===>
 

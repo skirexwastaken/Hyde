@@ -13,7 +13,7 @@ export const processMarkdown = {
 
             })
 
-            content = content.replace(/submit\(([\S\s]*?)\)/g, (match, message) => {
+            content = content.replace(/submit\[([\S\s]*?)\]/g, (match, message) => {
                 return `<button type="submit">${message}</button>`
 
             })
