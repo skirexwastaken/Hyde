@@ -1,3 +1,6 @@
+import {fileURLToPath} from "node:url"
+import path from "node:path"
+
 import {loCache} from "../loCache/loCache.js"
 import {Mytharis} from "../mytharis/mytharis.js"
 import {workerPool} from "../workerPool/workerPool.js"
@@ -9,7 +12,11 @@ export class Hawk{
     constructor() {
         this.loCache = new loCache()
         this.mytharis = new Mytharis()
-        this.workerPool = new workerPool("./source/hawk/methods/assembleResponse.js", process.env.WORKER_POOL_THREADS)
+
+        const currentDirectory = path.dirname(fileURLToPath(import.meta.url))
+        const workerScriptPath = path.resolve(currentDirectory, "./methods/assembleResponse.js")
+
+        this.workerPool = new workerPool(workerScriptPath, process.env.WORKER_POOL_THREADS)
 
     }
 }
