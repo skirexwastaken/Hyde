@@ -27,12 +27,14 @@ I[systemLog]
 J[CoreTools]
 K[MemoryManager]
 L[Hyde Runtime]
+M[fileIntegrityCheck]
 
 L --> A
 
 A --> B
 A --> C
 A --> I
+A --> M
 
 C <--> D
 C <--> E
