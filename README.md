@@ -27,7 +27,7 @@ I[systemLog]
 J[CoreTools]
 K[MemoryManager]
 L[Hyde Runtime]
-M[fileIntegrityCheck]
+M[File Integrity Check]
 
 L --> A
 
@@ -54,7 +54,7 @@ G <-->  K
 
 0. Hyde Runtime starts an instance of Hyde
 
-1. Hyde runs the Garbage Collector script and starts systemLog service
+1. Hyde runs Garbage Collector, File Integrity Check and starts systemLog service
 
 2. Hyde settups an instance of Hyde with vairables from the .env file
 
