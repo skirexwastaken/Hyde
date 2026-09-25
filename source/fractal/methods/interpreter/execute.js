@@ -533,7 +533,7 @@ export const execute = {
                     case "datetime": {
                         const currentDate = new Date()
 
-                        this.stack.push(`${currentDate.getFullYear()}-${currentDate.getMonth()}-${currentDate.getDate()}`)
+                        this.stack.push(`${currentDate.getFullYear()}-${currentDate.getMonth() + 1}-${currentDate.getDate()}`)
 
                         break
 
@@ -551,7 +551,7 @@ export const execute = {
                     case "getMonth": {
                         const dacurrentDatete = new Date()
 
-                        this.stack.push(currentDate.getMonth())
+                        this.stack.push(currentDate.getMonth() + 1)
 
                         break
 
