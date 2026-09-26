@@ -21,7 +21,7 @@ function assembleResponse(htmlFile, fractalBytecode) {
             const [instructionSets, metaData] = bytecode
 
             // Then a new Fractal instance is created
-            const fractalInstance = new Fractal(inputArguments)
+            const fractalInstance = new Fractal({"compiler": false, "interpreter": true}, inputArguments)
 
             // And finally the instructions sets and meta data can be put to Fractal interpreter which returns output arguments and buffer of all print outputs
             const [outputArguments, shellOutputBuffer] =  fractalInstance.interpreter(instructionSets, metaData)

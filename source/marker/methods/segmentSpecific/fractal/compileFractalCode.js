@@ -6,7 +6,7 @@ export const compileFractalCode = {
         for (const line of fractalCode) {
             const [bytecode, inputArguments] = line
 
-            const fractalInstance = new Fractal(inputArguments)
+            const fractalInstance = new Fractal({"compiler": true, "interpreter": false}, inputArguments)
             
             try {
                 compiledBytecode.push([fractalInstance.compile(bytecode), inputArguments])

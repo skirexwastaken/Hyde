@@ -23,30 +23,51 @@ import {interpreter} from "./methods/interpreter/interpreter.js"
 // Fractal code compiles into reusable bytecode that is then interpreted by a virtual machine
 // The compiler works on a principle of ahead of time compiling
 export class Fractal {
-    constructor(inputArguments){
+    constructor(options, inputArguments){
         this.coreTools = new coreTools()
 
         this.MemoryManager = new MemoryManager()
 
+        // Importing functions needed in both Compiler and Interpreter mode
+        Object.assign(
+            Fractal.prototype,
+
+            checkInputArguments,
+            generateOutputArguments,
+            loadInputArguments
+
+        )
+
+        // Importing functions needed in compiler mode
+        if (options["compiler"] == true) {
+            Object.assign(
+                Fractal.prototype,
+
+                argumentCounter,
+                argumentCountVerifier,
+                compile,
+                lexer,
+                parser,
+                scanner
+
+            )
+
+        }
+
+        // Importing options needed in interpreter mode
+        if (options["interpreter"] == true) {
+            Object.assign(
+                Fractal.prototype,
+
+                execute,
+                interpreter
+
+            )
+
+        }
+
         // Check if arguments are a valid object
         this.checkInputArguments(inputArguments)
+
     }
 }
-
-Object.assign(
-    Fractal.prototype,
-
-    checkInputArguments,
-    generateOutputArguments,
-    loadInputArguments,
-
-    argumentCounter,
-    argumentCountVerifier,
-    compile,
-    lexer,
-    parser,
-    scanner,
-    
-    execute,
-    interpreter
-)
