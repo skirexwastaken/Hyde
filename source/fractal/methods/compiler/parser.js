@@ -25,12 +25,12 @@ export const parser =  {
 
                 // Grabbing the function and arguments and flattening the arguments
                 // For example [print] [merge ["Hello ", "World", "!"]] -> [print] [merge, "Hello ", "World", "!"]
-                const func = [codeBlock[lineIndex]]
-                const arg = codeBlock[lineIndex + 1].flat(Infinity)
+                const func = codeBlock[lineIndex]
+                const args = codeBlock[lineIndex + 1]
 
                 // Merging the function and arguments into one array
-                // For example [print] [merge, "Hello ", "World", "!"] -> [print, merge, "Hello ", "World", "!"]
-                const polishNotationLine = func.concat(arg)
+                // For example: print [merge, "Hello ", "World", "!"] -> [print, merge, "Hello ", "World", "!"]
+                const polishNotationLine = [func, args].flat(Infinity)
 
                 // Turning Polish Notation line into Reverse Polish Notation line
                 // For example [print, merge, "Hello ", "World", "!"] -> ["!", "World", "Hello ", merge, print]
