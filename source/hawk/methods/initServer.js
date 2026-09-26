@@ -181,28 +181,42 @@ export const initServer = {
                                 if (route in this.loCache.markdownRouteMap) {
                                     let [htmlFile, fractalBytecode] = this.loCache.getFile(route, "markdown", stats)
 
-                                    if (postArguments){
-                                        for (const fractalBytecodeIndex in fractalBytecode) {
-                                            for (const variableName in fractalBytecode[fractalBytecodeIndex][1]) {
-                                                if (variableName in postArguments) {
-                                                    fractalBytecode[fractalBytecodeIndex][1][variableName] = postArguments[variableName]
+                                    if (fractalBytecode.length != 0) {
+                                        if (postArguments){
+                                            for (const fractalBytecodeIndex in fractalBytecode) {
+                                                for (const variableName in fractalBytecode[fractalBytecodeIndex][1]) {
+                                                    if (variableName in postArguments) {
+                                                        fractalBytecode[fractalBytecodeIndex][1][variableName] = postArguments[variableName]
 
+                                                    }
                                                 }
                                             }
                                         }
-                                    }
-                                    
-                                    const htmlResponse = await this.workerPool.runTask({htmlFile: htmlFile, fractalBytecode: fractalBytecode})
+                                        
+                                        const htmlResponse = await this.workerPool.runTask({htmlFile: htmlFile, fractalBytecode: fractalBytecode})
 
-                                    if (!(stream.destroyed || stream.closed) && stream.writable) {
-                                        stream.respond({
-                                            ":status": 200,
-                                            "content-type": "text/html"
+                                        if (!(stream.destroyed || stream.closed) && stream.writable) {
+                                            stream.respond({
+                                                ":status": 200,
+                                                "content-type": "text/html"
 
-                                        })
+                                            })
 
-                                        stream.end(htmlResponse)
+                                            stream.end(htmlResponse)
 
+                                        }
+
+                                    } else {
+                                        if (!(stream.destroyed || stream.closed) && stream.writable) {
+                                            stream.respond({
+                                                ":status": 200,
+                                                "content-type": "text/html"
+
+                                            })
+
+                                            stream.end(htmlFile)
+
+                                        }
                                     }
 
                                     console.log(`[Hawk] Origin ${stream.session.socket.remoteAddress} has requested file named ${route}.md`)
@@ -212,28 +226,43 @@ export const initServer = {
 
                                     let [htmlFile, fractalBytecode] = this.loCache.getFile(route, "markdown", stats)
 
-                                    if (postArguments) {
-                                        for (const fractalBytecodeIndex in fractalBytecode) {
-                                            for (const variableName in fractalBytecode[fractalBytecodeIndex][1]) {
-                                                if (variableName in postArguments) {
-                                                    fractalBytecode[fractalBytecodeIndex][1][variableName] = postArguments[variableName]
+                                    if (fractalBytecode.length == 0) {
+                                        if (postArguments) {
+                                            for (const fractalBytecodeIndex in fractalBytecode) {
+                                                for (const variableName in fractalBytecode[fractalBytecodeIndex][1]) {
+                                                    if (variableName in postArguments) {
+                                                        fractalBytecode[fractalBytecodeIndex][1][variableName] = postArguments[variableName]
 
+                                                    }
                                                 }
                                             }
                                         }
-                                    }
-                                    
-                                    const htmlResponse = await this.workerPool.runTask({htmlFile: htmlFile, fractalBytecode: fractalBytecode})
+                                        
+                                        const htmlResponse = await this.workerPool.runTask({htmlFile: htmlFile, fractalBytecode: fractalBytecode})
 
-                                    if (!(stream.destroyed || stream.closed) && stream.writable) {
-                                        stream.respond({
-                                            ":status": 200,
-                                            "content-type": "text/html"
+                                        if (!(stream.destroyed || stream.closed) && stream.writable) {
+                                            stream.respond({
+                                                ":status": 200,
+                                                "content-type": "text/html"
 
-                                        })
+                                            })
 
-                                        stream.end(htmlResponse)
+                                            stream.end(htmlResponse)
 
+                                        }
+
+                                    } else {
+                                        if (!(stream.destroyed || stream.closed) && stream.writable) {
+                                            stream.respond({
+                                                ":status": 200,
+                                                "content-type": "text/html"
+
+                                            })
+
+                                            stream.end(htmlFile)
+
+                                        
+                                        }
                                     }
 
                                     console.log(`[Hawk] Origin ${stream.session.socket.remoteAddress} has requested file named ${route}.md`)
