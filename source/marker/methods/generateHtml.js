@@ -160,7 +160,7 @@ export const generateHtml = {
 
                     }
 
-                    if (line[0] != "<") {
+                    if (line[0] != "<p") {
                         line = `<p>${line}</p>`
 
                     }
