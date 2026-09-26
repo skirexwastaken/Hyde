@@ -6,7 +6,7 @@ import {Fractal} from "../source/fractal/fractal.js"
 try {
 
     // First you need to create an instance of fractal with Input Arguments, which can be an empty object
-    const fractalInstance = new Fractal({"name": "Daniel"})
+    const fractalInstance = new Fractal({"compiler": true, "interpreter": true}, {"name": "Daniel"})
 
     // Before executing the code you need to compile it into Fractal bytecode, you will also get meta data object
     const [instructionSets, metaData] = fractalInstance.compile("main [print('Hey, ${name}!')]")

@@ -153,7 +153,7 @@ console.info(`[Fractal] Test utility is starting`)
 for (const testIndex in testCases) {
     try {
 
-        const fractalInstance = new Fractal({})
+        const fractalInstance = new Fractal({"compiler": true, "interpreter": true}, {})
 
         const [instructionSets, metaData] = fractalInstance.compile(testCases[testIndex])
 
