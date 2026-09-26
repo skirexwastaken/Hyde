@@ -2,6 +2,9 @@
 
 clear
 
+# This changes the path of the subshell to the Hyde directory
+cd $(dirname $BASH_SOURCE[0])
+
 # Formating used in the default case
 shortcutBuffer=5
 commandBuffer=21
