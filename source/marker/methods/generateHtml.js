@@ -5,7 +5,7 @@ export const generateHtml = {
         let insideCodeBlock = false
 
         // Default style if no style is specified
-        let cssFile = "dark.css"
+        let cssFile = "core/dark.css"
 
         // Default icon if no icon is specified
         let iconFile = "favicon.ico"
