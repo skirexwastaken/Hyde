@@ -2,16 +2,20 @@
 
 clear
 
+# Formating used in the default case
 shortcutBuffer=5
 commandBuffer=21
 
+# Building the log directory path
 currentDate=$(date '+%Y-%m-%d')
 
 logDirectory="./logs"
 logFilename="${currentDate}.log"
 
+# If the mode argument is missing, it defaults to development mode
 mode=${2:-"development"}
 
+# Translating mode shortcuts
 if [[ "$mode" == "d" ]]; then
     mode="development"
 
@@ -20,11 +24,13 @@ elif [[ "$mode" == "p" ]]; then
 
 fi
 
+# If the mode value is invalid, it defaults to development mode
 if [[ "$mode" != "production" && "$mode" != "development" ]]; then
     echo "[Hyde Runtime] Unrecognized mode '$2'. Defaulting to 'development' mode."
 
 fi
 
+# Helper functions that makes sure that privateKey and publicCertificate exists
 checkSSL() {
     if [ ! -f ./certificates/privateKey.pem ]; then
         echo "[Hyde Runtime] Generating Private Key"
@@ -42,8 +48,10 @@ checkSSL() {
 
 }
 
+# Main logic of the script
 case $1 in
 
+    # hyde or h launches hyde
     "hyde"|"h")
         echo "[Hyde Runtime] Launching Hyde in $mode mode"
 
@@ -62,7 +70,8 @@ case $1 in
         fi
 
     ;;
- 
+    
+    # docker or d launches hyde inside of a docker container
     "docker"|"d")
         echo "[Hyde Runtime] Launching Hyde inside of docker in $mode mode"
 
@@ -82,6 +91,7 @@ case $1 in
 
     ;;
 
+    # fractal or f launches the Fractal CLI
     "fractal"|"f")
         echo "[Hyde Runtime] Launching Fractal CLI in $mode mode"
 
@@ -99,6 +109,7 @@ case $1 in
 
     ;;
 
+    # fractalTest or ft launches the Fractal test which checks if all functions return expected values
     "fractalTest"|"ft")
         echo "[Hyde Runtime] Launching Fractal test in $mode mode"
 
@@ -116,6 +127,7 @@ case $1 in
 
     ;;
 
+    # hawkTestPerformance or htp launches a simple performance test using curl
     "hawkTestPerformance"|"htp")
         echo "[Hyde Runtime] Launching Hawk test in $mode mode"
 
@@ -141,6 +153,7 @@ case $1 in
 
     ;;
 
+    # garbageCollector or gc launches the Garbage Collector which cleans left over files
     "garbageCollector"|"gc")
         echo "[Hyde Runtime] Launching Garbage Collector in $mode mode"
 
@@ -158,24 +171,39 @@ case $1 in
 
     ;;
 
+    # Default helper function that shows all available options
     *)
     echo "[Hyde Runtime] Options overview"
+
+    # First argument part
     echo ""
     echo "> First Argument"
     echo ""
+
+    # Hyde and Fractal
     printf "%-${commandBuffer}s %-${shortcutBuffer}s %-s\n" "hyde" "h" "Launches hyde"
     printf "%-${commandBuffer}s %-${shortcutBuffer}s %-s\n" "docker" "d" "Launches hyde inside of docker"
     printf "%-${commandBuffer}s %-${shortcutBuffer}s %-s\n" "fractal" "f" "Launches Fractal CLI"
+
     echo ""
+
+    # Tests
     printf "%-${commandBuffer}s %-${shortcutBuffer}s %-s\n" "fractalTest" "ft" "Tests if Fractal interprets code correctly"
     printf "%-${commandBuffer}s %-${shortcutBuffer}s %-s\n" "hawkTestPerformance" "htp" "Tests the performance of Hawk, requires Hawk instance running"
+
     echo ""
+
+    # Other utilities
     printf "%-${commandBuffer}s %-${shortcutBuffer}s %-s\n" "garbageCollector" "gc" "Cleans left over html and fsc files"
+
     echo ""
     echo "> Second Argument"
     echo ""
+
+    # Mode options
     printf "%-${commandBuffer}s %-${shortcutBuffer}s %-s\n" "development" "d" "Run in development mode"
     printf "%-${commandBuffer}s %-${shortcutBuffer}s %-s\n" "production" "p" "Run in production mode"
+
     echo ""
 
     ;;
