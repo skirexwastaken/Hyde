@@ -5,6 +5,12 @@ clear
 # This changes the path of the subshell to the Hyde directory
 cd $(dirname $BASH_SOURCE[0])
 
+if [[ ! -f .env ]]; then
+    echo "[Hyde Runtime] .env was not found"
+
+    exit
+fi
+
 # Formating used in the default case
 shortcutBuffer=5
 commandBuffer=21
@@ -56,19 +62,25 @@ case $1 in
 
     # hyde or h launches hyde
     "hyde"|"h")
-        echo "[Hyde Runtime] Launching Hyde in $mode mode"
+        if [[ -f hyde.js ]]; then
+            echo "[Hyde Runtime] Launching Hyde in $mode mode"
 
-        checkSSL
+            checkSSL
 
-        if [[ "$mode" == "production" ]]; then
-            mkdir -p "${logDirectory}/hyde"
+            if [[ "$mode" == "production" ]]; then
+                mkdir -p "${logDirectory}/hyde"
 
-            logFullPath="${logDirectory}/hyde/${logFilename}"
+                logFullPath="${logDirectory}/hyde/${logFilename}"
 
-            node --env-file=.env hyde.js | tee -a "${logFullPath}"
+                node --env-file=.env hyde.js | tee -a "${logFullPath}"
 
-        else 
-            node --env-file=.env hyde.js
+            else 
+                node --env-file=.env hyde.js
+
+            fi
+
+        else
+            echo "[Hyde Runtime] hyde.js was not found"
 
         fi
 
@@ -76,19 +88,31 @@ case $1 in
     
     # docker or d launches hyde inside of a docker container
     "docker"|"d")
-        echo "[Hyde Runtime] Launching Hyde inside of docker in $mode mode"
+        if [[ -f compose.yaml ]]; then
+            if [[ -f hyde.js ]]; then
+                echo "[Hyde Runtime] Launching Hyde inside of docker in $mode mode"
 
-        checkSSL
+                checkSSL
 
-        if [[ "$mode" == "production" ]]; then
-            mkdir -p "${logDirectory}/hydeDocker"
+                if [[ "$mode" == "production" ]]; then
+                    mkdir -p "${logDirectory}/hydeDocker"
 
-            logFullPath="${logDirectory}/hydeDocker/${logFilename}"
+                    logFullPath="${logDirectory}/hydeDocker/${logFilename}"
 
-            sudo docker compose up | tee -a "${logFullPath}"
+                    sudo docker compose up | tee -a "${logFullPath}"
+
+                else
+                    sudo docker compose up 
+
+                fi
+
+            else
+                echo "[Hyde Runtime] hyde.js was not found"
+
+            fi
 
         else
-            sudo docker compose up 
+            echo "[Hyde Runtime] compose.yaml was not found"
 
         fi
 
@@ -96,17 +120,23 @@ case $1 in
 
     # fractal or f launches the Fractal CLI
     "fractal"|"f")
-        echo "[Hyde Runtime] Launching Fractal CLI in $mode mode"
+        if [[ -f ./tools/fractalCli.js ]]; then
+            echo "[Hyde Runtime] Launching Fractal CLI in $mode mode"
 
-        if [[ "$mode" == "production" ]]; then
-            mkdir -p "${logDirectory}/fractalCli"
+            if [[ "$mode" == "production" ]]; then
+                mkdir -p "${logDirectory}/fractalCli"
 
-            logFullPath="${logDirectory}/fractalCli/${logFilename}"
+                logFullPath="${logDirectory}/fractalCli/${logFilename}"
 
-            node ./tools/fractalCli.js | tee -a "${logFullPath}"   
+                node ./tools/fractalCli.js | tee -a "${logFullPath}"   
 
+            else
+                node ./tools/fractalCli.js
+
+            fi
+        
         else
-            node ./tools/fractalCli.js
+            echo "[Hyde Runtime] fractaCli.js was not found"
 
         fi
 
@@ -114,17 +144,23 @@ case $1 in
 
     # fractalTest or ft launches the Fractal test which checks if all functions return expected values
     "fractalTest"|"ft")
-        echo "[Hyde Runtime] Launching Fractal test in $mode mode"
+        if [[ -f ./tests/fractalTest.js ]]; then
+            echo "[Hyde Runtime] Launching Fractal test in $mode mode"
 
-        if [[ "$mode" == "production" ]]; then
-            mkdir -p "${logDirectory}/tests/fractalTest"
+            if [[ "$mode" == "production" ]]; then
+                mkdir -p "${logDirectory}/tests/fractalTest"
 
-            logFullPath="${logDirectory}/tests/fractalTest/${logFilename}"
+                logFullPath="${logDirectory}/tests/fractalTest/${logFilename}"
 
-            node ./tests/fractalTest.js | tee -a "${logFullPath}"   
+                node ./tests/fractalTest.js | tee -a "${logFullPath}"   
+
+            else
+                node ./tests/fractalTest.js
+
+            fi
 
         else
-            node ./tests/fractalTest.js
+            echo "[Hyde Runtime] fractalTest.js was not found "
 
         fi
 
@@ -158,17 +194,23 @@ case $1 in
 
     # garbageCollector or gc launches the Garbage Collector which cleans left over files
     "garbageCollector"|"gc")
-        echo "[Hyde Runtime] Launching Garbage Collector in $mode mode"
+        if [[ -f ./source/startupScripts/garbageCollector.js ]]; then
+            echo "[Hyde Runtime] Launching Garbage Collector in $mode mode"
 
-        if [[ "$mode" == "production" ]]; then
-            mkdir -p "${logDirectory}/startupScripts/garbageCollector"
+            if [[ "$mode" == "production" ]]; then
+                mkdir -p "${logDirectory}/startupScripts/garbageCollector"
 
-            logFullPath="${logDirectory}/startupScripts/garbageCollector/${logFilename}"
+                logFullPath="${logDirectory}/startupScripts/garbageCollector/${logFilename}"
 
-            node ./source/startupScripts/garbageCollector.js | tee -a "${logFullPath}"   
+                node ./source/startupScripts/garbageCollector.js | tee -a "${logFullPath}"   
+
+            else
+                node ./source/startupScripts/garbageCollector.js
+
+            fi
 
         else
-            node ./source/startupScripts/garbageCollector.js
+            echo "[Hyde Runtime] garbageCollector.js was not found"
 
         fi
 
