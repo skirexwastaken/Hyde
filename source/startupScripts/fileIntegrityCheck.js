@@ -158,9 +158,11 @@ for (const coreFile of coreProjectFiles) {
     if (!(fs.existsSync(fullFilePath))) {
         console.info(`[File Integrity Check] File ${coreFile} is missing`)
 
-        process.exit()
+        process.exit(1)
 
     }
 }
 
 console.log("[File Integrity Check] All files were found")
+
+process.exit(0)
