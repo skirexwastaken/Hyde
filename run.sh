@@ -58,6 +58,24 @@ checkSSL() {
 
 }
 
+checkFileIntegrity() {
+    if [[ ! -f ./source/startupScripts/fileIntegrityCheck.js ]]; then
+        echo "[Hyde Runtime] fileIntegrityCheck.js was not found"
+
+        exit
+
+    fi
+
+    node ./source/startupScripts/fileIntegrityCheck.js
+    exitCode=$?
+
+    if [[ exitCode -eq 1 ]]; then
+        exit
+
+    fi
+
+}
+
 # Main logic of the script
 case $1 in
 
@@ -66,15 +84,7 @@ case $1 in
         if [[ -f hyde.js ]]; then
             echo "[Hyde Runtime] Launching Hyde in $mode mode"
 
-            if [[ ! -f ./source/startupScripts/fileIntegrityCheck.js ]]; then
-                echo "[Hyde Runtime] fileIntegrityCheck.js was not found"
-
-                exit
-
-            fi
-
-            node ./source/startupScripts/fileIntegrityCheck.js
-
+            checkFileIntegrity
             checkSSL
 
             if [[ "$mode" == "production" ]]; then
@@ -102,15 +112,7 @@ case $1 in
             if [[ -f hyde.js ]]; then
                 echo "[Hyde Runtime] Launching Hyde inside of docker in $mode mode"
 
-                if [[ ! -f ./source/startupScripts/fileIntegrityCheck.js ]]; then
-                    echo "[Hyde Runtime] fileIntegrityCheck.js was not found"
-
-                    exit
-
-                fi
-
-                node ./source/startupScripts/fileIntegrityCheck.js
-
+                checkFileIntegrity
                 checkSSL
 
                 if [[ "$mode" == "production" ]]; then
