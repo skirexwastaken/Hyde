@@ -151,6 +151,10 @@ export const initServer = {
 
                                     if (fractalBytecode.length != 0) {
                                         if (postArguments){
+
+                                            // Making a clone of the fractalBytecode so the postArguments don't end up in cache
+                                            fractalBytecode = structuredClone(fractalBytecode)
+
                                             for (const fractalBytecodeIndex in fractalBytecode) {
                                                 for (const variableName in fractalBytecode[fractalBytecodeIndex][1]) {
                                                     if (variableName in postArguments) {
