@@ -80,22 +80,18 @@ export const initServer = {
                             } else {
                                 const stats = getStats(cssFilePath)
 
-                                if (filename in this.loCache.cssRouteMap){
-                                    status = 200
-                                    contentType = "text/css"
-                                    content = this.loCache.getFile(filename, "css", stats)
+                                if (stats) {
+                                    if (!(filename in this.loCache.cssRouteMap)) {
+                                        this.loCache.cacheCss(filename, stats)
 
-                                    console.log(`[Hawk] Origin ${stream.session.socket.remoteAddress} has requested file named ${filename}`)
-
-                                } else if (stats) {
-                                    this.loCache.cacheCss(filename, stats)
+                                    }
 
                                     status = 200
                                     contentType = "text/css"
                                     content = this.loCache.getFile(filename, "css", stats)
 
                                     console.log(`[Hawk] Origin ${stream.session.socket.remoteAddress} has requested file named ${filename}`)
-                                
+
                                 } else {
                                     status = 404
                                     contentType = "text/html"
@@ -119,6 +115,7 @@ export const initServer = {
 
                             }
 
+                            // For example route /index is missing the .html extension
                             if (extension == undefined) {
                                 extension = "html"
 
@@ -141,8 +138,16 @@ export const initServer = {
                             } else {
                                 const stats = getStats(markdownFilePath)
 
-                                if (route in this.loCache.markdownRouteMap) {
+                                if (stats) {
+                                    if (!(route in this.loCache.markdownRouteMap)) {
+                                        this.loCache.cacheMarkdown(route, stats)
+
+                                    }
+
                                     let [htmlFile, fractalBytecode] = this.loCache.getFile(route, "markdown", stats)
+
+                                    status = 200
+                                    contentType = "text/html"
 
                                     if (fractalBytecode.length != 0) {
                                         if (postArguments){
@@ -156,43 +161,9 @@ export const initServer = {
                                             }
                                         }
 
-                                        status = 200
-                                        contentType = "text/html"
                                         content = await this.workerPool.runTask({htmlFile: htmlFile, fractalBytecode: fractalBytecode})
 
                                     } else {
-                                        status = 200
-                                        contentType = "text/html"
-                                        content = htmlFile
-
-                                    }
-
-                                    console.log(`[Hawk] Origin ${stream.session.socket.remoteAddress} has requested file named ${route}.md`)
-
-                                } else if (stats) {
-                                    this.loCache.cacheMarkdown(route, stats)
-
-                                    let [htmlFile, fractalBytecode] = this.loCache.getFile(route, "markdown", stats)
-
-                                    if (fractalBytecode.length != 0) {
-                                        if (postArguments) {
-                                            for (const fractalBytecodeIndex in fractalBytecode) {
-                                                for (const variableName in fractalBytecode[fractalBytecodeIndex][1]) {
-                                                    if (variableName in postArguments) {
-                                                        fractalBytecode[fractalBytecodeIndex][1][variableName] = postArguments[variableName]
-
-                                                    }
-                                                }
-                                            }
-                                        }
-                                        
-                                        status = 200
-                                        contentType = "text/html"
-                                        content = await this.workerPool.runTask({htmlFile: htmlFile, fractalBytecode: fractalBytecode})
-
-                                    } else {
-                                        status = 200
-                                        contentType = "text/html"
                                         content = htmlFile
 
                                     }
@@ -213,6 +184,7 @@ export const initServer = {
 
                         }
 
+                        // Ico Files
                         case "ico": {
                             const filename = `${route}.ico`
                             const iconFilePath = path.resolve(iconDirectory, filename)
@@ -228,22 +200,18 @@ export const initServer = {
                             } else {
                                 const stats = getStats(iconFilePath)
 
-                                if (filename in this.loCache.iconRouteMap) {
-                                    status = 200
-                                    contentType = "image/x-icon"
-                                    content = this.loCache.getFile(filename, "ico", stats)
+                                if (stats) {
+                                    if (!(filename in this.loCache.iconRouteMap)) {
+                                        this.loCache.cacheIcon(filename, stats)
 
-                                    console.log(`[Hawk] Origin ${stream.session.socket.remoteAddress} has requested file named ${filename}`)
-
-                                } else if (stats) {
-                                    this.loCache.cacheIcon(filename, stats)
+                                    }
 
                                     status = 200
                                     contentType = "image/x-icon"
                                     content = this.loCache.getFile(filename, "ico", stats)
 
                                     console.log(`[Hawk] Origin ${stream.session.socket.remoteAddress} has requested file named ${filename}`)
-                                
+
                                 } else {
                                     status = 404
                                     contentType = "text/html"
@@ -258,6 +226,7 @@ export const initServer = {
 
                         }
 
+                        // Image Files
                         case "png": {
                             const filename = `${route}.${extension}`
                             const imageFilePath = path.resolve(imageDirectory, filename)
@@ -272,23 +241,19 @@ export const initServer = {
 
                             } else {
                                 const stats = getStats(imageFilePath)
-                                
-                                if (filename in this.loCache.imageRouteMap) {
+
+                                if (stats) {
+                                    if (!(filename in this.loCache.imageRouteMap)) {
+                                        this.loCache.cacheImage(filename, stats)
+
+                                    }
+
                                     status = 200
                                     contentType = `image/${extension}`
                                     content = this.loCache.getFile(filename, "image", stats)
 
                                     console.log(`[Hawk] Origin ${stream.session.socket.remoteAddress} has requested file named ${filename}`)
 
-                                } else if (stats) {
-                                    this.loCache.cacheImage(filename, stats)
-                                    
-                                    status = 200
-                                    contentType = `image/${extension}`
-                                    content = this.loCache.getFile(filename, "image", stats)
-
-                                    console.log(`[Hawk] Origin ${stream.session.socket.remoteAddress} has requested file named ${filename}`)
-                                
                                 } else {
                                     status = 404
                                     contentType = "text/html"
