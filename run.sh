@@ -5,6 +5,7 @@ clear
 # This changes the path of the subshell to the Hyde directory
 cd $(dirname $BASH_SOURCE[0])
 
+# Checking if the .env files exists
 if [[ ! -f .env ]]; then
     echo "[Hyde Runtime] .env was not found"
 
