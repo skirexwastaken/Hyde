@@ -3,7 +3,7 @@ import path from "node:path"
 
 import {loCache} from "../loCache/loCache.js"
 import {Mytharis} from "../mytharis/mytharis.js"
-import {workerPool} from "../workerPool/workerPool.js"
+import {workerPool} from "./workerPool/workerPool.js"
 
 import {initServer} from "./methods/initServer.js"
 import {runServer} from "./methods/runServer.js"
