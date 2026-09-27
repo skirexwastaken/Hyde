@@ -1,7 +1,7 @@
 import path from "node:path"
 
 import {markdownDirectory, stylesDirectory, iconDirectory, imageDirectory} from "../../constants/paths.js"
-import {markdownInit, stylesInit, iconInit, imageInit} from "../constants/initCache.js"
+import {markdownInit, stylesInit, iconInit, imageInit} from "../constants/initCacheContent.js"
 import {getStats} from "../../constants/macros.js"
 
 // This function allows to cache specific files at startup allowing users to access them straight away without the caching delay

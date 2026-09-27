@@ -73,7 +73,7 @@ const coreProjectFiles = [
         // loCache
 
             // constants
-                "../../source/loCache/constants/initCache.js",
+                "../../source/loCache/constants/initCacheContent.js",
 
             // methods
 
