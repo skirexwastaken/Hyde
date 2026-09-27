@@ -66,6 +66,15 @@ case $1 in
         if [[ -f hyde.js ]]; then
             echo "[Hyde Runtime] Launching Hyde in $mode mode"
 
+            if [[ ! -f ./source/startupScripts/fileIntegrityCheck.js ]]; then
+                echo "[Hyde Runtime] fileIntegrityCheck.js was not found"
+
+                exit
+
+            fi
+
+            node ./source/startupScripts/fileIntegrityCheck.js
+
             checkSSL
 
             if [[ "$mode" == "production" ]]; then
@@ -92,6 +101,15 @@ case $1 in
         if [[ -f compose.yaml ]]; then
             if [[ -f hyde.js ]]; then
                 echo "[Hyde Runtime] Launching Hyde inside of docker in $mode mode"
+
+                if [[ ! -f ./source/startupScripts/fileIntegrityCheck.js ]]; then
+                    echo "[Hyde Runtime] fileIntegrityCheck.js was not found"
+
+                    exit
+
+                fi
+
+                node ./source/startupScripts/fileIntegrityCheck.js
 
                 checkSSL
 
