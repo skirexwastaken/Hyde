@@ -68,6 +68,16 @@ const coreProjectFiles = [
                 "../../source/hawk/methods/initServer.js",
                 "../../source/hawk/methods/runServer.js",
 
+            // workerPool
+
+            // methods
+                "../../source/hawk/workerPool/methods/addWorker.js",
+                "../../source/hawk/workerPool/methods/initWorkers.js",
+                "../../source/hawk/workerPool/methods/processQueue.js",
+                "../../source/hawk/workerPool/methods/runTask.js",
+
+            "../../source/hawk/workerPool/workerPool.js",
+
             "../../source/hawk/hawk.js",
 
         // loCache
@@ -122,16 +132,6 @@ const coreProjectFiles = [
             "../../source/startupScripts/fileIntegrityCheck.js",
             "../../source/startupScripts/garbageCollector.js",
             "../../source/startupScripts/systemLog.js",
-
-        // workerPool
-
-            // methods
-                "../../source/workerPool/methods/addWorker.js",
-                "../../source/workerPool/methods/initWorkers.js",
-                "../../source/workerPool/methods/processQueue.js",
-                "../../source/workerPool/methods/runTask.js",
-
-            "../../source/workerPool/workerPool.js",
 
         // static
 
