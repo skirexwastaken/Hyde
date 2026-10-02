@@ -32,8 +32,6 @@ export const generateHtml = {
             } else if (insideCodeBlock == true) {
                 generatedHTML.push(`<p>${line}</p>`)
 
-                continue
-
             // Line on which styles are applied
             // Note: Some of the easier syntax is simply processed by regex but some of the more complex one requires custom interpreter, such as wrappers
             } else {
