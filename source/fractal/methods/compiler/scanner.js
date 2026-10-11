@@ -1,3 +1,23 @@
+/*
+GNU GENERAL PUBLIC LICENSE
+Version 3, 29 June 2007
+
+Copyright (C) 2026 Daniel Hora
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program. If not, see <https://www.gnu.org/licenses/>.
+*/
+
 // Function that verifies the basic syntax integrity of the raw code
 // The whole purpose of this function is to catch some of the simpler syntax rules
 // This function could be combined with lexer, however I wanted to keep them separate to achieve higher redability and easier implementation of new features which I find easier across less complex functions

@@ -147,3 +147,9 @@ Tool that deletes left over files after user deletes the original markdown file
  Total                    78         4327         2494          529         1304
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
+
+## License
+
+This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE.txt) file for details.
+
+Copyright (c) 2026 Daniel Hora.
