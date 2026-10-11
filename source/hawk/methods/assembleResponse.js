@@ -18,10 +18,9 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-import {} from "../../startupScripts/consoleDebug.js"
-
 import {parentPort, workerData} from 'worker_threads'
 
+import {} from "../../startupScripts/consoleDebug.js"
 import {Fractal} from "../../fractal/fractal.js"
 
 function assembleResponse(htmlFile, fractalBytecode) {
