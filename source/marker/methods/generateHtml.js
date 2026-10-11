@@ -158,7 +158,7 @@ export const generateHtml = {
 
                     }
 
-                    if (line[0] != "<p") {
+                    if (!(line.startsWith("<p>")) && !(line.startsWith("<") && line.endsWith(">"))) {
                         line = `<p>${line}</p>`
 
                     }
