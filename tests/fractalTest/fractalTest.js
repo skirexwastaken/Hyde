@@ -1,4 +1,4 @@
-import {Fractal} from "../source/fractal/fractal.js"
+import {Fractal} from "../../source/fractal/fractal.js"
 
 // Silencing the debug prints from Fractal as they are not needed here
 /*console.log = function() {

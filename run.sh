@@ -165,7 +165,7 @@ case $1 in
 
     # fractalTest or ft launches the Fractal test which checks if all functions return expected values
     "fractalTest"|"ft")
-        if [[ -f ./tests/fractalTest.js ]]; then
+        if [[ -f ./tests/fractalTest/fractalTest.js ]]; then
             echo "[Hyde Runtime] Launching Fractal test in $mode mode"
 
             if [[ "$mode" == "production" ]]; then
@@ -173,10 +173,10 @@ case $1 in
 
                 logFullPath="${logDirectory}/tests/fractalTest/${logFilename}"
 
-                node ./tests/fractalTest.js | tee -a "${logFullPath}"   
+                node ./tests/fractalTest/fractalTest.js | tee -a "${logFullPath}"   
 
             else
-                node ./tests/fractalTest.js
+                node ./tests/fractalTest/fractalTest.js
 
             fi
 
