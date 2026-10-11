@@ -164,27 +164,27 @@ export const generateHtml = {
                     }
 
                     // Code block
-                    line = this.processWrapper(line, "```", /(\`\`\`)/, "code")
+                    line = this.processWrapper(line, "```", "code")
 
-                    line = this.processWrapper(line, "``", /(\`\`)/, "code")
+                    line = this.processWrapper(line, "``", "code")
 
-                    line = this.processWrapper(line, "`", /(\`)/, "code")
+                    line = this.processWrapper(line, "`", "code")
 
 
                     // Bold style
-                    line = this.processWrapper(line, "**", /(\*\*)/, "strong")
+                    line = this.processWrapper(line, "**", "strong")
 
-                    line = this.processWrapper(line, "*", /(\*)/, "strong")
+                    line = this.processWrapper(line, "*", "strong")
 
                     // Italic style
-                    line = this.processWrapper(line, "__", /(\_\_)/, "i")
+                    line = this.processWrapper(line, "__", "i")
 
-                    line = this.processWrapper(line, "_", /(\_)/, "i")
+                    line = this.processWrapper(line, "_", "i")
 
                     // Striked style
-                    line = this.processWrapper(line, "~~", /(\~\~)/, "s")
+                    line = this.processWrapper(line, "~~", "s")
 
-                    line = this.processWrapper(line, "~", /(\~)/, "s")
+                    line = this.processWrapper(line, "~", "s")
 
                 }
 
