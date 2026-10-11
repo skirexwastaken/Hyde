@@ -3,12 +3,6 @@ import path from "node:path"
 import {fileURLToPath} from "node:url"
 
 import {Fractal} from "../../source/fractal/fractal.js"
-import test from "node:test"
-
-// Silencing the debug prints from Fractal as they are not needed here
-/*console.log = function() {
-
-}*/
 
 const currentDirectory = path.dirname(fileURLToPath(import.meta.url))
 const filePath = path.resolve(currentDirectory, "./testCases.jsonc")
