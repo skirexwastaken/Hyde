@@ -1,6 +1,8 @@
 export const processWrapper = {
     // This function focuses on procesing wrapper syntax, such as **Example of text**
-    processWrapper(line, wrapper, regex, tag){
+    processWrapper(line, wrapper, tag){
+        const regex = new RegExp(`(\\${wrapper.split("").join("\\")})`, "i")
+
         let tokens = line.split(regex)
         
         // Closing wrapper found means that at least one closing wrapper was found, which could technically mean that there is another possible pair
