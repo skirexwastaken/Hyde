@@ -1,5 +1,3 @@
-// Hyde Version 26.9.10
-
 /*
 GNU GENERAL PUBLIC LICENSE
 Version 3, 29 June 2007
