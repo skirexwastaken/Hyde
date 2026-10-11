@@ -21,7 +21,6 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 // Importing needed modules
 import {coreTools} from "./coreTools/coreTools.js"
 import {MemoryManager} from "./memoryManager/memoryManager.js"
-import {FUNCTIONS, NFUNCTIONS, CFUNCTIONS} from "./constants/functions.js"
 
 // Importing Fractal modules
 import {checkInputArguments} from "./methods/argumentsSupport/checkInputArguments.js"
