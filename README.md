@@ -149,6 +149,6 @@ Tool that deletes left over files after user deletes the original markdown file
 
 ## License
 
-This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE.txt) file for details.
+This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE.txt) file for details
 
-Copyright (c) 2026 Daniel Hora.
+Copyright (c) 2026 Daniel Hora
