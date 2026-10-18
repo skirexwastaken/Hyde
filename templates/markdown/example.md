@@ -70,13 +70,13 @@ Markdown
 
 ___This line is also bold and italic___
 
-**Example of bold text**
+**This line is bold**
 
-__This Text is also bold__
+__This line is also bold__
 
-*This text is italic*
+*This line is italic*
 
-_This Text is also italic_
+_This line is also italic_
 
 ~~There is a line going over this text~~
 
