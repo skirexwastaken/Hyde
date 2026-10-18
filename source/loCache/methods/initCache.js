@@ -45,7 +45,6 @@ export const initCache = {
                 this.cacheCss(cssFile, stats)
 
             }
-
         }
 
         for (const iconFile of iconInit) {
