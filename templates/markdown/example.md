@@ -66,6 +66,10 @@ rendered
 Markdown 
 -->
 
+***This line is bold and italic***
+
+___This line is also bold and italic___
+
 **Example of bold text**
 
 __This Text is also bold__

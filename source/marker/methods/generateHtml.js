@@ -190,6 +190,10 @@ export const generateHtml = {
 
                     line = this.processWrapper(line, "`", ["code"])
 
+                    // Bold and Italic style
+                    line = this.processWrapper(line, "***", ["i", "strong"])
+
+                    line = this.processWrapper(line, "___", ["i", "strong"])
 
                     // Bold style
                     line = this.processWrapper(line, "**", ["strong"])
