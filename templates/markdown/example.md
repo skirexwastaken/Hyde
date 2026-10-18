@@ -68,7 +68,9 @@ Markdown
 
 **Example of bold text**
 
-__This Text is italic__
+__This Text is also bold__
+
+*This text is italic*
 
 _This Text is also italic_
 

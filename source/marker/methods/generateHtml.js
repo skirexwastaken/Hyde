@@ -194,10 +194,10 @@ export const generateHtml = {
                     // Bold style
                     line = this.processWrapper(line, "**", "strong")
 
-                    line = this.processWrapper(line, "*", "strong")
+                    line = this.processWrapper(line, "__", "strong")
 
                     // Italic style
-                    line = this.processWrapper(line, "__", "i")
+                    line = this.processWrapper(line, "*", "i")
 
                     line = this.processWrapper(line, "_", "i")
 
