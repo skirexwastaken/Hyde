@@ -75,7 +75,5 @@ export const cacheMarkdown = {
         this.markdownFiles.push([htmlFile, fractalBytecode])
         this.markdownFilesModified.push(stats.mtime)
 
-        console.log(`[loCache] ${route}.md has been cached`)
-
     }
 }

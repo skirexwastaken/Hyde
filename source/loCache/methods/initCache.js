@@ -28,7 +28,7 @@ import {getStats} from "../../constants/macros.js"
 export const initCache = {
     initCache() {
         for (const markdownFile of markdownInit) {
-            const fullPath = path.resolve(markdownDirectory, markdownFile)
+            const fullPath = path.resolve(markdownDirectory, `${markdownFile}.md`)
             const stats = getStats(fullPath)
 
             if (stats) {
