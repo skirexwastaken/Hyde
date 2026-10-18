@@ -20,8 +20,16 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 export const processWrapper = {
     // This function focuses on procesing wrapper syntax, such as **Example of text**
-    processWrapper(line, wrapper, tag){
+    processWrapper(line, wrapper, tags){
         const regex = new RegExp(`(\\${wrapper.split("").join("\\")})`, "i")
+
+        let openingTagGroup = ""
+        let closingTagGroup = ""
+        for (const tag of tags) {
+            openingTagGroup += `<${tag}>`
+            closingTagGroup += `</${tag}>`
+
+        }
 
         let tokens = line.split(regex)
         
@@ -50,8 +58,8 @@ export const processWrapper = {
                     } else {
                         if (tokens[tokenIndex - 1] != null){
                             if (tokens[tokenIndex - 1][tokens[tokenIndex - 1].length - 1] != " " && tokens[tokenIndex - 1].length != 0){
-                                tokens[openingWrapperIndex] = `<${tag}>`
-                                tokens[tokenIndex] = `</${tag}>`
+                                tokens[openingWrapperIndex] = openingTagGroup
+                                tokens[tokenIndex] = closingTagGroup
                                 closingWrapperFound = true
 
                                 openingWrapperIndex = null
