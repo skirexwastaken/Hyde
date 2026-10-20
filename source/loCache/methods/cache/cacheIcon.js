@@ -25,14 +25,14 @@ import {iconDirectory} from "../../../constants/paths.js"
 
 export const cacheIcon = {
     cacheIcon(route, stats) {
-        const fullPath = path.resolve(iconDirectory, route)
+        const fullPath = path.resolve(iconDirectory, `${route}.ico`)
         const iconFile = fs.readFileSync(fullPath)
 
         this.iconRouteMap[route] = this.iconCacheCounter++
         this.iconFiles.push(iconFile)
         this.iconFilesModified.push(stats.mtime)
 
-        console.log(`[loCache] ${route} has been cached`)
+        console.log(`[loCache] ${route}.ico has been cached`)
         
     }
 }

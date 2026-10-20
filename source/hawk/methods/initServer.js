@@ -86,8 +86,7 @@ export const initServer = {
 
                         // CSS Files
                         case "css": {
-                            const filename = `${route}.css`
-                            const cssFilePath = path.resolve(stylesDirectory, filename)
+                            const cssFilePath = path.resolve(stylesDirectory, `${route}.css`)
 
                             // Anti directory traversal check
                             if (!(cssFilePath).startsWith(stylesDirectory)) {
@@ -101,23 +100,23 @@ export const initServer = {
                                 const stats = getStats(cssFilePath)
 
                                 if (stats) {
-                                    if (!(filename in this.loCache.cssRouteMap)) {
-                                        this.loCache.cacheCss(filename, stats)
+                                    if (!(route in this.loCache.cssRouteMap)) {
+                                        this.loCache.cacheCss(route, stats)
 
                                     }
 
                                     status = 200
                                     contentType = "text/css"
-                                    content = this.loCache.getFile(filename, "css", stats)
+                                    content = this.loCache.getFile(route, "css", stats)
 
-                                    console.log(`[Hawk] Origin ${stream.session.socket.remoteAddress} has requested file named ${filename}`)
+                                    console.log(`[Hawk] Origin ${stream.session.socket.remoteAddress} has requested file named ${route}.css`)
 
                                 } else {
                                     status = 404
                                     contentType = "text/html"
                                     content = "<h1>Not Found</h1>"
 
-                                    console.info(`[Hawk] [WARNING] Origin ${stream.session.socket.remoteAddress} has requested invalid file named ${filename}`)
+                                    console.info(`[Hawk] [WARNING] Origin ${stream.session.socket.remoteAddress} has requested invalid file named ${route}.css`)
 
                                 }
                             }
@@ -210,8 +209,7 @@ export const initServer = {
 
                         // Ico Files
                         case "ico": {
-                            const filename = `${route}.ico`
-                            const iconFilePath = path.resolve(iconDirectory, filename)
+                            const iconFilePath = path.resolve(iconDirectory, `${route}.ico`)
 
                             // Anti directory traversal check
                             if (!(iconFilePath.startsWith(iconDirectory))) {
@@ -225,23 +223,23 @@ export const initServer = {
                                 const stats = getStats(iconFilePath)
 
                                 if (stats) {
-                                    if (!(filename in this.loCache.iconRouteMap)) {
-                                        this.loCache.cacheIcon(filename, stats)
+                                    if (!(route in this.loCache.iconRouteMap)) {
+                                        this.loCache.cacheIcon(route, stats)
 
                                     }
 
                                     status = 200
                                     contentType = "image/x-icon"
-                                    content = this.loCache.getFile(filename, "ico", stats)
+                                    content = this.loCache.getFile(route, "ico", stats)
 
-                                    console.log(`[Hawk] Origin ${stream.session.socket.remoteAddress} has requested file named ${filename}`)
+                                    console.log(`[Hawk] Origin ${stream.session.socket.remoteAddress} has requested file named ${route}.ico`)
 
                                 } else {
                                     status = 404
                                     contentType = "text/html"
                                     content = "<h1>Not Found</h1>"
 
-                                    console.info(`[Hawk] [WARNING] Origin ${stream.session.socket.remoteAddress} has requested invalid file named ${filename}`)
+                                    console.info(`[Hawk] [WARNING] Origin ${stream.session.socket.remoteAddress} has requested invalid file named ${route}.ico`)
 
                                 }
                             }
@@ -250,10 +248,9 @@ export const initServer = {
 
                         }
 
-                        // Image Files
+                        // Png Files
                         case "png": {
-                            const filename = `${route}.${extension}`
-                            const imageFilePath = path.resolve(imageDirectory, filename)
+                            const imageFilePath = path.resolve(imageDirectory, `${route}.${extension}`)
 
                             // Anti directory traversal check
                             if (!(imageFilePath.startsWith(imageDirectory))) {
@@ -267,23 +264,23 @@ export const initServer = {
                                 const stats = getStats(imageFilePath)
 
                                 if (stats) {
-                                    if (!(filename in this.loCache.imageRouteMap)) {
-                                        this.loCache.cacheImage(filename, stats)
+                                    if (!(route in this.loCache.imageRouteMap)) {
+                                        this.loCache.cacheImage(route, stats)
 
                                     }
 
                                     status = 200
                                     contentType = `image/${extension}`
-                                    content = this.loCache.getFile(filename, "image", stats)
+                                    content = this.loCache.getFile(route, "image", stats)
 
-                                    console.log(`[Hawk] Origin ${stream.session.socket.remoteAddress} has requested file named ${filename}`)
+                                    console.log(`[Hawk] Origin ${stream.session.socket.remoteAddress} has requested file named ${route}.png`)
 
                                 } else {
                                     status = 404
                                     contentType = "text/html"
                                     content = "<h1>Not Found</h1>"
 
-                                    console.info(`[Hawk] [WARNING] Origin ${stream.session.socket.remoteAddress} has requested invalid file named ${filename}`)
+                                    console.info(`[Hawk] [WARNING] Origin ${stream.session.socket.remoteAddress} has requested invalid file named ${route}.png`)
 
                                 }
                             }

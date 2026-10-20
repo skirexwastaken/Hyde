@@ -25,14 +25,14 @@ import {stylesDirectory} from "../../../constants/paths.js"
 
 export const cacheCss = {
     cacheCss(route, stats) {
-        const fullPath = path.resolve(stylesDirectory, route)
+        const fullPath = path.resolve(stylesDirectory, `${route}.css`)
         const cssFile = fs.readFileSync(fullPath, "utf-8")
 
         this.cssRouteMap[route] = this.cssCacheCounter++
         this.cssFiles.push(cssFile)
         this.cssFilesModified.push(stats.mtime)
 
-        console.log(`[loCache] ${route} has been cached`)
+        console.log(`[loCache] ${route}.css has been cached`)
 
     }
 }

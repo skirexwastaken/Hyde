@@ -24,18 +24,18 @@ export const markdownInit = [
 ]
 
 export const stylesInit = [
-    "core/hacker.css",
-    "core/dark.css",
-    "core/light.css"
+    "core/hacker",
+    "core/dark",
+    "core/light"
 
 ]
 
 export const iconInit = [
-    "favicon.ico"
+    "favicon"
     
 ]
 
 export const imageInit = [
-    "hyde.png"
+    "hyde"
 
 ]

@@ -44,12 +44,12 @@ export const getFile =  {
 
             case "css": {
                 if (stats.mtime.getTime() != this.cssFilesModified[this.cssRouteMap[route]].getTime()) {
-                    const fullPath = path.resolve(stylesDirectory, route)
+                    const fullPath = path.resolve(stylesDirectory, `${route}.css`)
                     const cssFile = fs.readFileSync(fullPath, "utf-8")
 
                     this.cssFiles[this.cssRouteMap[route]] = cssFile
 
-                    console.log(`[loCache] ${route} has been recached`)
+                    console.log(`[loCache] ${route}.css has been recached`)
 
                     return cssFile
 
@@ -61,12 +61,12 @@ export const getFile =  {
 
             case "ico": {
                 if (stats.mtime.getTime() != this.iconFilesModified[this.iconRouteMap[route]].getTime()) {
-                    const fullPath = path.resolve(iconDirectory, route)
+                    const fullPath = path.resolve(iconDirectory, `${route}.ico`)
                     const iconFile = fs.readFileSync(fullPath)
 
                     this.iconFiles[this.iconRouteMap[route]] = iconFile
 
-                    console.log(`[loCache] ${route} has been recached`)
+                    console.log(`[loCache] ${route}.ico has been recached`)
 
                     return iconFile
 
@@ -78,12 +78,12 @@ export const getFile =  {
 
             case "image": {
                 if (stats.mtime.getTime() != this.imageFilesModified[this.imageRouteMap[route]].getTime()) {
-                    const fullPath = path.resolve(imageDirectory, route)
+                    const fullPath = path.resolve(imageDirectory, `${route}.png`)
                     const imageFile = fs.readFileSync(fullPath)
     
                     this.imageFiles[this.imageRouteMap[route]] = imageFile
 
-                    console.log(`[loCache] ${route} has been recached`)
+                    console.log(`[loCache] ${route}.png has been recached`)
 
                     return imageFile
 

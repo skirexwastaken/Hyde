@@ -38,7 +38,7 @@ export const initCache = {
         }
 
         for (const cssFile of stylesInit) {
-            const fullPath = path.resolve(stylesDirectory, cssFile)
+            const fullPath = path.resolve(stylesDirectory, `${cssFile}.css`)
             const stats = getStats(fullPath)
 
             if (stats) {
@@ -48,7 +48,7 @@ export const initCache = {
         }
 
         for (const iconFile of iconInit) {
-            const fullPath = path.resolve(iconDirectory, iconFile)
+            const fullPath = path.resolve(iconDirectory, `${iconFile}.ico`)
             const stats = getStats(fullPath)
 
             if (stats) {
@@ -58,7 +58,7 @@ export const initCache = {
         }
 
         for (const imageFile of imageInit) {
-            const fullPath = path.resolve(imageDirectory, imageFile)
+            const fullPath = path.resolve(imageDirectory, `${imageFile}.png`)
             const stats = getStats(fullPath)
 
             if (stats) {
