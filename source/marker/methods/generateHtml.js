@@ -161,7 +161,7 @@ export const generateHtml = {
                 // Note: Styles are also not applied to titles
                 if (["#"].includes(line[0])){
                     switch (line[0]) {
-                        case "#":
+                        case "#": {
 
                             // Valid title needs to have 1 <-> 6 # followed by whitespace
                             // Regex is looking for # ...
@@ -177,6 +177,7 @@ export const generateHtml = {
 
                             break
 
+                        }
                     }
 
                 // Standard line
