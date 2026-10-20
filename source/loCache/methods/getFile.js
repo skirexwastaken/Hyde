@@ -21,7 +21,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 import fs from "node:fs"
 import path from "node:path"
 
-import {stylesDirectory, iconDirectory, imageDirectory} from "../../../constants/paths.js"
+import {stylesDirectory, iconDirectory, imageDirectory} from "../../constants/paths.js"
 
 export const getFile =  {
     getFile(route, type, stats) {

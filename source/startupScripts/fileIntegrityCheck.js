@@ -113,9 +113,7 @@ const coreProjectFiles = [
                     "../../source/loCache/methods/cache/cacheImage.js",
                     "../../source/loCache/methods/cache/cacheMarkdown.js",
 
-                // get´
-                    "../../source/loCache/methods/get/getFile.js",
-
+                "../../source/loCache/methods/getFile.js",
                 "../../source/loCache/methods/initCache.js",
 
             "../../source/loCache/loCache.js",

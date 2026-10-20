@@ -25,7 +25,7 @@ import {cacheIcon} from "./methods/cache/cacheIcon.js"
 import {cacheImage} from "./methods/cache/cacheImage.js"
 import {cacheMarkdown} from "./methods/cache/cacheMarkdown.js"
 
-import {getFile} from "./methods/get/getFile.js"
+import {getFile} from "./methods/getFile.js"
 import {initCache} from "./methods/initCache.js"
 
 export class loCache {
