@@ -26,7 +26,7 @@ export const convert = {
 
         // 2. Processed markdown is something between html and Markdown file, it contains things from both
         // This is the stage when Fractal code is extracted
-        const [processedMarkdown, fractalBytecode] = this.processMarkdown(markdownContent, filename)
+        const [processedMarkdown, fractalBytecode] = this.reflowMarkdown(markdownContent, filename)
 
         // 3. At this point there is pure html file generated
         const [generatedHTML, cssFile, iconFile, htmlTitle] = this.generateHtml(processedMarkdown)

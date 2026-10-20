@@ -18,9 +18,9 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-export const processMarkdown = {
+export const reflowMarkdown = {
     // The main goal of this function is to simply determine where new lines should start
-    processMarkdown(markdownContent, filename){
+    reflowMarkdown(markdownContent, filename){
 
         // Removing comments
         // Regex is looking of <!-- ... -->

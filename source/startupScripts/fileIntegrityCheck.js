@@ -132,7 +132,7 @@ const coreProjectFiles = [
 
                 "../../source/marker/methods/convert.js",
                 "../../source/marker/methods/generateHtml.js",
-                "../../source/marker/methods/processMarkdown.js",
+                "../../source/marker/methods/reflowMarkdown.js",
 
             "../../source/marker/marker.js",
 

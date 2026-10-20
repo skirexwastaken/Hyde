@@ -29,7 +29,7 @@ import {processWrapper} from "./methods/segmentSpecific/processWrapper.js"
 
 import {convert} from "./methods/convert.js"
 import {generateHtml} from "./methods/generateHtml.js"
-import {processMarkdown} from "./methods/processMarkdown.js"
+import {reflowMarkdown} from "./methods/reflowMarkdown.js"
 
 export class Marker {
 
@@ -49,6 +49,6 @@ Object.assign(
 
     convert,
     generateHtml,
-    processMarkdown,
+    reflowMarkdown,
 
 )
