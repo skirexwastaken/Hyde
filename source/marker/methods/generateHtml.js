@@ -18,6 +18,11 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
+import path from "node:path"
+import fs from "node:fs"
+
+import {stylesDirectory} from "../../constants/paths.js"
+
 // Function that converts the processed markdown into pure HTML
 export const generateHtml = {
     generateHtml(processedMarkdown){
@@ -59,7 +64,12 @@ export const generateHtml = {
                 // CSS File - Marker Specific
                 // Regex is looking for css(...)
                 line = line.replace(/css\[(\S*?)\]/g, (match, filename) => {
-                    cssFile = filename
+                    const cssFilePath = path.resolve(stylesDirectory, filename);
+
+                    if (fs.existsSync(cssFilePath)) {
+                        cssFile = filename
+
+                    }
 
                     return ""
                     
