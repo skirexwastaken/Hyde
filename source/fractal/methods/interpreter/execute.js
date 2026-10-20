@@ -466,6 +466,7 @@ export const execute = {
                         // For example charAt('word', -1) -1 + 4 = 3 -> d
                         if (index < 0) {
                             index += string.length
+                            
                         }
 
                         if (index < string.length && index >= 0){
