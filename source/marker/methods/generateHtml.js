@@ -21,7 +21,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 import path from "node:path"
 import fs from "node:fs"
 
-import {stylesDirectory} from "../../constants/paths.js"
+import {stylesDirectory, iconDirectory} from "../../constants/paths.js"
 
 // Function that converts the processed markdown into pure HTML
 export const generateHtml = {
@@ -80,7 +80,12 @@ export const generateHtml = {
                 // Favicon file - Marker Specific
                 // Regex is looking for icon(...)
                 line = line.replace(/icon\[(\S*?)\]/g, (match, filename) => {
-                    iconFile = filename
+                    const iconFilePath = path.resolve(iconDirectory, filename);
+
+                    if (fs.existsSync(iconFilePath)) {
+                        iconFile = filename
+
+                    }
 
                     return ""
 
