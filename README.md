@@ -147,6 +147,145 @@ Tool that deletes left over files after user deletes the original markdown file
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 
+```
+.
+├── certificates
+├── compose.yaml
+├── documents
+│   └── materials.md
+├── hyde.js
+├── LICENSE.txt
+├── logs
+│   ├── fractalCli
+│   ├── hyde
+│   ├── hydeDocker
+│   ├── startupScripts
+│   │   └── garbageCollector
+│   └── tests
+│       ├── fractalTest
+│       └── hawkTestPerformance
+├── README.md
+├── run.sh
+├── source
+│   ├── constants
+│   │   ├── macros.js
+│   │   └── paths.js
+│   ├── fractal
+│   │   ├── constants
+│   │   │   ├── functions.js
+│   │   │   └── instructionLimit.js
+│   │   ├── coreTools
+│   │   │   ├── coreTools.js
+│   │   │   └── methods
+│   │   │       ├── inputOutput
+│   │   │       │   ├── clearShell.js
+│   │   │       │   ├── codeInput.js
+│   │   │       │   └── shellOutput.js
+│   │   │       └── math
+│   │   │           ├── convertToNumberUsingAscii.js
+│   │   │           ├── fractalEval.js
+│   │   │           └── isNumber.js
+│   │   ├── fractal.js
+│   │   ├── memoryManager
+│   │   │   ├── memoryManager.js
+│   │   │   └── methods
+│   │   │       ├── allocateMemorySpace.js
+│   │   │       ├── getVariableValue.js
+│   │   │       └── setVariableValue.js
+│   │   └── methods
+│   │       ├── argumentsSupport
+│   │       │   ├── checkInputArguments.js
+│   │       │   ├── generateOutputArguments.js
+│   │       │   └── loadInputArguments.js
+│   │       ├── compiler
+│   │       │   ├── argumentCounter.js
+│   │       │   ├── argumentCountVerifier.js
+│   │       │   ├── compile.js
+│   │       │   ├── lexer.js
+│   │       │   ├── parser.js
+│   │       │   └── scanner.js
+│   │       └── interpreter
+│   │           ├── execute.js
+│   │           └── interpreter.js
+│   ├── hawk
+│   │   ├── hawk.js
+│   │   ├── methods
+│   │   │   ├── assembleResponse.js
+│   │   │   ├── initServer.js
+│   │   │   └── runServer.js
+│   │   └── workerPool
+│   │       ├── methods
+│   │       │   ├── addWorker.js
+│   │       │   ├── initWorkers.js
+│   │       │   ├── processQueue.js
+│   │       │   └── runTask.js
+│   │       └── workerPool.js
+│   ├── loCache
+│   │   ├── constants
+│   │   │   └── initCacheContent.js
+│   │   ├── loCache.js
+│   │   └── methods
+│   │       ├── cacheFile.js
+│   │       ├── getFile.js
+│   │       └── initCache.js
+│   ├── marker
+│   │   ├── marker.js
+│   │   └── methods
+│   │       ├── convert.js
+│   │       ├── generateHtml.js
+│   │       ├── inputOutput
+│   │       │   ├── loadMarkdown.js
+│   │       │   └── saveHtml.js
+│   │       ├── reflowMarkdown.js
+│   │       └── segmentSpecific
+│   │           ├── fractal
+│   │           │   ├── compileFractalCode.js
+│   │           │   └── extractFractal.js
+│   │           ├── processJsonWeb.js
+│   │           └── processWrapper.js
+│   ├── mytharis
+│   │   └── mytharis.js
+│   └── startupScripts
+│       ├── consoleCleaner.js
+│       ├── consoleDebug.js
+│       ├── fileIntegrityCheck.js
+│       ├── garbageCollector.js
+│       └── systemLog.js
+├── static
+│   ├── icons
+│   │   └── favicon.ico
+│   ├── images
+│   │   └── hyde.png
+│   ├── scripts
+│   │   ├── example.fsc
+│   │   └── index.fsc
+│   └── styles
+│       ├── core
+│       │   ├── dark.css
+│       │   ├── hacker.css
+│       │   └── light.css
+│       ├── template.css
+│       └── theAxes
+│           ├── azure.css
+│           ├── crimson.css
+│           ├── gold.css
+│           └── seaGreen.css
+├── templates
+│   ├── html
+│   │   ├── example.html
+│   │   └── index.html
+│   └── markdown
+│       ├── example.md
+│       └── index.md
+├── tests
+│   ├── fractalTest
+│   │   ├── fractalTest.js
+│   │   └── testCases.jsonc
+│   └── hawkTestPerformance.sh
+└── tools
+    └── fractalCli.js
+```
+
 ## License
 
 This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE.txt) file for details
