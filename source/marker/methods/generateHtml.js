@@ -35,6 +35,7 @@ export const generateHtml = {
         // Default icon if no icon is specified
         let iconFile = "favicon.ico"
 
+        // Default document title
         let htmlTitle = ""
 
         for (let line of processedMarkdown){
@@ -229,6 +230,6 @@ export const generateHtml = {
         }
 
         return [generatedHTML, cssFile, iconFile, htmlTitle]
-        
+
     }
 }
