@@ -101,7 +101,7 @@ export const initServer = {
 
                                 if (stats) {
                                     if (!(route in this.loCache.cssRouteMap)) {
-                                        this.loCache.cacheCss(route, stats)
+                                        this.loCache.cacheFile(route, "css", stats)
 
                                     }
 
@@ -159,7 +159,7 @@ export const initServer = {
 
                                 if (stats) {
                                     if (!(route in this.loCache.markdownRouteMap)) {
-                                        this.loCache.cacheMarkdown(route, stats)
+                                        this.loCache.cacheFile(route, "markdown", stats)
 
                                     }
 
@@ -224,7 +224,7 @@ export const initServer = {
 
                                 if (stats) {
                                     if (!(route in this.loCache.iconRouteMap)) {
-                                        this.loCache.cacheIcon(route, stats)
+                                        this.loCache.cacheFile(route, "ico", stats)
 
                                     }
 
@@ -265,7 +265,7 @@ export const initServer = {
 
                                 if (stats) {
                                     if (!(route in this.loCache.imageRouteMap)) {
-                                        this.loCache.cacheImage(route, stats)
+                                        this.loCache.cacheFile(route, "png", stats)
 
                                     }
 

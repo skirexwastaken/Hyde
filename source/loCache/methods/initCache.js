@@ -32,7 +32,7 @@ export const initCache = {
             const stats = getStats(fullPath)
 
             if (stats) {
-                this.cacheMarkdown(markdownFile, stats)
+                this.cacheFile(markdownFile, "markdown", stats)
 
             }
         }
@@ -42,7 +42,7 @@ export const initCache = {
             const stats = getStats(fullPath)
 
             if (stats) {
-                this.cacheCss(cssFile, stats)
+                this.cacheFile(cssFile, "css", stats)
 
             }
         }
@@ -52,7 +52,7 @@ export const initCache = {
             const stats = getStats(fullPath)
 
             if (stats) {
-                this.cacheIcon(iconFile, stats)
+                this.cacheFile(iconFile, "ico", stats)
 
             }
         }
@@ -62,7 +62,7 @@ export const initCache = {
             const stats = getStats(fullPath)
 
             if (stats) {
-                this.cacheImage(imageFile, stats)
+                this.cacheFile(imageFile, "png", stats)
 
             }
         }

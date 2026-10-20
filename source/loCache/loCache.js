@@ -20,11 +20,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 import {Marker} from "../marker/marker.js"
 
-import {cacheCss} from "./methods/cache/cacheCss.js"
-import {cacheIcon} from "./methods/cache/cacheIcon.js"
-import {cacheImage} from "./methods/cache/cacheImage.js"
-import {cacheMarkdown} from "./methods/cache/cacheMarkdown.js"
-
+import {cacheFile} from "./methods/cacheFile.js"
 import {getFile} from "./methods/getFile.js"
 import {initCache} from "./methods/initCache.js"
 
@@ -61,11 +57,7 @@ export class loCache {
 Object.assign(
     loCache.prototype,
 
-    cacheCss,
-    cacheMarkdown,
-    cacheIcon,
-    cacheImage,
-    
+    cacheFile,
     getFile,
     initCache
     
