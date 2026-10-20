@@ -137,35 +137,35 @@ export const generateHtml = {
                 // Note - Marker Specific
                 // Regex is looking for note(...)
                 line = line.replace(/note\[([\s\S]*?)\]/g, (match, text) => {                    
-                    return `<note>NOTE: ${text}</note>`
+                    return ` <note>NOTE: ${text}</note>`
 
                 })
 
                 // Tip - Marker Specific
                 // Regex is looking for tip(...)
                 line = line.replace(/tip\[([\s\S]*?)\]/g, (match, text) => {                    
-                    return `<tip>TIP: ${text}</tip>`
+                    return ` <tip>TIP: ${text}</tip>`
 
                 })
 
                 // Important - Marker Specific
                 // Regex is looking for important(...)
                 line = line.replace(/important\[([\s\S]*?)\]/g, (match, text) => {                    
-                    return `<important>IMPORTANT: ${text}</important>`
+                    return ` <important>IMPORTANT: ${text}</important>`
 
                 })
 
                 // Warning - Marker Specific
                 // Regex is looking for warning(...)
                 line = line.replace(/warning\[([\s\S]*?)\]/g, (match, text) => {                    
-                    return `<warning>WARNING: ${text}</warning>`
+                    return ` <warning>WARNING: ${text}</warning>`
 
                 })
 
                 // Caution - Marker Specific
                 // Regex is looking for caution(...)
                 line = line.replace(/caution\[([\s\S]*?)\]/g, (match, text) => {                    
-                    return `<caution>CAUTION: ${text}</caution>`
+                    return ` <caution>CAUTION: ${text}</caution>`
 
                 })
 
@@ -195,7 +195,7 @@ export const generateHtml = {
                 // Standard line
                 } else {
                     if (!(line.startsWith("<p>")) && !(line.startsWith("<") && line.endsWith(">"))) {
-                        line = `<p>${line}</p>`
+                        line = `<p>${line.trim()}</p>`
 
                     }
 
