@@ -18,21 +18,21 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <https://www.gnu.org/licenses/>.
 
-echo "[Update Utility] Attempting to pull a newer Hyde version fron Gitea"
+echo "[Update Utility] Attempting to pull a newer Hyde version from Gitea"
 
 if git pull origin main >/dev/null 2>&1; then
-    echo "[Update Utility] Hyde has been synchronized with Gitea server"
+    echo "[Update Utility] Hyde has been synchronized with the Gitea server"
 
 else
-    echo "[Update Utility] Hyde was unable to synchronize with Gitea server"
+    echo "[Update Utility] Hyde was unable to be synchronized with the Gitea server"
 
-    echo "[Update Utility] Attempting to pull a newer Hyde version fron GitHub"
+    echo "[Update Utility] Attempting to pull a newer Hyde version from GitHub"
 
     if git pull github main >/dev/null 2>&1; then
-        echo "[Update Utility] Hyde has been synchronized with GitHub server"
+        echo "[Update Utility] Hyde has been synchronized with the GitHub server"
 
     else
-        echo "[Update Utility] Hyde was unable to synchronize with GitHub server"
+        echo "[Update Utility] Hyde was unable to be synchronized with the GitHub server"
 
     fi
 
