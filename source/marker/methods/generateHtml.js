@@ -229,5 +229,6 @@ export const generateHtml = {
         }
 
         return [generatedHTML, cssFile, iconFile, htmlTitle]
+        
     }
 }
