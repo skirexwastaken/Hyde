@@ -88,7 +88,7 @@ export const generateHtml = {
 
                 // Html Title - Marker Specifc
                 // Regex is looking for title(...)
-                line = line.replace(/title\[(\S*?)\]/g, (match, title) => {
+                line = line.replace(/title\[([\S\s]*?)\]/g, (match, title) => {
                     htmlTitle = title
 
                     return ""
