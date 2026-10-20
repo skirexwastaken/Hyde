@@ -39,9 +39,10 @@ export const generateHtml = {
         let htmlTitle = ""
 
         for (let line of processedMarkdown){
+            line = line.trim()
 
             // Similar logic as in processMarkdown function for code blocks
-            if (line.trim() == "```"){
+            if (line == "```"){
                 if (insideCodeBlock == false){
                     insideCodeBlock = true
                     generatedHTML.push("<code>")
@@ -94,6 +95,12 @@ export const generateHtml = {
 
                 })
 
+                // Line that only sets css or icon can become empty
+                if (line.trim() == "") {
+                    continue
+
+                }
+
                 // Image - Marker Specific
                 // Regex is looking for image[...](...)
                 line = line.replace(/image\[([\S\s]*?)\]\((\S*?)\)/g, (match, altText, source) => {                    
@@ -107,7 +114,6 @@ export const generateHtml = {
                     return `<img src='${source}' alt='${altText}'>`
 
                 })
-
 
                 // Website link - Marker Specific
                 // Regex is looking for link[...](...)
@@ -183,13 +189,6 @@ export const generateHtml = {
 
                 // Standard line
                 } else {
-
-                    // Empty lines are skipped
-                    if (line == "") {
-                        continue
-
-                    }
-
                     if (!(line.startsWith("<p>")) && !(line.startsWith("<") && line.endsWith(">"))) {
                         line = `<p>${line}</p>`
 
