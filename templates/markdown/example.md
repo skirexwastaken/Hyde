@@ -158,15 +158,15 @@ main [
 
 # Examples of specific tags
 
-note(Finish writing readme)
+note[Finish writing readme]
 
-tip(Readme will be pretty helpful once it's done)
+tip[Readme will be pretty helpful once it's done]
 
-important(You should seriously finish the readme)
+important[You should seriously finish the readme]
 
-warning(Readme is not yet fully finished)
+warning[Readme is not yet fully finished]
 
-caution(No one knows when the readme will be finished)
+caution[No one knows when the readme will be finished]
 
 # Example of post request
 
