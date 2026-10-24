@@ -27,7 +27,7 @@ echo "[Hawk] Running performance test with the following amount of requests: ${t
 start=$(date +%s%N)
 
 for ((requestIndex = 0; requestIndex < $totalRequests; requestIndex ++)); do
-    curl -s "http://localhost:8080/example" > /dev/null
+    curl -s "https://localhost:8080/example" > /dev/null
 
 done
 
