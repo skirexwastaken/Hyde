@@ -255,6 +255,30 @@ case $1 in
 
     ;;
 
+    "update"|"u")
+        if [[ -f ./tools/updateUtility.sh ]]; then
+            echo "[Hyde Runtime] Launching Update Utility in $mode mode"
+
+            if [[ "$mode" == "production" ]]; then
+                mkdir -p "${logDirectory}/updateUtility"
+
+                logFullPath="${logDirectory}/updateUtility/${logFilename}"
+
+                ./tools/updateUtility.sh | tee -a "${logFullPath}"
+
+            else
+                ./tools/updateUtility.sh
+
+            fi
+
+
+        else
+            echo "[Hyde Runtime] updateUtility.sh was not found"
+
+        fi
+
+    ;;
+
     # Default helper function that shows all available options
     *)
     echo "[Hyde Runtime] Options overview"
