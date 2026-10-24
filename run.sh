@@ -110,7 +110,7 @@ case $1 in
 
                 logFullPath="${logDirectory}/hyde/${logFilename}"
 
-                node --env-file=.env hyde.js | tee -a "${logFullPath}"
+                node --env-file=.env hyde.js | tee -a $logFullPath
 
             else 
                 node --env-file=.env hyde.js
@@ -138,7 +138,7 @@ case $1 in
 
                     logFullPath="${logDirectory}/hydeDocker/${logFilename}"
 
-                    sudo docker compose up | tee -a "${logFullPath}"
+                    sudo docker compose up | tee -a $logFullPath
 
                 else
                     sudo docker compose up 
@@ -167,7 +167,7 @@ case $1 in
 
                 logFullPath="${logDirectory}/fractalCli/${logFilename}"
 
-                node ./tools/fractalCli.js | tee -a "${logFullPath}"   
+                node ./tools/fractalCli.js | tee -a $logFullPath   
 
             else
                 node ./tools/fractalCli.js
@@ -191,7 +191,7 @@ case $1 in
 
                 logFullPath="${logDirectory}/tests/fractalTest/${logFilename}"
 
-                node ./tests/fractalTest/fractalTest.js | tee -a "${logFullPath}"   
+                node ./tests/fractalTest/fractalTest.js | tee -a $logFullPath}
 
             else
                 node ./tests/fractalTest/fractalTest.js
@@ -214,11 +214,11 @@ case $1 in
 
             logFullPath="${logDirectory}/tests/hawkTestPerformance/${logFilename}"
 
-            ./tests/hawkTestPerformance.sh 1 | tee -a "${logFullPath}"  
+            ./tests/hawkTestPerformance.sh 1 | tee -a $logFullPath
 
-            ./tests/hawkTestPerformance.sh 10 | tee -a "${logFullPath}"  
+            ./tests/hawkTestPerformance.sh 10 | tee -a $logFullPath 
 
-            ./tests/hawkTestPerformance.sh 100 | tee -a "${logFullPath}"   
+            ./tests/hawkTestPerformance.sh 100 | tee -a $logFullPath  
 
         else
             ./tests/hawkTestPerformance.sh 1
@@ -241,7 +241,7 @@ case $1 in
 
                 logFullPath="${logDirectory}/startupScripts/garbageCollector/${logFilename}"
 
-                node ./source/startupScripts/garbageCollector.js | tee -a "${logFullPath}"   
+                node ./source/startupScripts/garbageCollector.js | tee -a ${logFullPath}   
 
             else
                 node ./source/startupScripts/garbageCollector.js
@@ -264,7 +264,7 @@ case $1 in
 
                 logFullPath="${logDirectory}/updateUtility/${logFilename}"
 
-                ./tools/updateUtility.sh | tee -a "${logFullPath}"
+                ./tools/updateUtility.sh | tee -a $logFullPath
 
             else
                 ./tools/updateUtility.sh
