@@ -163,9 +163,9 @@ case $1 in
             echo "[Hyde Runtime] Launching Fractal CLI in $mode mode"
 
             if [[ "$mode" == "production" ]]; then
-                mkdir -p "${logDirectory}/fractalCli"
+                mkdir -p "${logDirectory}/tools/fractalCli"
 
-                logFullPath="${logDirectory}/fractalCli/${logFilename}"
+                logFullPath="${logDirectory}/tools/fractalCli/${logFilename}"
 
                 node ./tools/fractalCli.js | tee -a $logFullPath   
 
@@ -260,9 +260,9 @@ case $1 in
             echo "[Hyde Runtime] Launching Update Utility in $mode mode"
 
             if [[ "$mode" == "production" ]]; then
-                mkdir -p "${logDirectory}/updateUtility"
+                mkdir -p "${logDirectory}/tools/updateUtility"
 
-                logFullPath="${logDirectory}/updateUtility/${logFilename}"
+                logFullPath="${logDirectory}/tools/updateUtility/${logFilename}"
 
                 ./tools/updateUtility.sh | tee -a $logFullPath
 
